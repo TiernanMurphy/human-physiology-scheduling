@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASPN by Gonzaga</title>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <script type="module" src="/data/courses.js"></script>
+    <script type="module" src="/data/required.js"></script>
+    <script type="module" src="/public/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <h1 class="logo">Gonzaga's Advising Software Planning Network</h1>
+        <div class="nav-links">
+            <a href="home.html" class="active">Dashboard</a>
+            <a href="plan.html">Create Plan</a>
+            <a href="#faq">FAQ</a>
+            <a href="index.html" class="logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <header class="page-header">
+        <h2>Welcome, Student!</h2>
+        <p>Plan your Human Physiology degree with ease</p>
+    </header>
+
+    <!-- Required HP Courses Section -->
+    <section class="course-section">
+        <div class="section-header" onclick="toggleSection('required-courses')">
+            <h3>Required Human Physiology Courses</h3>
+            <div class="header-actions">
+                <button class="btn-download" onclick="event.stopPropagation(); downloadSection('required-courses')">
+                    Download as PDF
+                </button>
+            </div>
+            <span class="dropdown-arrow">▼</span>
+        </div>
+        <div id="required-courses" class="course-content hidden">
+            <div class="subsection">
+                <h4>Core STEM</h4>
+                <div id="core-stem-courses" class="course-list"></div>
+            </div>
+            <div class="subsection">
+                <h4>Lower Division</h4>
+                <div id="lower-division-courses" class="course-list"></div>
+            </div>
+            <div class="subsection">
+                <h4>Upper Division</h4>
+                <div id="upper-division-courses" class="course-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GU Core Courses Section -->
+    <section class="course-section">
+        <div class="section-header" onclick="toggleSection('gu-core-courses')">
+            <h3>GU Core Requirements</h3>
+            <div class="header-actions">
+                <button class="btn-download" onclick="event.stopPropagation(); downloadSection('gu-core-courses')">
+                    Download PDF
+                </button>
+            </div>
+            <span class="dropdown-arrow">▼</span>
+        </div>
+        <div id="gu-core-courses" class="course-content hidden">
+            <div class="subsection">
+                <h4>Year 1</h4>
+                <div id="core-year1" class="course-list"></div>
+            </div>
+            <div class="subsection">
+                <h4>Year 2</h4>
+                <div id="core-year2" class="course-list"></div>
+            </div>
+            <div class="subsection">
+                <h4>Year 3</h4>
+                <div id="core-year3" class="course-list"></div>
+            </div>
+            <div class="subsection">
+                <h4>Year 4</h4>
+                <div id="core-year4" class="course-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample 4-Year Plan Section -->
+    <section class="course-section">
+        <div class="section-header" onclick="toggleSection('sample-plan')">
+            <h3>Sample 4-Year Progression</h3>
+            <div class="header-actions">
+                <button class="btn-download" onclick="event.stopPropagation(); downloadSection('sample-plan')">
+                    Download PDF
+                </button>
+            </div>
+            <span class="dropdown-arrow">▼</span>
+        </div>
+        <div id="sample-plan" class="course-content hidden">
+            <div class="year-plan">
+                <h4>Freshman Year</h4>
+                <div class="semester-container">
+                    <div class="semester">
+                        <h5>Fall</h5>
+                        <div id="freshman-fall" class="course-list"></div>
+                    </div>
+                    <div class="semester">
+                        <h5>Spring</h5>
+                        <div id="freshman-spring" class="course-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="year-plan">
+                <h4>Sophomore Year</h4>
+                <div class="semester-container">
+                    <div class="semester">
+                        <h5>Fall</h5>
+                        <div id="sophomore-fall" class="course-list"></div>
+                    </div>
+                    <div class="semester">
+                        <h5>Spring</h5>
+                        <div id="sophomore-spring" class="course-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="year-plan">
+                <h4>Junior Year</h4>
+                <div class="semester-container">
+                    <div class="semester">
+                        <h5>Fall</h5>
+                        <div id="junior-fall" class="course-list"></div>
+                    </div>
+                    <div class="semester">
+                        <h5>Spring</h5>
+                        <div id="junior-spring" class="course-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="year-plan">
+                <h4>Senior Year</h4>
+                <div class="semester-container">
+                    <div class="semester">
+                        <h5>Fall</h5>
+                        <div id="senior-fall" class="course-list"></div>
+                    </div>
+                    <div class="semester">
+                        <h5>Spring</h5>
+                        <div id="senior-spring" class="course-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Coursework Section -->
+    <section class="course-section">
+        <div class="section-header" onclick="toggleSection('recommended')">
+            <h3>Recommended Coursework</h3>
+            <div class="header-actions">
+                <button class="btn-download" onclick="event.stopPropagation(); downloadSection('recommended')">
+                    Download PDF
+                </button>
+            </div>
+            <span class="dropdown-arrow">▼</span>
+        </div>
+        <div id="recommended" class="course-content hidden">
+            <div class="career-path-selector">
+                <label for="career-path">Select a career path:</label>
+                <select id="career-path">
+                    <option value="">Select a path...</option>
+                    <option value="medicine">Medicine or Osteopathy</option>
+                    <option value="physician_assistant">Physician Assistant</option>
+                    <option value="dental">Dental</option>
+                    <option value="physical_therapy">Physical Therapy</option>
+                    <option value="occupational_therapy">Occupational Therapy</option>
+                    <option value="pharmacy">Pharmacy</option>
+                    <option value="optometry">Optometry</option>
+                    <option value="nursing">Accelerated Nursing</option>
+                </select>
+            </div>
+
+            <div id="recommended-courses-display"></div>
+        </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions">
+        <a href="plan.html" class="btn btn-primary">Create New Plan</a>
+        <button class="btn btn-secondary">Download All Sheets</button>
+    </section>
+</main>
+</body>
+</html>
