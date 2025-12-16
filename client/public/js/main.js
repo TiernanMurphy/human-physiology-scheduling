@@ -3,23 +3,18 @@ import { humanPhys, core } from '/data/required.js';
 import progression from '/data/progression.js';
 import recommended from '/data/recommended.js';
 import courseLinks from '/data/course-links.js';
-import { generateSectionPDF, generateAllSectionsPDF } from "./pdf-generator.js";
+import { generateSectionPDF } from "./pdf-generator.js";
 
-// toggle section visibility
+// show/hide sections
 function toggleSection(sectionId) {
     const content = document.getElementById(sectionId);
     const arrow = content.previousElementSibling.querySelector('.dropdown-arrow');
 
-    if (content.classList.contains('hidden')) {
-        content.classList.remove('hidden');
-        arrow.style.transform = 'rotate(180deg)';
-    } else {
-        content.classList.add('hidden');
-        arrow.style.transform = 'rotate(0deg)';
-    }
+    const isHidden = content.classList.toggle('hidden');
+    arrow.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
 }
 
-// make toggleSection globally available
+// make toggleSection available to home.html
 window.toggleSection = toggleSection;
 
 // create a course record
@@ -34,7 +29,7 @@ function createCourseRow(courseCode) {
     const row = document.createElement('div');
     row.className = 'course-row';
 
-    // get the link, use '#' if not found
+    // get course's link, use '#' if not found
     const link = courseLinks[courseCode] || '#';
 
     // if link found, open in new tab
@@ -69,7 +64,7 @@ function populateCourseSection(elementId, courseCodes) {
     });
 }
 
-// Helper function to separate courses by subject prefix
+// group courses by subject using course codes
 function separateCoursesBySubject(courseCodes) {
     const separated = {
         biology: [],
@@ -122,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
         careerPathSelect.addEventListener('change', function(e) {
            const selectedPath = e.target.value;
 
-           // clear previous content
+           // clear previous content before showing new recommendations
             displayContainer.innerHTML = '';
 
             if (selectedPath && recommended[selectedPath]) {
@@ -144,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
             nursing: 'Nursing'
         };
 
-        // Add the main header
+        // add the main header
         const mainHeader = document.createElement('h3');
         mainHeader.textContent = `Pre-${pathTitles[pathKey]} Recommended Coursework`;
         mainHeader.style.marginBottom = '20px';
