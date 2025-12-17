@@ -14,8 +14,13 @@ function toggleSection(sectionId) {
     arrow.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
 }
 
-// make toggleSection available to home.html
-window.toggleSection = toggleSection;
+// applies toggleSection(sectionId) to home.html sections
+document.querySelectorAll('.section-header').forEach(header => {
+   header.addEventListener('click', () => {
+       const sectionId = header.dataset.section;
+       toggleSection(sectionId);
+   });
+});
 
 // create a course record
 function createCourseRow(courseCode) {
