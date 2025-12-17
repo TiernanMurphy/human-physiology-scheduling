@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="fix: navbar pages routing">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="feat: add FAQ content (unformatted)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/faq.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +92,7 @@
       <workItem from="1765866982111" duration="6723000" />
       <workItem from="1765935627290" duration="1873000" />
       <workItem from="1765939260579" duration="254000" />
-      <workItem from="1765939533265" duration="2232000" />
+      <workItem from="1765939533265" duration="4974000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit, course info &amp; download">
       <option name="closed" value="true" />
@@ -117,7 +118,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765936855831</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: add FAQ content (unformatted)">
+      <option name="closed" value="true" />
+      <created>1765941974184</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1765941974184</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +135,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit, course info &amp; download" />
     <MESSAGE value="fix: navbar pages routing" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: navbar pages routing" />
+    <MESSAGE value="feat: add FAQ content (unformatted)" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add FAQ content (unformatted)" />
   </component>
 </project>

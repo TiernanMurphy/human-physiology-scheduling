@@ -7,140 +7,180 @@
     <script type="module" src="/public/js/main.js"></script>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <h1 class="logo">Gonzaga's Advising Software Planning Network</h1>
-            <div class="nav-links">
-                <a href="/pages/home.html" class="active">Dashboard</a>
-                <a href="/pages/plan.html">Create Plan</a>
-                <a href="/pages/faq.html">FAQ</a>
-                <a href="/pages/index.html">Login/Register</a>
-            </div>
+<nav class="navbar">
+    <div class="nav-container">
+        <h1 class="logo">Gonzaga's Advising Software Planning Network</h1>
+        <div class="nav-links">
+            <a href="/pages/home.html">Dashboard</a>
+            <a href="/pages/plan.html">Create Plan</a>
+            <a href="/pages/faq.html" class="active">FAQ</a>
+            <a href="/pages/index.html">Login/Register</a>
         </div>
-    </nav>
-    <div class="electives">
-        <h3>What are the human physiology electives for spring 2026?</h3>
-        <article>
+    </div>
+</nav>
+
+<div class="faq-container">
+    <details class="faq-section electives">
+        <summary>
+            <h3>What are the human physiology electives for spring 2026?</h3>
+            <p class="preview">HPHY 422 Cardiovascular Physiology, HPHY 451 Systems Neurophysiology, HPHY 453 ...</p>
+        </summary>
+        <div class="faq-content">
+            <article>
+                <ul>
+                    <li>HPHY 422 Cardiovascular Physiology
+                        <p>This course is designed for upper division students and will expand on the core
+                            cardiovascular concepts covered in HPHY 242. The course is designed to help students develop
+                            a detailed understanding of the physiology and regulation of the cardiovascular system. The
+                            course will cover concepts of myocardial function, peripheral vascular function and the
+                            integration and regulation of these two components of the cardiovascular system.
+                            Instructor: Dr. Thorp
+                        </p>
+                    </li>
+                    <li>HPHY 451 Systems Neurophysiology
+                        <p>
+                            The course is an advanced examination of the cellular and physiological properties of
+                            neurons, neural communication / transmission, and the physiological manifestations of the
+                            nervous systems control. After examining neural cell function, we begin by exploring the
+                            neurophysiological systems involved in sensory pathways including proprioception and
+                            vestibular system, pain, vision, auditory, and chemical senses. Then, we apply this
+                            knowledge by examining the integration of these systems and their role in normal human
+                            physiological function, disease, and performance. Fall or Spring on need. Instructor: Dr. Lewis
+                        </p>
+                    </li>
+                    <li>HPHY 453 Neuroanatomy
+                        <p>
+                            This course offers an in-depth study of the anatomical organization of the human nervous
+                            system. Through a combination of lecture and hands-on laboratory experience, students will
+                            explore the gross and microscopic structure of the brain and spinal cord, and the
+                            relationships between structure and function. Students will also gain practical experience
+                            in the handling and examination of human brain specimens. Instructor: Dr. Measor
+                        </p>
+                    </li>
+                    <li>HPHY 477 Environmental Physiology
+                        <p>An in-depth study of specific topics in environmental physiology, including the cellular and
+                            systemic responses and adaptations of various organ systems (cardiovascular, pulmonary,
+                            renal etc) to environmental stress including temperature, pressure, altitude,
+                            chemicals/toxins, and others. Instructor: Dr. Crosswhite
+                        </p>
+                    </li>
+                    <li>HPHY 480 Applied Immunology
+                        <p>Begins as a basic immunology course with a focus on immune cells and their development
+                            leading to proper or improper immune function and regulation. Second half of the course
+                            applies basic principles of immunology to dive into depth on tumor responses, autoimmune
+                            conditions, asthma, allergies transplants, etc. Students finish the course by applying what
+                            they have learned to an immune topic of their choice for a final presentation. Instructor: Dr. Deckert
+                        </p>
+                    </li>
+                    <li>HPHY 489 Fundamentals of Human Skeletal Muscle Physiology
+                        <p>This course is designed to offer a comprehensive exploration of the intricate world of
+                            skeletal muscle physiology and function. Through a multidimensional approach encompassing
+                            different aspects, students will gain insights into muscle contractions, metabolic processes,
+                            and adaptive responses. Delving into cutting-edge research, the course highlights the
+                            crucial role skeletal muscles play in overall health, physical performance, and disease
+                            prevention. Engaging lectures, interactive discussions, and independent research projects
+                            provide a well-rounded learning experience to allow students to develop a profound
+                            understanding of skeletal muscle dynamics and their impact on well-being.
+                            Instructor: Dr. Do-Houn Kim</p>
+                    </li>
+                    <li>HPHY 489 Neuroendocrine Physiology
+                        <p>
+                            This course will examine the relationship between the nervous system and the endocrine
+                            system in humans and other mammals. Topics that will be discussed include the regulation of
+                            feeding and energy balance, reproduction, the stress response, and biological rhythms. The
+                            course will be delivered through a combination of lecture, class discussions of current and
+                            foundational primary research, and the drafting of a novel research proposal designed to
+                            answer a scientific question of the student's choice. Instructor: Dr. Alex Miller
+                        </p>
+                    </li>
+                    <li>HPHY 489 Introduction to Prothetics & Orthotics
+                        <p>
+                            This course will broadly cover the field of orthotics and prosthetics as it relates to
+                            biomechanics and anatomy and physiology, as well as the psychosocial components of disability.
+                            Prosthetics and orthotics, commonly referred to as O&P , is a unique field that aims to help
+                            individuals enhance their quality of life and restore function. As a prosthetist and orthotist,
+                            we work closely with doctors, physical therapists and occupational therapists to give our
+                            patients the best possible outcome. We will also explore bionics, osseointegration, running
+                            blades, and other specialty topics. Instructor: Bassel Mufarreh, MSOP
+                        </p>
+                    </li>
+                </ul>
+            </article>
+        </div>
+    </details>
+
+    <details class="faq-section dual-489-registration">
+        <summary>
+            <h3>Can I register for two HPHY 489 courses in one semester?</h3>
+            <p class="preview">Zagweb doesn't allow it, but to get around this you can...</p>
+        </summary>
+        <div class="faq-content">
+            <p>
+                Zagweb views all 489s as the same course and will only allow you to register yourself for one course.
+                How you can register for two is by the following. On the morning of your registration, enroll in your
+                preferred 489 section. Then email the instructor of the second course & me (crosswhite@gonzaga.edu) and
+                you will see a form to fill out. Requests before your registration window opens will not be considered.
+            </p>
+        </div>
+    </details>
+
+    <details class="faq-section full-489-section">
+        <summary>
+            <h3>What if an HPHY elective class is full?</h3>
+            <p class="preview">Due to the high number of electives being offered, there will be...</p>
+        </summary>
+        <div class="faq-content">
+            <p>
+                Due to the high number of electives being offered, there will be limited opportunities for registering
+                for a full course and requires approval from department chair (me) not the instructor. Your best bet is
+                to monitor Zagweb throughout the registration window of November up until the point of the beginning of
+                the spring semester.
+            </p>
+        </div>
+    </details>
+
+    <details class="faq-section chem-307">
+        <summary>
+            <h3>READ THIS if you're registering for Biochemistry (CHEM 307/L)</h3>
+            <p class="preview">If there are seniors who need Chem 307/L but have not taken Chem 102/L...</p>
+        </summary>
+        <div class="faq-content">
             <ul>
-                <li>HPHY 422 Cardiovascular Physiology <p>This course is designed for upper division students and will
-                    expand on the core cardiovascular concepts covered in HPHY 242. The course is designed to help students
-                    develop a detailed understanding of the physiology and regulation of the cardiovascular system. The
-                    course will cover concepts of myocardial function, peripheral vascular function and the integration and
-                    regulation of these two components of the cardiovascular system. Instructor: Dr. Thorp</p>
+                <li>
+                    If there are seniors who need Chem 307/L but have not taken Chem 102/L (which is a pre-requisite), we will sign a waiver to allow these seniors to take Chem 307/L in Spring 2026. Students will need to contact Gemma D'Ambruoso (dambruoso@gonzaga.edu) with their student ID# ahead of their registration period. Non-senior students who want to take Chem 307/L but have not yet taken Chem 102/L should register for Chem 102/L next semester or any spring BEFORE they plan to take Chem 307/L.
                 </li>
-                <li>HPHY 451 Systems Neurophysiology <p>The course is an advanced examination of the cellular and
-                    physiological properties of neurons, neural communication / transmission, and the physiological
-                    manifestations of the nervous systems control. After examining neural cell function, we begin by
-                    exploring the neurophysiological systems involved in sensory pathways including proprioception and
-                    vestibular system, pain, vision, auditory, and chemical senses. Then, we apply this knowledge by
-                    examining the integration of these systems and their role in normal human physiological function,
-                    disease, and performance. Fall or Spring on need. Instructor: Dr. Lewis</p>
+                <li>
+                    The Chem department has permanently changed the pre-requisite courses for Chem 307/L and have made these changes already with the Registrar's Office for Spring 2026. Chem 231/L is no longer a pre-requisite or co-requisite for Chem 307/L. The pre-requisites for Chem 307/L are now Chem 102/L and Chem 230/L (all with a C- or higher grade).
                 </li>
-                <li>HPHY 453 Neuroanatomy <p>This course offers an in-depth study of the anatomical organization of the
-                    human nervous system. Through a combination of lecture and hands-on laboratory experience, students will
-                    explore the gross and microscopic structure of the brain and spinal cord, and the relationships between
-                    structure and function. Students will also gain practical experience in the handling and examination of
-                    human brain specimens. Instructor: Dr. Measor</p>
-                </li>
-                <li>HPHY 477 Environmental Physiology <p>An in-depth study of specific topics in environmental physiology,
-                    including the cellular and systemic responses and adaptations of various organ systems (cardiovascular,
-                    pulmonary, renal etc) to environmental stress including temperature, pressure, altitude,
-                    chemicals/toxins, and others. Instructor: Dr. Crosswhite</p>
-                </li>
-                <li>HPHY 480 Applied Immunology <p>Begins as a basic immunology course with a focus on immune cells and
-                    their development leading to proper or improper immune function and regulation. Second half of the
-                    course applies basic principles of immunology to dive into depth on tumor responses, autoimmune
-                    conditions, asthma, allergies transplants, etc. Students finish the course by applying what they have
-                    learned to an immune topic of their choice for a final presentation. Instructor: Dr. Deckert</p>
-                </li>
-                <li>HPHY 489 Fundamentals of Human Skeletal Muscle Physiology <p>This course is designed to offer a
-                    comprehensive exploration of the intricate world of skeletal muscle physiology and function. Through a
-                    multidimensional approach encompassing different aspects, students will gain insights into muscle
-                    contractions, metabolic processes, and adaptive responses. Delving into cutting-edge research, the
-                    course highlights the crucial role skeletal muscles play in overall health, physical performance, and
-                    disease prevention. Engaging lectures, interactive discussions, and independent research projects
-                    provide a well-rounded learning experience to allow students to develop a profound understanding of
-                    skeletal muscle dynamics and their impact on well-being. Instructor: Dr. Do-Houn Kim</p>
-                </li>
-                <li>HPHY 489 Neuroendocrine Physiology <p>This course will examine the relationship between the nervous
-                    system and the endocrine system in humans and other mammals. Topics that will be discussed include the
-                    regulation of feeding and energy balance, reproduction, the stress response, and biological rhythms.
-                    The course will be delivered through a combination of lecture, class discussions of current and
-                    foundational primary research, and the drafting of a novel research proposal designed to answer a
-                    scientific question of the student's choice. Instructor: Dr. Alex Miller</p>
-                </li>
-                <li>HPHY 489 Introduction to Prothetics & Orthotics <p>This course will broadly cover the field of
-                    orthotics and prosthetics as it relates to biomechanics and anatomy and physiology, as well as the
-                    psychosocial components of disability. Prosthetics and orthotics, commonly referred to as O&P , is a
-                    unique field that aims to help individuals enhance their quality of life and restore function. As a
-                    prosthetist and orthotist, we work closely with doctors, physical therapists and occupational therapists
-                    to give our patients the best possible outcome. We will also explore bionics, osseointegration, running
-                    blades, and other specialty topics. Instructor: Bassel Mufarreh, MSOP</p>
+                <li>
+                    Chat with your advisor if you have any questions related to Biochem registration or the pre-requisites.
                 </li>
             </ul>
-        </article>
-    </div>
-    <div class="dual-489-registration">
-        <h3>Can I register for two HPHY 489 courses in one semester?</h3>
-        <p>
-            Zagweb views all 489s as the same course and will only allow you to register yourself for one course. How
-            you can register for two is by the following. On the morning of your registration, enroll in your preferred
-            489 section. Then email the instructor of the second course & me (crosswhite@gonzaga.edu) and you will see
-            a form to fill out. Requests before your registration window opens will not be considered.
-        </p>
-    </div>
-    <div class="full-489-section">
-        <h3>What if an HPHY elective class if full?</h3>
-        <p>
-            Due to the high number of electives being offered, there will be limited opportunities for registering for
-            a full course and requires approval from department chair (me) not the instructor. Your best bet is to
-            monitor Zagweb throughout the registration window of November up until the point of the beginning of the
-            spring semester.
-        </p>
-    </div>
-    <div class="chem-307/l">
-        <h3>READ THIS if you're registering for Biochemistry (CHEM 307/L)</h3>
-        <ul>
-            <li>
-                If there are seniors who need Chem 307/L but have not taken Chem 102/L (which is a pre-requisite), we
-                will sign a waiver to allow these seniors to take Chem 307/L in Spring 2026.  Students will need to
-                contact Gemma D’Ambruoso (dambruoso@gonzaga.edu) with their student ID# ahead of their registration
-                period. Non-senior students who want to take Chem 307/L but have not yet taken Chem 102/L should
-                register for Chem 102/L next semester or any spring BEFORE they plan to take Chem 307/L.
-            </li>
-            <li>
-                The Chem department has permanently changed the pre-requisite courses for Chem 307/L and have made
-                these changes already with the Registrar's Office for Spring 2026.  Chem 231/L is no longer a
-                pre-requisite or co-requisite for Chem 307/L.  The pre-requisites for Chem 307/L are now Chem 102/L and
-                Chem 230/L (all with a C- or higher grade).
-            </li>
-            <li>
-                Chat with your advisor if you have any questions related to Biochem registration or the pre-requisites.
-            </li>
-        </ul>
-    </div>
-    <div>
-        <h3>I need help registering for a Biology course (Genetics, Microbiology, etc)</h3>
-        <ul>
-            <li>
-                The Biology website on myGU is the place where students can go to get on waiting lists, find out who to
-                contact with questions about a course.
-            </li>
-            <li>
-                Go to the Biology web site on myGU:
-                https://my.gonzaga.edu/academics/colleges-schools/college-of-arts-sciences/departments/biology
-            </li>
-            <li>
-                Near the top of the page is a drop-down link that says, “Find updates throughout the registration
-                season by clicking here.” Toward the bottom of the registration information is a link to a list of the
-                upper-division courses being offered next semester.
-            </li>
-            <li>
-                You need to be logged in to Google with your Gonzaga email and password in order to access one of the
-                wait list forms. If you have another Google account (like a gmail account), try logging out of that and
-                logging in with your Zagmail address and GU password. Then you should be able to access the form.
-            </li>
-        </ul>
-    </div>
+        </div>
+    </details>
+
+    <details class="faq-section biology-courses">
+        <summary>
+            <h3>I need help registering for a Biology course (Genetics, Microbiology, etc)</h3>
+            <p class="preview">The Biology website on myGU is the place where...</p>
+        </summary>
+        <div class="faq-content">
+            <ul>
+                <li>
+                    The Biology website on myGU is the place where students can go to get on waiting lists, find out who to contact with questions about a course.
+                </li>
+                <li>
+                    Go to the Biology web site on myGU: https://my.gonzaga.edu/academics/colleges-schools/college-of-arts-sciences/departments/biology
+                </li>
+                <li>
+                    Near the top of the page is a drop-down link that says, "Find updates throughout the registration season by clicking here." Toward the bottom of the registration information is a link to a list of the upper-division courses being offered next semester.
+                </li>
+                <li>
+                    You need to be logged in to Google with your Gonzaga email and password in order to access one of the wait list forms. If you have another Google account (like a gmail account), try logging out of that and logging in with your Zagmail address and GU password. Then you should be able to access the form.
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
 </body>
 </html>
