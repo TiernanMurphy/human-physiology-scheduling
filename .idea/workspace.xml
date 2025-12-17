@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="refactor: use event listeners instead of inline onclick for section toggles">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/css/styles.css" afterDir="false" />
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="refactor: improve code organization in DOMContentLoaded event listener">
+      <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/js/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +92,7 @@
       <workItem from="1765935627290" duration="1873000" />
       <workItem from="1765939260579" duration="254000" />
       <workItem from="1765939533265" duration="8210000" />
-      <workItem from="1766001250298" duration="3590000" />
+      <workItem from="1766001250298" duration="4130000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit, course info &amp; download">
       <option name="closed" value="true" />
@@ -151,7 +150,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766012576088</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="refactor: improve code organization in DOMContentLoaded event listener">
+      <option name="closed" value="true" />
+      <created>1766014073221</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1766014073221</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,6 +171,7 @@
     <MESSAGE value="style(faq): add collapsible sections with dropdown styling" />
     <MESSAGE value="ui(auth): create login/register page with password toggle" />
     <MESSAGE value="refactor: use event listeners instead of inline onclick for section toggles" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: use event listeners instead of inline onclick for section toggles" />
+    <MESSAGE value="refactor: improve code organization in DOMContentLoaded event listener" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: improve code organization in DOMContentLoaded event listener" />
   </component>
 </project>

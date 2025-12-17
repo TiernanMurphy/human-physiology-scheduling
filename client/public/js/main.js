@@ -193,6 +193,15 @@ document.addEventListener('DOMContentLoaded', function() {
         'senior-spring': progression.senior.spring
     });
 
+    // listener for download as pdf buttons
+    document.querySelectorAll('.btn-download').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const sectionId = button.dataset.section;
+            generateSectionPDF(sectionId);
+        });
+    });
+
     // career path selector
     const careerPathSelect = document.getElementById('career-path');
     if (careerPathSelect) {
@@ -204,9 +213,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-// download as pdf
-window.downloadSection = async function(sectionId) {
-    console.log(`Download button clicked for section: ${sectionId}`);
-    generateSectionPDF(sectionId);
-};
