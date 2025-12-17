@@ -26,22 +26,25 @@ document.querySelectorAll('.section-header').forEach(header => {
 function createCourseRow(courseCode) {
     const courseData = courses[courseCode];
 
+    // return if invalid course code
     if (!courseData) {
         console.warn(`Course data not found for: ${courseCode}`);
         return null;
     }
 
+    // creates <div class="course-row">
     const row = document.createElement('div');
     row.className = 'course-row';
 
     // get course's link, use '#' if not found
     const link = courseLinks[courseCode] || '#';
 
-    // if link found, open in new tab
+    // "course info" if link, otherwise "no link" text
     const linkHTML = link !== '#'
-        ? `<a href="${link}" class="course-link" target="_blank">Course Info</a>`
+        ? `<a href="${link}" class="course-link" target="_blank" rel="noopener noreferrer">Course Info</a>`
         : `<span class="course-link disabled">No Link</span>`;
 
+    // add content to <div class="course-row">
     row.innerHTML = `
         <div class="course-code">${courseCode}</div>
         <div class="course-name">${courseData.name}</div>
@@ -94,103 +97,115 @@ function separateCoursesBySubject(courseCodes) {
     return separated;
 }
 
-// initialize page
+// helper to populate multiple sections with a mapping
+function populateMultipleSections(mapping) {
+    Object.entries(mapping).forEach(([elementId, courseCodes]) => {
+        populateCourseSection(elementId, courseCodes);
+    });
+}
+
+// display recommended courses based on career path
+function displayRecommendedCourses(courseCodes, pathKey) {
+    const displayContainer = document.getElementById('recommended-courses-display');
+    if (!displayContainer) return;
+
+    const pathTitles = {
+        medicine: 'Medicine',
+        physician_assistant: 'Physician Assistant',
+        dental: 'Dental',
+        physical_therapy: 'Physical Therapy',
+        occupational_therapy: 'Occupational Therapy',
+        pharmacy: 'Pharmacy',
+        optometry: 'Optometry',
+        nursing: 'Nursing'
+    };
+
+    const subjectLabels = {
+        biology: 'Biology',
+        chemistry: 'Chemistry',
+        physics: 'Physics',
+        math: 'Mathematics',
+        anatomy: 'Anatomy & Physiology',
+        psychology: 'Psychology',
+        other: 'Other'
+    };
+
+    // clear previous content
+    displayContainer.innerHTML = '';
+
+    // add main header
+    const mainHeader = document.createElement('h3');
+    mainHeader.textContent = `Pre-${pathTitles[pathKey]} Recommended Coursework`;
+    mainHeader.className = 'recommended-header';
+    displayContainer.appendChild(mainHeader);
+
+    const separated = separateCoursesBySubject(courseCodes);
+
+    // create subsections for each subject
+    Object.entries(separated).forEach(([subject, codes]) => {
+        if (codes.length > 0) {
+            const subsection = document.createElement('div');
+            subsection.className = 'subsection';
+
+            const heading = document.createElement('h4');
+            heading.textContent = subjectLabels[subject];
+            subsection.appendChild(heading);
+
+            const courseList = document.createElement('div');
+            courseList.className = 'course-list';
+
+            codes.forEach(code => {
+                const row = createCourseRow(code);
+                if (row) courseList.appendChild(row);
+            });
+
+            subsection.appendChild(courseList);
+            displayContainer.appendChild(subsection);
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // render Human Phys required courses
-    populateCourseSection('core-stem-courses', humanPhys.coreSTEM);
-    populateCourseSection('lower-division-courses', humanPhys.lowerDivision);
-    populateCourseSection('upper-division-courses', humanPhys.upperDivision);
+    populateMultipleSections({
+        'core-stem-courses': humanPhys.coreSTEM,
+        'lower-division-courses': humanPhys.lowerDivision,
+        'upper-division-courses': humanPhys.upperDivision
+    });
+
     // render GU Core required courses
-    populateCourseSection('core-year1', core.year1);
-    populateCourseSection('core-year2', core.year2);
-    populateCourseSection('core-year3', core.year3);
-    populateCourseSection('core-year4', core.year4);
+    populateMultipleSections({
+        'core-year1': core.year1,
+        'core-year2': core.year2,
+        'core-year3': core.year3,
+        'core-year4': core.year4
+    });
+
     // render sample progression courses
-    populateCourseSection('freshman-fall', progression.freshman.fall);
-    populateCourseSection('freshman-spring', progression.freshman.spring);
-    populateCourseSection('sophomore-fall', progression.sophomore.fall);
-    populateCourseSection('sophomore-spring', progression.sophomore.spring);
-    populateCourseSection('junior-fall', progression.junior.fall);
-    populateCourseSection('junior-spring', progression.junior.spring);
-    populateCourseSection('senior-fall', progression.senior.fall);
-    populateCourseSection('senior-spring', progression.senior.spring);
+    populateMultipleSections({
+        'freshman-fall': progression.freshman.fall,
+        'freshman-spring': progression.freshman.spring,
+        'sophomore-fall': progression.sophomore.fall,
+        'sophomore-spring': progression.sophomore.spring,
+        'junior-fall': progression.junior.fall,
+        'junior-spring': progression.junior.spring,
+        'senior-fall': progression.senior.fall,
+        'senior-spring': progression.senior.spring
+    });
+
     // career path selector
     const careerPathSelect = document.getElementById('career-path');
-    const displayContainer = document.getElementById('recommended-courses-display');
-
-    if (careerPathSelect && displayContainer) {
+    if (careerPathSelect) {
         careerPathSelect.addEventListener('change', function(e) {
-           const selectedPath = e.target.value;
-
-           // clear previous content before showing new recommendations
-            displayContainer.innerHTML = '';
-
+            const selectedPath = e.target.value;
             if (selectedPath && recommended[selectedPath]) {
                 displayRecommendedCourses(recommended[selectedPath], selectedPath);
             }
         });
     }
-
-    function displayRecommendedCourses(courseCodes, pathKey) {
-        // create a title mapping
-        const pathTitles = {
-            medicine: 'Medicine',
-            physician_assistant: 'Physician Assistant',
-            dental: 'Dental',
-            physical_therapy: 'Physical Therapy',
-            occupational_therapy: 'Occupational Therapy',
-            pharmacy: 'Pharmacy',
-            optometry: 'Optometry',
-            nursing: 'Nursing'
-        };
-
-        // add the main header
-        const mainHeader = document.createElement('h3');
-        mainHeader.textContent = `Pre-${pathTitles[pathKey]} Recommended Coursework`;
-        mainHeader.style.marginBottom = '20px';
-        mainHeader.style.color = '#2c3e50';
-        mainHeader.style.fontSize = '1.5rem';
-        displayContainer.appendChild(mainHeader);
-
-        const separated = separateCoursesBySubject(courseCodes);
-
-        // create subsections for each subject
-        const subjectLabels = {
-            biology: 'Biology',
-            chemistry: 'Chemistry',
-            physics: 'Physics',
-            math: 'Mathematics',
-            anatomy: 'Anatomy & Physiology',
-            other: 'Other',
-        };
-
-        Object.keys(separated).forEach(subject => {
-            if (separated[subject].length > 0) {
-                const subsection = document.createElement('div');
-                subsection.className = 'subsection';
-
-                const heading = document.createElement('h4');
-                heading.textContent = subjectLabels[subject];
-                subsection.appendChild(heading);
-
-                const courseList = document.createElement('div');
-                courseList.className = 'course-list';
-
-                separated[subject].forEach(code => {
-                    const row = createCourseRow(code);
-                    if (row) {
-                        courseList.appendChild(row);
-                    }
-                });
-
-                subsection.appendChild(courseList);
-                displayContainer.appendChild(subsection);
-            }
-        });
-    }
 });
 
-// placeholder download as pdf function
+// download as pdf
 window.downloadSection = async function(sectionId) {
     console.log(`Download button clicked for section: ${sectionId}`);
     generateSectionPDF(sectionId);
