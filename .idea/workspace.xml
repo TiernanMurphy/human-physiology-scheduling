@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="refactor: move download button handlers from inline to event listeners">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="refactor: fix redundancy in pdf generator">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/js/pdf-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/js/pdf-generator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/plan.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +92,7 @@
       <workItem from="1765935627290" duration="1873000" />
       <workItem from="1765939260579" duration="254000" />
       <workItem from="1765939533265" duration="8210000" />
-      <workItem from="1766001250298" duration="5804000" />
+      <workItem from="1766001250298" duration="6368000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit, course info &amp; download">
       <option name="closed" value="true" />
@@ -166,7 +166,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766014531205</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="refactor: fix redundancy in pdf generator">
+      <option name="closed" value="true" />
+      <created>1766045104556</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1766045104556</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +189,7 @@
     <MESSAGE value="refactor: use event listeners instead of inline onclick for section toggles" />
     <MESSAGE value="refactor: improve code organization in DOMContentLoaded event listener" />
     <MESSAGE value="refactor: move download button handlers from inline to event listeners" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: move download button handlers from inline to event listeners" />
+    <MESSAGE value="refactor: fix redundancy in pdf generator" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: fix redundancy in pdf generator" />
   </component>
 </project>

@@ -2,146 +2,410 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login/Register for ASPN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASPN - Advising Software Planning Network</title>
     <link rel="stylesheet" href="/public/css/styles.css">
-    <script type="module" src="/public/js/main.js"></script>
+    <style>
+        /* Temporary inline styles - move to styles.css later */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .question-slide {
+            display: none;
+        }
+
+        .question-slide.active {
+            display: block;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar">
-    <div class="nav-container">
-        <h1 class="logo">Gonzaga's Advising Software Planning Network</h1>
-        <div class="nav-links">
-            <a href="/pages/home.html">Dashboard</a>
-            <a href="/pages/plan.html">Create Plan</a>
-            <a href="/pages/faq.html">FAQ</a>
-            <a href="/pages/register.html" class="active">Login/Register</a>
+<div class="container">
+
+    <!-- HOME SCREEN -->
+    <div class="screen active" id="home-screen">
+        <h1>Welcome to ASPN!</h1>
+        <p class="subtitle">Advising Software Planning Network by Gonzaga</p>
+        <div class="button-group">
+            <button class="btn btn-primary" data-screen="login">Login</button>
+            <button class="btn btn-secondary" data-screen="register">Register</button>
         </div>
     </div>
-</nav>
 
-<div class="auth-container">
-    <div class="auth-box">
-        <div class="auth-tabs">
-            <button class="auth-tab active" id="login-tab">Login</button>
-            <button class="auth-tab" id="register-tab">Create Account</button>
-        </div>
-
-        <!-- Login Form -->
-        <div class="auth-form" id="login-form">
-            <h2>Welcome Back</h2>
-            <form>
-                <div class="form-group">
-                    <label for="login-email">Email</label>
-                    <input type="email" id="login-email" placeholder="jstockton@zagmail.gonzaga.edu" required>
-                </div>
-                <div class="form-group">
-                    <label for="login-password">Password</label>
-                    <div class="password-input">
-                        <input type="password" id="login-password" placeholder="Enter your password" required>
-                        <button type="button" class="toggle-password" data-target="login-password">
-                            <span class="show-icon">👁️</span>
-                            <span class="hide-icon" style="display: none;">👁️‍🗨️</span>
-                        </button>
-                    </div>
-                </div>
-                <button type="submit" class="auth-button">Login</button>
-                <a href="#" class="forgot-password">Forgot password?</a>
-            </form>
-        </div>
-
-        <!-- Register Form -->
-        <div class="auth-form hidden" id="register-form">
-            <h2>Create Account</h2>
-            <form>
-                <div class="form-group">
-                    <label for="register-name">Full Name</label>
-                    <input type="text" id="register-name" placeholder="John Doe" required>
-                </div>
-                <div class="form-group">
-                    <label for="register-email">Email</label>
-                    <input type="email" id="register-email" placeholder="your.email@gonzaga.edu" required>
-                </div>
-                <div class="form-group">
-                    <label for="register-password">Password</label>
-                    <div class="password-input">
-                        <input type="password" id="register-password" placeholder="Create a password" required>
-                        <button type="button" class="toggle-password" data-target="register-password">
-                            <span class="show-icon">👁️</span>
-                            <span class="hide-icon" style="display: none;">👁️‍🗨️</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="register-confirm">Confirm Password</label>
-                    <div class="password-input">
-                        <input type="password" id="register-confirm" placeholder="Confirm your password" required>
-                        <button type="button" class="toggle-password" data-target="register-confirm">
-                            <span class="show-icon">👁️</span>
-                            <span class="hide-icon" style="display: none;">👁️‍🗨️</span>
-                        </button>
-                    </div>
-                </div>
-                <button type="submit" class="auth-button">Create Account</button>
-            </form>
-        </div>
+    <!-- LOGIN SCREEN -->
+    <div class="screen" id="login-screen">
+        <h1>Login</h1>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="login-email">Zagmail</label>
+                <input type="email"
+                       id="login-email"
+                       class="input-field"
+                       placeholder="yourname@zagmail.gonzaga.edu"
+                       required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password"
+                       id="login-password"
+                       class="input-field"
+                       required>
+            </div>
+            <div class="button-group">
+                <button type="button" class="btn btn-secondary" data-screen="home">Back</button>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
     </div>
+
+    <!-- REGISTRATION SCREEN -->
+    <div class="screen" id="register-screen">
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-text">
+                Question <span id="current-question">1</span> of <span id="total-questions">9</span>
+            </div>
+        </div>
+
+        <!-- Survey Form -->
+        <form id="registration-form">
+
+            <!-- Question 1: Name -->
+            <div class="question-slide active" data-question="1">
+                <h2>What's your name?</h2>
+                <input type="text"
+                       id="student-name"
+                       name="name"
+                       class="input-field"
+                       placeholder="Enter your full name"
+                       required>
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" data-screen="home">Cancel</button>
+                    <button type="button" class="btn btn-primary" data-action="next">Next</button>
+                </div>
+            </div>
+
+            <!-- Question 2: Email -->
+            <div class="question-slide" data-question="2">
+                <h2>What's your Zagmail?</h2>
+                <input type="email"
+                       id="student-email"
+                       name="email"
+                       class="input-field"
+                       placeholder="yourname@zagmail.gonzaga.edu"
+                       required>
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" data-action="prev">Back</button>
+                    <button type="button" class="btn btn-primary" data-action="next">Next</button>
+                </div>
+            </div>
+
+            <!-- Question 3: Password -->
+            <div class="question-slide" data-question="3">
+                <h2>Create a password</h2>
+                <div class="form-group">
+                    <label for="student-password">Password</label>
+                    <input type="password"
+                           id="student-password"
+                           name="password"
+                           class="input-field"
+                           placeholder="Min 6 characters"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label for="password-confirm">Confirm Password</label>
+                    <input type="password"
+                           id="password-confirm"
+                           class="input-field"
+                           placeholder="Re-enter password"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="show-password">
+                        Show password
+                    </label>
+                </div>
+                <div id="password-error" class="error-message hidden">
+                    Passwords do not match
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" data-action="prev">Back</button>
+                    <button type="button" class="btn btn-primary" data-action="next">Next</button>
+                </div>
+            </div>
+
+            <!-- Question 4: Major -->
+            <div class="question-slide" data-question="4">
+                <h2>What's your major?</h2>
+                <input type="text"
+                       id="student-major"
+                       name="major"
+                       class="input-field"
+                       placeholder="e.g., Human Physiology"
+                       required>
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" data-action="prev">Back</button>
+                    <button type="button" class="btn btn-primary" data-action="next">Next</button>
+                </div>
+            </div>
+
+            <!-- Question 5: Minor -->
+            <div class="question-slide" data-question="5">
+                <h2>Do you have a minor?</h2>
+                <input type="text"
+                       id="student-minor"
+                       name="minor"
+                       class="input-field"
+                       placeholder="Leave blank if none">
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" data-action="prev">Back</button>
+                    <button type="button" class="btn btn-primary" data-action="next">Next</button>
+                </div>
+            </div>
+
+            <!-- Question 6: Study Abroad -->
+            <div class="question-slide" data-question="6">
+                <h2>Are you studying abroad?</h2>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="abroad" value="yes" checked>
+                        <span>Yes</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="abroad" value="no">
+                        <span>No</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="abroad" value="undecided">
+                        <span>Undecided</span>
+                    </label>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" data-action="prev">Back</button>
+                    <button type="button" class="btn btn-primary" data-action="next">Next</button>
+                </div>
+            </div>
+
+            <!-- Question 7: Career Path -->
+            <div class="question-slide" data-question="7">
+                <h2>What's your career path?</h2>
+                <select id="student-career"
+                        name="career"
+                        class="input-field"
+                        required>
+                    <option value="">Select a path...</option>
+                    <option value="medicine">Medicine or Osteopathy</option>
+                    <option value="physician-assistant">Physician Assistant</option>
+                    <option value="dental">Dental</option>
+                    <option value="physical-therapy">Physical Therapy</option>
+                    <option value="occupational-therapy">Occupational Therapy</option>
+                    <option value="pharmacy">Pharmacy</option>
+                    <option value="optometry">Optometry</option>
+                    <option value="nursing">Accelerated Nursing</option>
+                    <option value="undecided-health">Undecided Pre-Health</option>
+                    <option value="other">Other</option>
+                </select>
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" data-action="prev">Back</button>
+                    <button type="button" class="btn btn-primary" data-action="next">Next</button>
+                </div>
+            </div>
+
+            <!-- Question 8: Clubs/Interests -->
+            <div class="question-slide" data-question="8">
+                <h2>Are you involved in any clubs or sports?</h2>
+                <p class="question-subtitle">If not, what are a couple of your interests?</p>
+                <textarea id="student-clubs"
+                          name="clubs"
+                          class="textarea-field"
+                          rows="4"
+                          placeholder="Tell us about your extracurriculars and interests..."></textarea>
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" data-action="prev">Back</button>
+                    <button type="button" class="btn btn-primary" data-action="next">Next</button>
+                </div>
+            </div>
+
+            <!-- Question 9: Additional Info -->
+            <div class="question-slide" data-question="9">
+                <h2>Anything else you'd like your advisor to know?</h2>
+                <textarea id="student-additional"
+                          name="additional"
+                          class="textarea-field"
+                          rows="4"
+                          placeholder="Optional - any other relevant information..."></textarea>
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" data-action="prev">Back</button>
+                    <button type="submit" class="btn btn-primary">Complete Registration</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
 </div>
-<script>
-    // Tab switching functionality
-    const loginTab = document.getElementById('login-tab');
-    const registerTab = document.getElementById('register-tab');
-    const loginForm = document.getElementById('login-form');
-    const registerForm = document.getElementById('register-form');
 
-    loginTab.addEventListener('click', () => {
-        loginTab.classList.add('active');
-        registerTab.classList.remove('active');
-        loginForm.classList.remove('hidden');
-        registerForm.classList.add('hidden');
-    });
-
-    registerTab.addEventListener('click', () => {
-        registerTab.classList.add('active');
-        loginTab.classList.remove('active');
-        registerForm.classList.remove('hidden');
-        loginForm.classList.add('hidden');
-    });
-
-    // show/hide password
-    document.querySelectorAll('.toggle-password').forEach(button => {
-        button.addEventListener('click', () => {
-            const targetId = button.getAttribute('data-target');
-            const input = document.getElementById(targetId);
-            const showIcon = button.querySelector('.show-icon');
-            const hideIcon = button.querySelector('.hide-icon');
-
-            if (input.type === 'password') {
-                input.type = 'text';
-                showIcon.style.display = 'none';
-                hideIcon.style.display = 'inline';
-            } else {
-                input.type = 'password';
-                showIcon.style.display = 'inline';
-                hideIcon.style.display = 'none';
-            }
-        });
-    });
-
-    // handle login form submission
-    document.querySelector('#login-form form').addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // for now redirects to homepage, integrate backend later
-        window.location.href = '/pages/home.html';
-    });
-
-    // handle create account form submission
-    document.querySelector('#register-form form').addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // for now redirects to homepage, integrate backend later
-        window.location.href = '/pages/home.html';
-    });
-</script>
+<script type="module" src="/public/js/auth.js"></script>
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Login/Register for ASPN</title>-->
+<!--    <link rel="stylesheet" href="/public/css/styles.css">-->
+<!--    <script type="module" src="/public/js/main.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav class="navbar">-->
+<!--    <div class="nav-container">-->
+<!--        <h1 class="logo">Gonzaga's Advising Software Planning Network</h1>-->
+<!--        <div class="nav-links">-->
+<!--            <a href="/pages/home.html">Dashboard</a>-->
+<!--            <a href="/pages/plan.html">Create Plan</a>-->
+<!--            <a href="/pages/faq.html">FAQ</a>-->
+<!--            <a href="/pages/register.html" class="active">Login/Register</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--<div class="auth-container">-->
+<!--    <div class="auth-box">-->
+<!--        <div class="auth-tabs">-->
+<!--            <button class="auth-tab active" id="login-tab">Login</button>-->
+<!--            <button class="auth-tab" id="register-tab">Create Account</button>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Login Form &ndash;&gt;-->
+<!--        <div class="auth-form" id="login-form">-->
+<!--            <h2>Welcome Back</h2>-->
+<!--            <form>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="login-email">Email</label>-->
+<!--                    <input type="email" id="login-email" placeholder="jstockton@zagmail.gonzaga.edu" required>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="login-password">Password</label>-->
+<!--                    <div class="password-input">-->
+<!--                        <input type="password" id="login-password" placeholder="Enter your password" required>-->
+<!--                        <button type="button" class="toggle-password" data-target="login-password">-->
+<!--                            <span class="show-icon">👁️</span>-->
+<!--                            <span class="hide-icon" style="display: none;">👁️‍🗨️</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <button type="submit" class="auth-button">Login</button>-->
+<!--                <a href="#" class="forgot-password">Forgot password?</a>-->
+<!--            </form>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Register Form &ndash;&gt;-->
+<!--        <div class="auth-form hidden" id="register-form">-->
+<!--            <h2>Create Account</h2>-->
+<!--            <form>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="register-name">Full Name</label>-->
+<!--                    <input type="text" id="register-name" placeholder="John Doe" required>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="register-email">Email</label>-->
+<!--                    <input type="email" id="register-email" placeholder="your.email@gonzaga.edu" required>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="register-password">Password</label>-->
+<!--                    <div class="password-input">-->
+<!--                        <input type="password" id="register-password" placeholder="Create a password" required>-->
+<!--                        <button type="button" class="toggle-password" data-target="register-password">-->
+<!--                            <span class="show-icon">👁️</span>-->
+<!--                            <span class="hide-icon" style="display: none;">👁️‍🗨️</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="register-confirm">Confirm Password</label>-->
+<!--                    <div class="password-input">-->
+<!--                        <input type="password" id="register-confirm" placeholder="Confirm your password" required>-->
+<!--                        <button type="button" class="toggle-password" data-target="register-confirm">-->
+<!--                            <span class="show-icon">👁️</span>-->
+<!--                            <span class="hide-icon" style="display: none;">👁️‍🗨️</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <button type="submit" class="auth-button">Create Account</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<script>-->
+<!--    // Tab switching functionality-->
+<!--    const loginTab = document.getElementById('login-tab');-->
+<!--    const registerTab = document.getElementById('register-tab');-->
+<!--    const loginForm = document.getElementById('login-form');-->
+<!--    const registerForm = document.getElementById('register-form');-->
+
+<!--    loginTab.addEventListener('click', () => {-->
+<!--        loginTab.classList.add('active');-->
+<!--        registerTab.classList.remove('active');-->
+<!--        loginForm.classList.remove('hidden');-->
+<!--        registerForm.classList.add('hidden');-->
+<!--    });-->
+
+<!--    registerTab.addEventListener('click', () => {-->
+<!--        registerTab.classList.add('active');-->
+<!--        loginTab.classList.remove('active');-->
+<!--        registerForm.classList.remove('hidden');-->
+<!--        loginForm.classList.add('hidden');-->
+<!--    });-->
+
+<!--    // show/hide password-->
+<!--    document.querySelectorAll('.toggle-password').forEach(button => {-->
+<!--        button.addEventListener('click', () => {-->
+<!--            const targetId = button.getAttribute('data-target');-->
+<!--            const input = document.getElementById(targetId);-->
+<!--            const showIcon = button.querySelector('.show-icon');-->
+<!--            const hideIcon = button.querySelector('.hide-icon');-->
+
+<!--            if (input.type === 'password') {-->
+<!--                input.type = 'text';-->
+<!--                showIcon.style.display = 'none';-->
+<!--                hideIcon.style.display = 'inline';-->
+<!--            } else {-->
+<!--                input.type = 'password';-->
+<!--                showIcon.style.display = 'inline';-->
+<!--                hideIcon.style.display = 'none';-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+
+<!--    // handle login form submission-->
+<!--    document.querySelector('#login-form form').addEventListener('submit', (e) => {-->
+<!--        e.preventDefault();-->
+
+<!--        // for now redirects to homepage, integrate backend later-->
+<!--        window.location.href = '/pages/home.html';-->
+<!--    });-->
+
+<!--    // handle create account form submission-->
+<!--    document.querySelector('#register-form form').addEventListener('submit', (e) => {-->
+<!--        e.preventDefault();-->
+
+<!--        // for now redirects to homepage, integrate backend later-->
+<!--        window.location.href = '/pages/home.html';-->
+<!--    });-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
