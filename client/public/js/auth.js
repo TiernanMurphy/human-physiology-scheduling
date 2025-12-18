@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // show/hide password toggle
+    // show/hide password toggle (registration)
     const showPasswordCheckbox = document.getElementById('show-password');
     if (showPasswordCheckbox) {
         showPasswordCheckbox.addEventListener('change', (e) => {
@@ -90,6 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const type = e.target.checked ? 'text' : 'password';
             passwordField.type = type;
             confirmField.type = type;
+        });
+    }
+
+    // show/hide password toggle (login)
+    const showLoginPasswordCheckbox = document.getElementById('show-login-password');
+    if (showLoginPasswordCheckbox) {
+        showLoginPasswordCheckbox.addEventListener('change', (e) => {
+            const passwordField = document.getElementById('login-password');
+            const type = e.target.checked ? 'text' : 'password';
+            passwordField.type = type;
         });
     }
 
