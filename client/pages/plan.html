@@ -5,7 +5,210 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Create a Plan</title>
     <link rel="stylesheet" href="/public/css/styles.css">
-    <script type="module" src="/public/js/main.js"></script>
+    <style>
+        .plan-container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* left side - schedule grid */
+        .schedule-section {
+            flex: 2;
+        }
+
+        .plan-header {
+            margin-bottom: 20px;
+        }
+
+        .plan-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .plan-title input {
+            font-size: 24px;
+            border: none;
+            border-bottom: 2px solid #ddd;
+            padding: 5px;
+            width: 400px;
+        }
+
+        .plan-title input:focus {
+            outline: none;
+            border-bottom-color: #002f87;
+        }
+
+        .semesters-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .semester-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background: white;
+        }
+
+        .semester-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #002f87;
+        }
+
+        .semester-title {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .semester-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .semester-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 2px 6px;
+            color: #666;
+        }
+
+        .semester-actions button:hover {
+            color: #002f87;
+        }
+
+        .course-slot {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            min-height: 50px;
+            cursor: text;
+            transition: all 0.2s;
+            font-size: 14px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .course-slot:hover {
+            border-color: #002f87;
+        }
+
+        .course-slot:focus {
+            outline: none;
+            border-color: #002f87;
+            background: #f8f9fa;
+        }
+
+        .course-slot::placeholder {
+            color: #999;
+        }
+
+        /* right side - course reference */
+        .reference-section {
+            flex: 1;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .reference-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: white;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab.active {
+            color: #002f87;
+            border-bottom-color: #002f87;
+        }
+
+        .tab:hover {
+            color: #002f87;
+        }
+
+        .course-list {
+            display: none;
+        }
+
+        .course-list.active {
+            display: block;
+        }
+
+        .course-item {
+            padding: 10px;
+            margin-bottom: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: grab;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .course-item:hover {
+            background: #f8f9fa;
+            border-color: #002f87;
+        }
+
+        .course-item:active {
+            cursor: grabbing;
+        }
+
+        .course-code {
+            font-weight: bold;
+            color: #002f87;
+        }
+
+        .course-name {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .add-semester-btn {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: #002f87;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .add-semester-btn:hover {
+            background: #001f5c;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar">
@@ -19,5 +222,75 @@
         </div>
     </div>
 </nav>
+<div class="plan-container">
+    <!-- left side: schedule grid -->
+    <div class="schedule-section">
+        <div class="plan-header">
+            <div class="plan-title">
+                <input type="text"
+                       id="plan-name"
+                       placeholder="Schedule Draft"
+                       value="Schedule Draft">
+            </div>
+        </div>
+
+        <div class="semesters-grid" id="semesters-grid">
+            <!-- semesters will be generated here by js -->
+        </div>
+
+        <button class="add-semester-btn" id="add-semester-btn">
+            + Add Semester
+        </button>
+    </div>
+
+    <!-- right side: course reference -->
+    <div class="reference-section">
+        <div class="reference-card">
+            <div class="tabs">
+                <button class="tab active" data-tab="required">Required</button>
+                <button class="tab" data-tab="recommended">Recommended</button>
+                <button class="tab" data-tab="electives">Electives</button>
+            </div>
+
+            <div class="course-list active" id="required-courses">
+                <div class="course-item">
+                    <div class="course-code">BIOL 201</div>
+                    <div class="course-name">Human Anatomy</div>
+                </div>
+                <div class="course-item">
+                    <div class="course-code">CHEM 101</div>
+                    <div class="course-name">General Chemistry I</div>
+                </div>
+                <div class="course-item">
+                    <div class="course-code">MATH 147</div>
+                    <div class="course-name">Calculus I</div>
+                </div>
+            </div>
+
+            <div class="course-list" id="recommended-courses">
+                <div class="course-item">
+                    <div class="course-code">PSYC 101</div>
+                    <div class="course-name">Intro to Psychology</div>
+                </div>
+                <div class="course-item">
+                    <div class="course-code">BIOL 300</div>
+                    <div class="course-name">Genetics</div>
+                </div>
+            </div>
+
+            <div class="course-list" id="electives-courses">
+                <div class="course-item">
+                    <div class="course-code">PHIL 201</div>
+                    <div class="course-name">Ethics</div>
+                </div>
+                <div class="course-item">
+                    <div class="course-code">ENGL 205</div>
+                    <div class="course-name">Creative Writing</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module" src="/public/js/plan.js"></script>
 </body>
 </html>

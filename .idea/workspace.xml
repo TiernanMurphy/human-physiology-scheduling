@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="feat: implement user authentication backend with MongoDB">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="feat: connected login/register forms to MongoDB">
+      <change afterPath="$PROJECT_DIR$/client/public/js/plan.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/plan.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/js/auth.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +97,7 @@
       <workItem from="1765939533265" duration="8210000" />
       <workItem from="1766001250298" duration="6368000" />
       <workItem from="1766045778917" duration="4404000" />
-      <workItem from="1766082105984" duration="1475000" />
+      <workItem from="1766082105984" duration="4305000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit, course info &amp; download">
       <option name="closed" value="true" />
@@ -209,7 +211,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766049537442</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="feat: connected login/register forms to MongoDB">
+      <option name="closed" value="true" />
+      <created>1766084434807</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1766084434807</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,6 +249,7 @@
     <MESSAGE value="feat: registration survey" />
     <MESSAGE value="feat: show/hide login password" />
     <MESSAGE value="feat: implement user authentication backend with MongoDB" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implement user authentication backend with MongoDB" />
+    <MESSAGE value="feat: connected login/register forms to MongoDB" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: connected login/register forms to MongoDB" />
   </component>
 </project>
