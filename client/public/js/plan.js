@@ -1,3 +1,7 @@
+import courses from '/data/courses.js';
+import { humanPhys } from '/data/required.js';
+import { createCourseRow } from "./main.js";
+
 // generate initial 8 semesters
 const semestersGrid = document.getElementById('semesters-grid');
 let semesterCount = 0;
@@ -17,7 +21,6 @@ function createSemester(semesterName = '') {
                    value="${defaultName}"
                    placeholder="Semester name">
             <div class="semester-actions">
-                <button class="edit-semester" title="Edit">✏️</button>
                 <button class="delete-semester" title="Delete">🗑️</button>
             </div>
         </div>
@@ -93,3 +96,44 @@ semestersGrid.addEventListener('click', (e) => {
 
 // initialize
 initializeSemesters();
+
+// populate required courses panel
+function populateRequiredCourses() {
+    const requiredContainer = document.getElementById('required-courses');
+
+    // clear placeholder content
+    requiredContainer.innerHTML = '';
+
+    // core stem section
+    const coreStemSection = document.createElement('div');
+    coreStemSection.className = 'subsection';
+    coreStemSection.innerHTML = '<h4>Core STEM</h4>';
+    humanPhys.coreSTEM.forEach(code => {
+        const row = createCourseRow(code);
+        if (row) coreStemSection.appendChild(row);
+    });
+    requiredContainer.appendChild(coreStemSection);
+
+    // lower division section
+    const lowerDivSection = document.createElement('div');
+    lowerDivSection.className = 'subsection';
+    lowerDivSection.innerHTML = '<h4>Lower Division</h4>';
+    humanPhys.lowerDivision.forEach(code => {
+        const row = createCourseRow(code);
+        if (row) lowerDivSection.appendChild(row);
+    });
+    requiredContainer.appendChild(lowerDivSection);
+
+    // upper division section
+    const upperDivSection = document.createElement('div');
+    upperDivSection.className = 'subsection';
+    upperDivSection.innerHTML = '<h4>Upper Division</h4>';
+    humanPhys.upperDivision.forEach(code => {
+        const row = createCourseRow(code);
+        if (row) upperDivSection.appendChild(row);
+    });
+    requiredContainer.appendChild(upperDivSection);
+}
+
+// call it on page load
+populateRequiredCourses();

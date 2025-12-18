@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Create a Plan</title>
     <link rel="stylesheet" href="/public/css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         .plan-container {
             display: flex;
@@ -208,6 +209,20 @@
         .add-semester-btn:hover {
             background: #001f5c;
         }
+
+        .subsection {
+            margin-bottom: 20px;
+        }
+
+        .subsection h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #002f87;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+
     </style>
 </head>
 <body>
@@ -232,6 +247,7 @@
                        placeholder="Schedule Draft"
                        value="Schedule Draft">
             </div>
+            <button class="notes-btn" id="notes-btn">📝 Add Note</button>
         </div>
 
         <div class="semesters-grid" id="semesters-grid">
@@ -248,7 +264,7 @@
         <div class="reference-card">
             <div class="tabs">
                 <button class="tab active" data-tab="required">Required</button>
-                <button class="tab" data-tab="recommended">Recommended</button>
+                <button class="tab" data-tab="recommended">Sample Plan</button>
                 <button class="tab" data-tab="electives">Electives</button>
             </div>
 

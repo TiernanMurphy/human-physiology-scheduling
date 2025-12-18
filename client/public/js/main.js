@@ -23,7 +23,7 @@ document.querySelectorAll('.section-header').forEach(header => {
 });
 
 // create a course record
-function createCourseRow(courseCode) {
+export function createCourseRow(courseCode) {
     const courseData = courses[courseCode];
 
     // return if invalid course code
