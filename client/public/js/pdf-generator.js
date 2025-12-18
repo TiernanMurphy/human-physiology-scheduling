@@ -1,6 +1,21 @@
 const { jsPDF } = window.jspdf;
 
-// downloads pdf based on which section's button was clicked
+// PDF styling constants
+const COLORS = {
+    BLUE: [52, 152, 219],
+    LIGHT_GRAY: [250, 250, 250],
+    WHITE: [255, 255, 255]
+};
+
+const FONTS = {
+    TITLE: { size: 20, style: 'bold' },
+    SUBSECTION: { size: 14, style: 'bold' },
+    COLUMN_HEADER: { size: 10, style: 'bold' },
+    NORMAL: { size: 10, style: 'normal' },
+    SMALL: { size: 8, style: 'bold' }
+};
+
+// Main entry point
 export function generateSectionPDF(sectionId) {
     switch(sectionId) {
         case 'required-courses':
@@ -20,192 +35,176 @@ export function generateSectionPDF(sectionId) {
     }
 }
 
-// styles human phys required coursework pdf
+// Helper: Add title to PDF
+function addTitle(doc, text, yPosition = 20) {
+    doc.setFontSize(FONTS.TITLE.size);
+    doc.setFont(undefined, FONTS.TITLE.style);
+    doc.text(text, 105, yPosition, { align: 'center' });
+    return yPosition + 15;
+}
+
+// Helper: Add subsection header with blue line
+function addSubsectionHeader(doc, text, yPosition) {
+    doc.setFontSize(FONTS.SUBSECTION.size);
+    doc.setFont(undefined, FONTS.SUBSECTION.style);
+    doc.text(text, 20, yPosition);
+    yPosition += 8;
+
+    doc.setDrawColor(...COLORS.BLUE);
+    doc.setLineWidth(0.5);
+    doc.line(20, yPosition, 190, yPosition);
+
+    return yPosition + 5;
+}
+
+// Helper: Add column headers
+function addColumnHeaders(doc, headers, yPosition) {
+    doc.setFontSize(headers.fontSize || FONTS.COLUMN_HEADER.size);
+    doc.setFont(undefined, FONTS.COLUMN_HEADER.style);
+
+    headers.columns.forEach(col => {
+        doc.text(col.text, col.x, yPosition);
+    });
+
+    return yPosition + 5;
+}
+
+// Helper: Extract course data from a row element
+function getCourseData(row) {
+    const code = row.querySelector('.course-code')?.textContent.trim() || '';
+    const name = row.querySelector('.course-name')?.textContent.trim() || '';
+    const creditsText = row.querySelector('.course-credits')?.textContent.trim() || '';
+    const credits = creditsText.split(' ')[0];
+
+    return { code, name, credits };
+}
+
+// Helper: Render a single course row with alternating background
+function renderCourseRow(doc, courseData, config, yPosition, rowIndex) {
+    const { code, name, credits } = courseData;
+    const { xOffset = 20, codeX = 25, nameX = 90, creditsX = 170,
+        codeWidth = 40, nameWidth = 75, rowWidth = 170 } = config;
+
+    // Wrap text
+    const wrappedCode = doc.splitTextToSize(code, codeWidth);
+    const wrappedName = doc.splitTextToSize(name, nameWidth);
+    const maxLines = Math.max(wrappedCode.length, wrappedName.length);
+    const rowHeight = maxLines * 5;
+
+    // Alternating background
+    const fillColor = rowIndex % 2 === 0 ? COLORS.LIGHT_GRAY : COLORS.WHITE;
+    doc.setFillColor(...fillColor);
+    doc.rect(xOffset, yPosition - 4, rowWidth, rowHeight + 2, 'F');
+
+    // Text content
+    doc.setFont(undefined, FONTS.NORMAL.style);
+    doc.text(wrappedCode, codeX, yPosition);
+    doc.text(wrappedName, nameX, yPosition);
+    doc.text(credits, creditsX, yPosition);
+
+    return yPosition + rowHeight + 2;
+}
+
+// Helper: Render all courses in a container
+function renderCourseList(doc, container, config, yPosition) {
+    if (!container) return yPosition;
+
+    const courseRows = container.querySelectorAll('.course-row');
+    let rowIndex = 0;
+
+    courseRows.forEach(row => {
+        const courseData = getCourseData(row);
+        yPosition = renderCourseRow(doc, courseData, config, yPosition, rowIndex);
+        rowIndex++;
+    });
+
+    return yPosition + 8; // Space after section
+}
+
+// Helper: Render subsection with courses
+function renderSubsection(doc, subsectionId, title, config, yPosition) {
+    const container = document.getElementById(subsectionId);
+    if (!container) return yPosition;
+
+    // Subsection header
+    yPosition = addSubsectionHeader(doc, title, yPosition);
+
+    // Column headers
+    const headers = {
+        columns: [
+            { text: 'Course Code', x: config.codeX || 25 },
+            { text: 'Course Name', x: config.nameX || 90 },
+            { text: 'Credits', x: config.creditsX || 170 }
+        ]
+    };
+    yPosition = addColumnHeaders(doc, headers, yPosition);
+
+    // Course list
+    return renderCourseList(doc, container, config, yPosition);
+}
+
+// Required Courses PDF
 function generateRequiredCoursesPDF() {
     const doc = new jsPDF();
+    let yPosition = addTitle(doc, 'Human Physiology Required Courses');
 
-    // title
-    doc.setFontSize(20);
-    doc.setFont(undefined, 'bold');
-    doc.text('Human Physiology Required Courses', 105, 20, { align: 'center' });
+    const subsections = [
+        { id: 'core-stem-courses', title: 'Core STEM' },
+        { id: 'lower-division-courses', title: 'Lower Division' },
+        { id: 'upper-division-courses', title: 'Upper Division' }
+    ];
 
-    let yPosition = 35;
+    const config = {
+        xOffset: 20,
+        codeX: 25,
+        nameX: 70,
+        creditsX: 170,
+        codeWidth: 40,
+        nameWidth: 95,
+        rowWidth: 170
+    };
 
-    // subsections and titles
-    const subsections = ['core-stem-courses', 'lower-division-courses', 'upper-division-courses'];
-    const subsectionTitles = ['Core STEM', 'Lower Division', 'Upper Division'];
-
-    subsections.forEach((subsectionId, index) => {
-        const container = document.getElementById(subsectionId);
-        if (!container) return;
-
-        // Subsection title
-        doc.setFontSize(14);
-        doc.setFont(undefined, 'bold');
-        doc.text(subsectionTitles[index], 20, yPosition);
-        yPosition += 8;
-
-        // Draw a line under subsection title
-        doc.setDrawColor(52, 152, 219); // blue color
-        doc.setLineWidth(0.5);
-        doc.line(20, yPosition, 190, yPosition);
-        yPosition += 5;
-
-        // column headers
-        doc.setFontSize(10);
-        doc.setFont(undefined, 'bold');
-        doc.text('Course Code', 25, yPosition);
-        doc.text('Course Name', 90, yPosition);
-        doc.text('Credits', 170, yPosition);
-        yPosition += 5;
-
-        // course rows
-        doc.setFont(undefined, 'normal');
-
-        const courseRows = container.querySelectorAll('.course-row');
-        let rowIndex = 0;
-
-        courseRows.forEach(row => {
-            const code = row.querySelector('.course-code').textContent.trim();
-            const name = row.querySelector('.course-name').textContent.trim();
-            const creditsText = row.querySelector('.course-credits').textContent.trim();
-
-            // just get the number from credits
-            const credits = creditsText.split(' ')[0];
-
-            // wrap course code if needed
-            const wrappedCode = doc.splitTextToSize(code, 40);
-
-            // wrap course name if needed
-            const wrappedName = doc.splitTextToSize(name, 95);
-
-            // calculate row height based on wrapped text
-            const maxLines = Math.max(wrappedCode.length, wrappedName.length);
-            const rowHeight = maxLines * 5;
-
-            // alternating row background
-            if (rowIndex % 2 === 0) {
-                doc.setFillColor(250, 250, 250);  // light grey
-            } else {
-                doc.setFillColor(255, 255, 255);  // white
-            }
-            // fill rectangle for row background
-            doc.rect(20, yPosition - 4, 170, 7, 'F');
-
-            // text content
-            doc.text(wrappedCode, 25, yPosition);
-            doc.text(wrappedName, 70, yPosition);
-            doc.text(credits, 170, yPosition);
-
-            yPosition += rowHeight + 2;
-
-            rowIndex++;
-        });
-
-        yPosition += 8; // Space between subsections
+    subsections.forEach(section => {
+        yPosition = renderSubsection(doc, section.id, section.title, config, yPosition);
     });
 
     doc.save('required-human-physiology-courses.pdf');
 }
 
-// styles GU Core requirements pdf
+// GU Core PDF
 function generateGUCorePDF() {
     const doc = new jsPDF();
+    let yPosition = addTitle(doc, 'GU Core Requirements');
 
-    // Title
-    doc.setFontSize(20);
-    doc.setFont(undefined, 'bold');
-    doc.text('GU Core Requirements', 105, 20, { align: 'center' });
+    const subsections = [
+        { id: 'core-year1', title: 'Year 1' },
+        { id: 'core-year2', title: 'Year 2' },
+        { id: 'core-year3', title: 'Year 3' },
+        { id: 'core-year4', title: 'Year 4' }
+    ];
 
-    let yPosition = 35;
+    const config = {
+        xOffset: 20,
+        codeX: 25,
+        nameX: 90,
+        creditsX: 170,
+        codeWidth: 40,
+        nameWidth: 75,
+        rowWidth: 170
+    };
 
-    // Get subsections
-    const subsections = ['core-year1', 'core-year2', 'core-year3', 'core-year4'];
-    const subsectionTitles = ['Year 1', 'Year 2', 'Year 3', 'Year 4'];
-
-    subsections.forEach((subsectionId, index) => {
-        const container = document.getElementById(subsectionId);
-        if (!container) return;
-
-        // Subsection title
-        doc.setFontSize(14);
-        doc.setFont(undefined, 'bold');
-        doc.text(subsectionTitles[index], 20, yPosition);
-        yPosition += 8;
-
-        // Draw a line under subsection title
-        doc.setDrawColor(52, 152, 219); // blue color
-        doc.setLineWidth(0.5);
-        doc.line(20, yPosition, 190, yPosition);
-        yPosition += 5;
-
-        // Column headers
-        doc.setFontSize(10);
-        doc.setFont(undefined, 'bold');
-        doc.text('Course Code', 25, yPosition);
-        doc.text('Course Name', 90, yPosition);
-        doc.text('Credits', 170, yPosition);
-        yPosition += 5;
-
-        // Course rows
-        doc.setFont(undefined, 'normal');
-
-        const courseRows = container.querySelectorAll('.course-row');
-        let rowIndex = 0;
-
-        courseRows.forEach(row => {
-            const code = row.querySelector('.course-code').textContent.trim();
-            const name = row.querySelector('.course-name').textContent.trim();
-            const creditsText = row.querySelector('.course-credits').textContent.trim();
-
-            // Extract just the number from credits
-            const credits = creditsText.split(' ')[0];
-
-            // Wrap course code if needed
-            const wrappedCode = doc.splitTextToSize(code, 40);
-
-            // Wrap course name if needed
-            const wrappedName = doc.splitTextToSize(name, 75);
-
-            // Calculate row height based on max lines needed
-            const maxLines = Math.max(wrappedCode.length, wrappedName.length);
-            const rowHeight = maxLines * 5;
-
-            // Alternating row background
-            if (rowIndex % 2 === 0) {
-                doc.setFillColor(250, 250, 250); // light gray
-            } else {
-                doc.setFillColor(255, 255, 255); // white
-            }
-            doc.rect(20, yPosition - 4, 170, rowHeight + 2, 'F');
-
-            // Text content
-            doc.text(wrappedCode, 25, yPosition);
-            doc.text(wrappedName, 90, yPosition);
-            doc.text(credits, 170, yPosition);
-
-            yPosition += rowHeight + 2;
-
-            rowIndex++;
-        });
-
-        yPosition += 8; // Space between subsections
+    subsections.forEach(section => {
+        yPosition = renderSubsection(doc, section.id, section.title, config, yPosition);
     });
 
     doc.save('gu-core-requirements.pdf');
 }
 
+// Sample Plan PDF (side-by-side layout)
 function generateSamplePlanPDF() {
     const doc = new jsPDF();
+    let yPosition = addTitle(doc, 'Sample 4-Year Progression');
 
-    // Title
-    doc.setFontSize(20);
-    doc.setFont(undefined, 'bold');
-    doc.text('Sample 4-Year Progression', 105, 20, { align: 'center' });
-
-    let yPosition = 35;
-
-    // Define the years and semesters
     const years = [
         { name: 'Freshman Year', fall: 'freshman-fall', spring: 'freshman-spring' },
         { name: 'Sophomore Year', fall: 'sophomore-fall', spring: 'sophomore-spring' },
@@ -213,263 +212,180 @@ function generateSamplePlanPDF() {
         { name: 'Senior Year', fall: 'senior-fall', spring: 'senior-spring' }
     ];
 
-    years.forEach((year) => {
-        // Year title
-        doc.setFontSize(14);
-        doc.setFont(undefined, 'bold');
-        doc.text(year.name, 20, yPosition);
-        yPosition += 8;
+    years.forEach(year => {
+        yPosition = addSubsectionHeader(doc, year.name, yPosition);
 
-        // Draw a line under year title
-        doc.setDrawColor(52, 152, 219);
-        doc.setLineWidth(0.5);
-        doc.line(20, yPosition, 190, yPosition);
-        yPosition += 5;
-
-        // Semester titles on same line
-        doc.setFontSize(12);
-        doc.setFont(undefined, 'bold');
+        // Semester titles
+        doc.setFontSize(FONTS.SUBSECTION.size - 2);
+        doc.setFont(undefined, FONTS.SUBSECTION.style);
         doc.text('Fall', 25, yPosition);
         doc.text('Spring', 110, yPosition);
         yPosition += 6;
 
-        // Get both semester containers
+        // Config for left column (Fall)
+        const fallConfig = {
+            xOffset: 20,
+            codeX: 22,
+            nameX: 40,
+            creditsX: 95,
+            codeWidth: 15,
+            nameWidth: 50,
+            rowWidth: 80
+        };
+
+        // Config for right column (Spring)
+        const springConfig = {
+            xOffset: 105,
+            codeX: 107,
+            nameX: 125,
+            creditsX: 180,
+            codeWidth: 15,
+            nameWidth: 50,
+            rowWidth: 80
+        };
+
+        const startY = yPosition;
+
+        // Render Fall semester
         const fallContainer = document.getElementById(year.fall);
+        const fallHeaders = {
+            fontSize: FONTS.SMALL.size,
+            columns: [
+                { text: 'Code', x: fallConfig.codeX },
+                { text: 'Name', x: fallConfig.nameX },
+                { text: 'Cr', x: fallConfig.creditsX }
+            ]
+        };
+        let fallY = addColumnHeaders(doc, fallHeaders, yPosition);
+        fallY = renderCourseListCompact(doc, fallContainer, fallConfig, fallY);
+
+        // Render Spring semester
         const springContainer = document.getElementById(year.spring);
+        const springHeaders = {
+            fontSize: FONTS.SMALL.size,
+            columns: [
+                { text: 'Code', x: springConfig.codeX },
+                { text: 'Name', x: springConfig.nameX },
+                { text: 'Cr', x: springConfig.creditsX }
+            ]
+        };
+        let springY = addColumnHeaders(doc, springHeaders, yPosition);
+        springY = renderCourseListCompact(doc, springContainer, springConfig, springY);
 
-        // Render Fall semester (left column)
-        let fallYPosition = yPosition;
-        const fallXOffset = 20;
-
-        if (fallContainer) {
-            // Column headers
-            doc.setFontSize(8);
-            doc.setFont(undefined, 'bold');
-            doc.text('Code', fallXOffset + 2, fallYPosition);
-            doc.text('Name', fallXOffset + 20, fallYPosition);
-            doc.text('Cr', fallXOffset + 75, fallYPosition);
-            fallYPosition += 4;
-
-            // Course rows
-            doc.setFont(undefined, 'normal');
-            const courseRows = fallContainer.querySelectorAll('.course-row');
-            let rowIndex = 0;
-
-            courseRows.forEach(row => {
-                const code = row.querySelector('.course-code').textContent.trim();
-                const name = row.querySelector('.course-name').textContent.trim();
-                const creditsText = row.querySelector('.course-credits').textContent.trim();
-                const credits = creditsText.split(' ')[0];
-
-                const wrappedCode = doc.splitTextToSize(code, 15);
-                const wrappedName = doc.splitTextToSize(name, 50);
-
-                const maxLines = Math.max(wrappedCode.length, wrappedName.length);
-                const rowHeight = maxLines * 4;
-
-                // Alternating row background
-                if (rowIndex % 2 === 0) {
-                    doc.setFillColor(250, 250, 250);
-                } else {
-                    doc.setFillColor(255, 255, 255);
-                }
-                doc.rect(fallXOffset, fallYPosition - 3, 80, rowHeight + 1, 'F');
-
-                // Text content
-                doc.text(wrappedCode, fallXOffset + 2, fallYPosition);
-                doc.text(wrappedName, fallXOffset + 20, fallYPosition);
-                doc.text(credits, fallXOffset + 75, fallYPosition);
-
-                fallYPosition += rowHeight + 1;
-                rowIndex++;
-            });
-        }
-
-        // Render Spring semester (right column)
-        let springYPosition = yPosition;
-        const springXOffset = 105;
-
-        if (springContainer) {
-            // Column headers
-            doc.setFontSize(8);
-            doc.setFont(undefined, 'bold');
-            doc.text('Code', springXOffset + 2, springYPosition);
-            doc.text('Name', springXOffset + 20, springYPosition);
-            doc.text('Cr', springXOffset + 75, springYPosition);
-            springYPosition += 4;
-
-            // Course rows
-            doc.setFont(undefined, 'normal');
-            const courseRows = springContainer.querySelectorAll('.course-row');
-            let rowIndex = 0;
-
-            courseRows.forEach(row => {
-                const code = row.querySelector('.course-code').textContent.trim();
-                const name = row.querySelector('.course-name').textContent.trim();
-                const creditsText = row.querySelector('.course-credits').textContent.trim();
-                const credits = creditsText.split(' ')[0];
-
-                const wrappedCode = doc.splitTextToSize(code, 15);
-                const wrappedName = doc.splitTextToSize(name, 50);
-
-                const maxLines = Math.max(wrappedCode.length, wrappedName.length);
-                const rowHeight = maxLines * 4;
-
-                // Alternating row background
-                if (rowIndex % 2 === 0) {
-                    doc.setFillColor(250, 250, 250);
-                } else {
-                    doc.setFillColor(255, 255, 255);
-                }
-                doc.rect(springXOffset, springYPosition - 3, 80, rowHeight + 1, 'F');
-
-                // Text content
-                doc.text(wrappedCode, springXOffset + 2, springYPosition);
-                doc.text(wrappedName, springXOffset + 20, springYPosition);
-                doc.text(credits, springXOffset + 75, springYPosition);
-
-                springYPosition += rowHeight + 1;
-                rowIndex++;
-            });
-        }
-
-        // Move yPosition to the bottom of the tallest column
-        yPosition = Math.max(fallYPosition, springYPosition) + 5;
+        yPosition = Math.max(fallY, springY) + 5;
     });
 
     doc.save('sample-4-year-progression.pdf');
 }
 
+// Helper for compact course rendering (used in sample plan)
+function renderCourseListCompact(doc, container, config, yPosition) {
+    if (!container) return yPosition;
+
+    const courseRows = container.querySelectorAll('.course-row');
+    let rowIndex = 0;
+
+    courseRows.forEach(row => {
+        const courseData = getCourseData(row);
+        yPosition = renderCourseRowCompact(doc, courseData, config, yPosition, rowIndex);
+        rowIndex++;
+    });
+
+    return yPosition;
+}
+
+function renderCourseRowCompact(doc, courseData, config, yPosition, rowIndex) {
+    const { code, name, credits } = courseData;
+    const { xOffset, codeX, nameX, creditsX, codeWidth, nameWidth, rowWidth } = config;
+
+    const wrappedCode = doc.splitTextToSize(code, codeWidth);
+    const wrappedName = doc.splitTextToSize(name, nameWidth);
+    const maxLines = Math.max(wrappedCode.length, wrappedName.length);
+    const rowHeight = maxLines * 4;
+
+    const fillColor = rowIndex % 2 === 0 ? COLORS.LIGHT_GRAY : COLORS.WHITE;
+    doc.setFillColor(...fillColor);
+    doc.rect(xOffset, yPosition - 3, rowWidth, rowHeight + 1, 'F');
+
+    doc.setFont(undefined, FONTS.NORMAL.style);
+    doc.text(wrappedCode, codeX, yPosition);
+    doc.text(wrappedName, nameX, yPosition);
+    doc.text(credits, creditsX, yPosition);
+
+    return yPosition + rowHeight + 1;
+}
+
+// Recommended Courses PDF
 function generateRecommendedPDF() {
     const doc = new jsPDF();
 
-    // Get the selected career path
     const careerPathSelect = document.getElementById('career-path');
-    const selectedPath = careerPathSelect.value;
+    const selectedPath = careerPathSelect?.value;
 
     if (!selectedPath) {
         alert('Please select a career path first!');
         return;
     }
 
-    // Get the path title from the dropdown
     const selectedOption = careerPathSelect.options[careerPathSelect.selectedIndex].text;
+    let yPosition = addTitle(doc, `Pre-${selectedOption} Recommended Coursework`);
 
-    // Title
-    doc.setFontSize(20);
-    doc.setFont(undefined, 'bold');
-    doc.text(`Pre-${selectedOption} Recommended Coursework`, 105, 20, { align: 'center' });
-
-    let yPosition = 35;
-
-    // Get the display container
     const displayContainer = document.getElementById('recommended-courses-display');
-
     if (!displayContainer || displayContainer.children.length === 0) {
         alert('No coursework displayed. Please select a career path first!');
         return;
     }
 
-    // Get all subsections (Biology, Chemistry, etc.)
     const subsections = displayContainer.querySelectorAll('.subsection');
+    const config = {
+        xOffset: 20,
+        codeX: 25,
+        nameX: 90,
+        creditsX: 170,
+        codeWidth: 40,
+        nameWidth: 75,
+        rowWidth: 170
+    };
 
-    subsections.forEach((subsection) => {
+    subsections.forEach(subsection => {
         const heading = subsection.querySelector('h4');
         if (!heading) return;
 
-        // Subsection title
-        doc.setFontSize(14);
-        doc.setFont(undefined, 'bold');
-        doc.text(heading.textContent, 20, yPosition);
-        yPosition += 8;
+        yPosition = addSubsectionHeader(doc, heading.textContent, yPosition);
 
-        // Draw a line under subsection title
-        doc.setDrawColor(52, 152, 219);
-        doc.setLineWidth(0.5);
-        doc.line(20, yPosition, 190, yPosition);
-        yPosition += 5;
-
-        // Column headers
-        doc.setFontSize(10);
-        doc.setFont(undefined, 'bold');
-        doc.text('Course Code', 25, yPosition);
-        doc.text('Course Name', 90, yPosition);
-        doc.text('Credits', 170, yPosition);
-        yPosition += 5;
-
-        // Course rows
-        doc.setFont(undefined, 'normal');
+        const headers = {
+            columns: [
+                { text: 'Course Code', x: config.codeX },
+                { text: 'Course Name', x: config.nameX },
+                { text: 'Credits', x: config.creditsX }
+            ]
+        };
+        yPosition = addColumnHeaders(doc, headers, yPosition);
 
         const courseList = subsection.querySelector('.course-list');
-        if (!courseList) return;
-
-        const courseRows = courseList.querySelectorAll('.course-row');
-        let rowIndex = 0;
-
-        courseRows.forEach(row => {
-            const code = row.querySelector('.course-code').textContent.trim();
-            const name = row.querySelector('.course-name').textContent.trim();
-            const creditsText = row.querySelector('.course-credits').textContent.trim();
-
-            // Extract just the number from credits
-            const credits = creditsText.split(' ')[0];
-
-            // Wrap course code if needed
-            const wrappedCode = doc.splitTextToSize(code, 40);
-
-            // Wrap course name if needed
-            const wrappedName = doc.splitTextToSize(name, 75);
-
-            // Calculate row height based on max lines needed
-            const maxLines = Math.max(wrappedCode.length, wrappedName.length);
-            const rowHeight = maxLines * 5;
-
-            // Alternating row background
-            if (rowIndex % 2 === 0) {
-                doc.setFillColor(250, 250, 250);
-            } else {
-                doc.setFillColor(255, 255, 255);
-            }
-            doc.rect(20, yPosition - 4, 170, rowHeight + 2, 'F');
-
-            // Text content
-            doc.text(wrappedCode, 25, yPosition);
-            doc.text(wrappedName, 90, yPosition);
-            doc.text(credits, 170, yPosition);
-
-            yPosition += rowHeight + 2;
-
-            rowIndex++;
-        });
-
-        yPosition += 8; // Space between subsections
+        yPosition = renderCourseList(doc, courseList, config, yPosition);
     });
 
-    // Create filename based on selected path
     const filename = `pre-${selectedPath}-recommended-coursework.pdf`;
     doc.save(filename);
 }
 
-// Keep the old generic function as fallback
+// Fallback generic PDF generator
 function generateGenericPDF(sectionId) {
     const doc = new jsPDF();
     const section = document.getElementById(sectionId);
     if (!section) return;
 
     const sectionHeader = section.previousElementSibling;
-    const title = sectionHeader.querySelector('h3').textContent;
+    const title = sectionHeader?.querySelector('h3')?.textContent || 'Course List';
 
-    doc.setFontSize(18);
-    doc.text(title, 20, 20);
+    let yPosition = addTitle(doc, title);
 
-    let yPosition = 35;
     const courseRows = section.querySelectorAll('.course-row');
-
     doc.setFontSize(12);
+
     courseRows.forEach(row => {
-        const code = row.querySelector('.course-code').textContent;
-        const name = row.querySelector('.course-name').textContent;
-        const credits = row.querySelector('.course-credits').textContent;
+        const { code, name, credits } = getCourseData(row);
 
         if (yPosition > 270) {
             doc.addPage();
