@@ -106,21 +106,41 @@ document.addEventListener('DOMContentLoaded', () => {
     // login form submission
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
+        loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
 
-            console.log('Login attempt:', { email, password });
-            // TODO: Implement actual login logic
-            alert('Login functionality coming soon!');
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Login successful!');
+                    console.log('User:', data.user);
+                    console.log('Token:', data.token);
+                    // TODO: Store token and redirect to dashboard
+                } else {
+                    alert(data.message || 'Login failed');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Error connecting to server');
+            }
         });
     }
 
     // registration form submission
     const registrationForm = document.getElementById('registration-form');
     if (registrationForm) {
-        registrationForm.addEventListener('submit', (e) => {
+        registrationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             // collect all form data
@@ -136,9 +156,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 additional: document.getElementById('student-additional').value
             };
 
-            console.log('Registration data:', formData);
-            // TODO: Implement actual registration logic
-            alert('Registration successful! (Data logged to console)');
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Registration successful!');
+                    console.log('User:', data.user);
+                    console.log('Token:', data.token);
+                    // TODO: Store token and redirect to dashboard
+                    switchScreen('login');
+                } else {
+                    alert(data.message || 'Registration failed');
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                alert('Error connecting to server');
+            }
         });
     }
 

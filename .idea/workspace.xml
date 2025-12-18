@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="refactor: fix redundancy in pdf generator">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="feat: implement user authentication backend with MongoDB">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/plan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/js/auth.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -93,6 +94,8 @@
       <workItem from="1765939260579" duration="254000" />
       <workItem from="1765939533265" duration="8210000" />
       <workItem from="1766001250298" duration="6368000" />
+      <workItem from="1766045778917" duration="4404000" />
+      <workItem from="1766082105984" duration="1475000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit, course info &amp; download">
       <option name="closed" value="true" />
@@ -174,11 +177,54 @@
       <option name="project" value="LOCAL" />
       <updated>1766045104556</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="feat: registration survey">
+      <option name="closed" value="true" />
+      <created>1766047015719</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1766047015719</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: show/hide login password">
+      <option name="closed" value="true" />
+      <created>1766047635514</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1766047635514</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: implement user authentication backend with MongoDB">
+      <option name="closed" value="true" />
+      <created>1766049425357</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1766049425357</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat: implement user authentication backend with MongoDB">
+      <option name="closed" value="true" />
+      <created>1766049537442</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1766049537442</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit, course info &amp; download" />
@@ -190,6 +236,9 @@
     <MESSAGE value="refactor: improve code organization in DOMContentLoaded event listener" />
     <MESSAGE value="refactor: move download button handlers from inline to event listeners" />
     <MESSAGE value="refactor: fix redundancy in pdf generator" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: fix redundancy in pdf generator" />
+    <MESSAGE value="feat: registration survey" />
+    <MESSAGE value="feat: show/hide login password" />
+    <MESSAGE value="feat: implement user authentication backend with MongoDB" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implement user authentication backend with MongoDB" />
   </component>
 </project>
