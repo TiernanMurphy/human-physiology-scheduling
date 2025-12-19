@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="fix: switched MongoDB from localhost to Atlas" />
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="fix .gitignore">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +95,7 @@
       <workItem from="1766001250298" duration="6368000" />
       <workItem from="1766045778917" duration="4404000" />
       <workItem from="1766082105984" duration="12958000" />
-      <workItem from="1766177785703" duration="2972000" />
+      <workItem from="1766177785703" duration="4680000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit, course info &amp; download">
       <option name="closed" value="true" />
@@ -238,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766180993134</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="fix .gitignore">
+      <option name="closed" value="true" />
+      <created>1766181289768</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1766181289768</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -272,6 +283,7 @@
     <MESSAGE value="feat: add basic schedule builder UI structure" />
     <MESSAGE value="feat: required courses in create plan reference tab" />
     <MESSAGE value="fix: switched MongoDB from localhost to Atlas" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: switched MongoDB from localhost to Atlas" />
+    <MESSAGE value="fix .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix .gitignore" />
   </component>
 </project>
