@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="feat: required courses in create plan reference tab">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server" beforeDir="false" afterPath="$PROJECT_DIR$/server" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/auth.js" afterDir="false" />
-    </list>
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="fix: switched MongoDB from localhost to Atlas" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,7 +92,7 @@
       <workItem from="1766001250298" duration="6368000" />
       <workItem from="1766045778917" duration="4404000" />
       <workItem from="1766082105984" duration="12958000" />
-      <workItem from="1766177785703" duration="2620000" />
+      <workItem from="1766177785703" duration="2972000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit, course info &amp; download">
       <option name="closed" value="true" />
@@ -236,7 +230,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766091076096</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="fix: switched MongoDB from localhost to Atlas">
+      <option name="closed" value="true" />
+      <created>1766180993134</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1766180993134</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,6 +271,7 @@
     <MESSAGE value="feat: connected login/register forms to MongoDB" />
     <MESSAGE value="feat: add basic schedule builder UI structure" />
     <MESSAGE value="feat: required courses in create plan reference tab" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: required courses in create plan reference tab" />
+    <MESSAGE value="fix: switched MongoDB from localhost to Atlas" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: switched MongoDB from localhost to Atlas" />
   </component>
 </project>
