@@ -15,7 +15,7 @@ const FONTS = {
     SMALL: { size: 8, style: 'bold' }
 };
 
-// Main entry point
+// main entry point
 export function generateSectionPDF(sectionId) {
     switch(sectionId) {
         case 'required-courses':
@@ -35,7 +35,6 @@ export function generateSectionPDF(sectionId) {
     }
 }
 
-// Helper: Add title to PDF
 function addTitle(doc, text, yPosition = 20) {
     doc.setFontSize(FONTS.TITLE.size);
     doc.setFont(undefined, FONTS.TITLE.style);
@@ -43,7 +42,6 @@ function addTitle(doc, text, yPosition = 20) {
     return yPosition + 15;
 }
 
-// Helper: Add subsection header with blue line
 function addSubsectionHeader(doc, text, yPosition) {
     doc.setFontSize(FONTS.SUBSECTION.size);
     doc.setFont(undefined, FONTS.SUBSECTION.style);

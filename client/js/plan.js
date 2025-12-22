@@ -27,6 +27,7 @@ function createSemester(semesterName = '') {
         <div class="course-slots">
             ${createCourseSlots(5)}
         </div>
+        <button class="add-course-btn">+ Add Course</button>
     `;
 
     return semesterCard;
@@ -36,10 +37,10 @@ function createCourseSlots(count) {
     let slots = '';
     for (let i = 0; i < count; i++) {
         slots += `
-                    <input type="text"
-                        class="course-slot"
-                        data-slot="${i}"
-                        placeholder="+ Add Course">
+            <div class="course-slot-container" data-slot="${i}">
+                <input type="text" class="course-slot" placeholder="type to search">
+                <button class="delete-course" title="Remove slot">×</button>
+            </div>
         `;
     }
     return slots;
@@ -59,17 +60,55 @@ function initializeSemesters() {
     }
 }
 
+// delete course from semester
+semestersGrid.addEventListener('click', (e) => {
+    // delete entire semester
+    if (e.target.classList.contains('delete-semester')) {
+        const semesterCard = e.target.closest('.semester-card');
+        if (confirm('Delete this semester?')) {
+            semesterCard.remove();
+        }
+    }
+
+    // delete individual course
+    if (e.target.classList.contains('delete-course')) {
+        const semesterCard = e.target.closest('.semester-card');
+        const courseSlotsContainer = semesterCard.querySelector('.course-slots');
+        const slots = courseSlotsContainer.querySelectorAll('.course-slot-container');
+
+        // prevent deleting last course
+        if (slots.length > 1) {
+            e.target.closest('.course-slot-container').remove();
+        } else {
+            alert('Each semester must have at least one course');
+        }
+    }
+
+    // add course slot
+    if (e.target.classList.contains('add-course-btn')) {
+        const semesterCard = e.target.closest('.semester-card');
+        const courseSlotsContainer = semesterCard.querySelector('.course-slots');
+
+        const newSlot = document.createElement('div');
+        newSlot.className = 'course-slot-container';
+        newSlot.innerHTML = `
+            <input type="text" class="course-slot" placeholder="+ Add Course">
+            <button class="delete-course" title="Remove course">×</button>
+        `;
+
+        courseSlotsContainer.appendChild(newSlot);
+    }
+});
+
 // tab switching
 const tabs = document.querySelectorAll('.tab');
 const courseLists = document.querySelectorAll('.course-list');
 
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-        // remove active from all tabs and lists
         tabs.forEach(t => t.classList.remove('active'));
         courseLists.forEach(list => list.classList.remove('active'));
 
-        // add active to clicked tab and corresponding list
         tab.classList.add('active');
         const targetList = document.getElementById(`${tab.dataset.tab}-courses`);
         if (targetList) {
@@ -84,55 +123,31 @@ document.getElementById('add-semester-btn').addEventListener('click', () => {
     semestersGrid.appendChild(semester);
 });
 
-// delete semester (event delegation)
-semestersGrid.addEventListener('click', (e) => {
-    if (e.target.classList.contains('delete-semester')) {
-        const semesterCard = e.target.closest('.semester-card');
-        if (confirm('Delete this semester?')) {
-            semesterCard.remove();
-        }
-    }
-});
-
 // initialize
 initializeSemesters();
 
-// populate required courses panel
 function populateRequiredCourses() {
     const requiredContainer = document.getElementById('required-courses');
-
-    // clear placeholder content
     requiredContainer.innerHTML = '';
 
-    // core stem section
-    const coreStemSection = document.createElement('div');
-    coreStemSection.className = 'subsection';
-    coreStemSection.innerHTML = '<h4>Core STEM</h4>';
-    humanPhys.coreSTEM.forEach(code => {
-        const row = createCourseRow(code);
-        if (row) coreStemSection.appendChild(row);
-    });
-    requiredContainer.appendChild(coreStemSection);
+    const sections = [
+        { title: 'Core STEM', courses: humanPhys.coreSTEM },
+        { title: 'Lower Division', courses: humanPhys.lowerDivision },
+        { title: 'Upper Division', courses: humanPhys.upperDivision }
+    ];
 
-    // lower division section
-    const lowerDivSection = document.createElement('div');
-    lowerDivSection.className = 'subsection';
-    lowerDivSection.innerHTML = '<h4>Lower Division</h4>';
-    humanPhys.lowerDivision.forEach(code => {
-        const row = createCourseRow(code);
-        if (row) lowerDivSection.appendChild(row);
-    });
-    requiredContainer.appendChild(lowerDivSection);
+    sections.forEach(({ title, courses }) => {
+        const section = document.createElement('div');
+        section.className = 'subsection';
+        section.innerHTML = `<h4>${title}</h4>`;
 
-    // upper division section
-    const upperDivSection = document.createElement('div');
-    upperDivSection.className = 'subsection';
-    upperDivSection.innerHTML = '<h4>Upper Division</h4>';
-    humanPhys.upperDivision.forEach(code => {
-        const row = createCourseRow(code);
-        if (row) upperDivSection.appendChild(row);
+        courses.forEach(code => {
+            const row = createCourseRow(code);
+            if (row) section.appendChild(row);
+        });
+
+        requiredContainer.appendChild(section);
     });
-    requiredContainer.appendChild(upperDivSection);
 }
 
 // call it on page load

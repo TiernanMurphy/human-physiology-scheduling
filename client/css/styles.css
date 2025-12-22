@@ -630,3 +630,50 @@ body {
     color: #2c3e50;
     font-size: 1.5rem;
 }
+
+.course-slot-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.course-slot {
+    flex: 1;
+}
+
+.delete-course {
+    background: darkslategray;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.delete-course:hover {
+    background: black;
+}
+
+.add-course-btn {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-course-btn:hover {
+    background: #2980b9;
+}
