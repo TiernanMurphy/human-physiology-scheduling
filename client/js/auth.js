@@ -16,6 +16,7 @@ function switchScreen(screenId) {
 let currentQuestion = 1;
 const totalQuestions = 9;
 
+// survey progress indicator
 function updateProgressBar() {
     const progress = (currentQuestion / totalQuestions) * 100;
     document.getElementById('progress-fill').style.width = `${progress}%`;
@@ -63,6 +64,35 @@ function setUpPasswordToggle(checkboxId, passwordFieldIds) {
     }
 }
 
+// helper function for API calls
+async function submitAuthForm(endpoint, data, successCallback) {
+    try {
+        const response = await fetch(`/api/auth/${endpoint}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            // TODO: store token in localStorage here
+            console.log('User:', result.user);
+            console.log('Token:', result.token);
+
+            alert(`${endpoint.charAt(0).toUpperCase() + endpoint.slice(1)} successful!`);
+            if (successCallback) successCallback(result);
+        } else {
+            alert(result.message || `${endpoint} failed`);
+        }
+    } catch (error) {
+        console.error(`${endpoint} error:`, error);
+        alert('Error connecting to server');
+    }
+}
+
 // event listeners
 document.addEventListener('DOMContentLoaded', () => {
     // screen switching
@@ -101,47 +131,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // login
     setUpPasswordToggle('show-login-password', ['login-password']);
 
-    // login form submission
+    // new login form submission
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
+           e.preventDefault();
 
-            try {
-                const response = await fetch('/api/auth/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password })
-                });
+           const loginData = {
+               email: document.getElementById('login-email').value,
+               password: document.getElementById('login-password').value
+           };
 
-                const data = await response.json();
-
-                if (response.ok) {
-                    alert('Login successful!');
-                    console.log('User:', data.user);
-                    console.log('Token:', data.token);
-                    // TODO: Store token and redirect to dashboard
-                } else {
-                    alert(data.message || 'Login failed');
-                }
-            } catch (error) {
-                console.error('Login error:', error);
-                alert('Error connecting to server');
-            }
+           await submitAuthForm('login', loginData);
         });
     }
 
-    // registration form submission
+    // new registration form submission
     const registrationForm = document.getElementById('registration-form');
     if (registrationForm) {
         registrationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // collect all form data
             const formData = {
                 name: document.getElementById('student-name').value,
                 email: document.getElementById('student-email').value,
@@ -154,30 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 additional: document.getElementById('student-additional').value
             };
 
-            try {
-                const response = await fetch('/api/auth/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    alert('Registration successful!');
-                    console.log('User:', data.user);
-                    console.log('Token:', data.token);
-                    // TODO: Store token and redirect to dashboard
-                    switchScreen('login');
-                } else {
-                    alert(data.message || 'Registration failed');
-                }
-            } catch (error) {
-                console.error('Registration error:', error);
-                alert('Error connecting to server');
-            }
+            await submitAuthForm('register', formData, () => {
+                switchScreen('login');
+            });
         });
     }
 
