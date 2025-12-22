@@ -1,4 +1,4 @@
-// screen navigation
+// registration screen navigation
 function switchScreen(screenId) {
     // hide all screens
     document.querySelectorAll('.screen').forEach(screen => {
@@ -50,23 +50,36 @@ function prevQuestion() {
     }
 }
 
+function setUpPasswordToggle(checkboxId, passwordFieldIds) {
+    const checkbox = document.getElementById(checkboxId);
+    if (checkbox) {
+        checkbox.addEventListener('change', (e) => {
+            const type = e.target.checked ? 'text' : 'password';
+            passwordFieldIds.forEach(fieldId => {
+               const field = document.getElementById(fieldId);
+               if (field) field.type = type;
+            });
+        });
+    }
+}
+
 // event listeners
 document.addEventListener('DOMContentLoaded', () => {
-    // screen switching buttons
+    // screen switching
     document.querySelectorAll('[data-screen]').forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
             const targetScreen = button.dataset.screen;
             switchScreen(targetScreen);
 
-            // reset to first question when entering register screen
+            // reset to first question when entering registration
             if (targetScreen === 'register') {
                 showQuestion(1);
             }
         });
     });
 
-    // survey navigation buttons
+    // next question
     document.querySelectorAll('[data-action="next"]').forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
@@ -74,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // previous question
     document.querySelectorAll('[data-action="prev"]').forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
@@ -81,27 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // show/hide password toggle (registration)
-    const showPasswordCheckbox = document.getElementById('show-password');
-    if (showPasswordCheckbox) {
-        showPasswordCheckbox.addEventListener('change', (e) => {
-            const passwordField = document.getElementById('student-password');
-            const confirmField = document.getElementById('password-confirm');
-            const type = e.target.checked ? 'text' : 'password';
-            passwordField.type = type;
-            confirmField.type = type;
-        });
-    }
+    // registration
+    setUpPasswordToggle('show-password', ['student-password', 'password-confirm']);
 
-    // show/hide password toggle (login)
-    const showLoginPasswordCheckbox = document.getElementById('show-login-password');
-    if (showLoginPasswordCheckbox) {
-        showLoginPasswordCheckbox.addEventListener('change', (e) => {
-            const passwordField = document.getElementById('login-password');
-            const type = e.target.checked ? 'text' : 'password';
-            passwordField.type = type;
-        });
-    }
+    // login
+    setUpPasswordToggle('show-login-password', ['login-password']);
 
     // login form submission
     const loginForm = document.getElementById('login-form');
