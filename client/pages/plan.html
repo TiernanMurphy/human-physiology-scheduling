@@ -223,6 +223,58 @@
             border-bottom: 1px solid #ddd;
         }
 
+        .course-slot.selected {
+            border-color: #002f87;
+            background: #e3f2fd;
+            box-shadow: 0 0 0 3px rgba(0, 47, 135, 0.1);
+        }
+
+        .course-slot {
+            cursor: pointer;
+        }
+
+        .course-slot-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .delete-course {
+            background: slategray;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .delete-course:hover {
+            background: black;
+        }
+
+        .add-course-btn {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .add-course-btn:hover {
+            background: #2980b9;
+        }
+
+        .course-row:hover {
+            background: #f0f0f0;
+        }
+
     </style>
 </head>
 <body>

@@ -2,9 +2,9 @@ import courses from '/data/courses.js';
 import { humanPhys } from '/data/required.js';
 import { createCourseRow } from "./main.js";
 
-// generate initial 8 semesters
 const semestersGrid = document.getElementById('semesters-grid');
 let semesterCount = 0;
+let selectedSlot = null;
 
 function createSemester(semesterName = '') {
     semesterCount++;
@@ -25,7 +25,7 @@ function createSemester(semesterName = '') {
             </div>
         </div>
         <div class="course-slots">
-            ${createCourseSlots(5)}
+            ${createCourseSlots(3)}
         </div>
         <button class="add-course-btn">+ Add Course</button>
     `;
@@ -60,9 +60,20 @@ function initializeSemesters() {
     }
 }
 
-// delete course from semester
 semestersGrid.addEventListener('click', (e) => {
-    // delete entire semester
+    // remove course from plan
+    if (e.target.classList.contains('course-slot')) {
+        if (selectedSlot) {
+            selectedSlot.classList.remove('selected');
+        }
+
+        // set new selection
+        selectedSlot = e.target;
+        selectedSlot.classList.add('selected');
+        return;
+    }
+
+    // delete semester from plan
     if (e.target.classList.contains('delete-semester')) {
         const semesterCard = e.target.closest('.semester-card');
         if (confirm('Delete this semester?')) {
@@ -76,9 +87,17 @@ semestersGrid.addEventListener('click', (e) => {
         const courseSlotsContainer = semesterCard.querySelector('.course-slots');
         const slots = courseSlotsContainer.querySelectorAll('.course-slot-container');
 
-        // prevent deleting last course
+        // must have at least one course per semester
         if (slots.length > 1) {
-            e.target.closest('.course-slot-container').remove();
+            const slotToRemove = e.target.closest('.course-slot-container');
+            const slotInput = slotToRemove.querySelector('.course-slot');
+
+            // clear selection if deleting selected slot
+            if (slotInput === selectedSlot) {
+                selectedSlot = null;
+            }
+
+            slotToRemove.remove();
         } else {
             alert('Each semester must have at least one course');
         }
@@ -123,9 +142,6 @@ document.getElementById('add-semester-btn').addEventListener('click', () => {
     semestersGrid.appendChild(semester);
 });
 
-// initialize
-initializeSemesters();
-
 function populateRequiredCourses() {
     const requiredContainer = document.getElementById('required-courses');
     requiredContainer.innerHTML = '';
@@ -136,19 +152,34 @@ function populateRequiredCourses() {
         { title: 'Upper Division', courses: humanPhys.upperDivision }
     ];
 
-    sections.forEach(({ title, courses }) => {
+    sections.forEach(({ title, courses: courseCodes }) => {
         const section = document.createElement('div');
         section.className = 'subsection';
         section.innerHTML = `<h4>${title}</h4>`;
 
-        courses.forEach(code => {
+        courseCodes.forEach(code => {
             const row = createCourseRow(code);
-            if (row) section.appendChild(row);
+            if (row) {
+                row.style.cursor = 'pointer';
+                row.addEventListener('click', () => {
+                    if (selectedSlot) {
+                        const courseData = courses[code];
+                        if (courseData) {
+                            selectedSlot.value = `${code} - ${courseData.name}`;
+                            selectedSlot.classList.remove('selected');
+                            selectedSlot = null;
+                        }
+                    } else {
+                        alert('Please select a course slot first');
+                    }
+                });
+                section.appendChild(row);
+            }
         });
-
         requiredContainer.appendChild(section);
     });
 }
 
-// call it on page load
+// initialize
+initializeSemesters();
 populateRequiredCourses();
