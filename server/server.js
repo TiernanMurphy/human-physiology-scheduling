@@ -1,7 +1,15 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const path = require('path');
-require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
+import dotenv from 'dotenv';
+import express from 'express';
+import mongoose from 'mongoose';
+import { fileURLToPath } from 'url';
+import path from 'path';
+import authRoutes from './routes/auth.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// load .env fom parent directory
+dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,9 +21,6 @@ app.use(express.json());
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('✓ Connected to MongoDB'))
     .catch(err => console.error('✗ MongoDB connection error:', err));
-
-// import routes
-const authRoutes = require('./routes/auth');
 
 // API routes
 app.use('/api/auth', authRoutes);
@@ -42,7 +47,6 @@ app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/pages/register.html'));
 });
 
-// start server
 app.listen(PORT, () => {
     console.log(`ASPN server running at http://localhost:${PORT}`);
 });
