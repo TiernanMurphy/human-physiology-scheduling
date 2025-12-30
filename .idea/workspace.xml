@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="add /server">
-      <change afterPath="$PROJECT_DIR$/client/public/logo.jpg" afterDir="false" />
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="feat: add course selection and slot population">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/faq.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +63,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/assets" />
+      <recent name="$PROJECT_DIR$/client" />
       <recent name="$PROJECT_DIR$/client/public" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/server" />
@@ -104,6 +102,8 @@
       <workItem from="1766279815877" duration="186000" />
       <workItem from="1766289552332" duration="1140000" />
       <workItem from="1766308800812" duration="2766000" />
+      <workItem from="1766431693726" duration="12743000" />
+      <workItem from="1766453493278" duration="3666000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit, course info &amp; download">
       <option name="closed" value="true" />
@@ -281,7 +281,63 @@
       <option name="project" value="LOCAL" />
       <updated>1766184219844</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="CommonJS --&gt; ES6, DB connection fix">
+      <option name="closed" value="true" />
+      <created>1766432412630</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1766432412630</updated>
+    </task>
+    <task id="LOCAL-00024" summary="fix: redundant /public directory">
+      <option name="closed" value="true" />
+      <created>1766432950487</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1766432950487</updated>
+    </task>
+    <task id="LOCAL-00025" summary="fixed css path issues">
+      <option name="closed" value="true" />
+      <created>1766438867277</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1766438867277</updated>
+    </task>
+    <task id="LOCAL-00026" summary="refactored toggle password event listeners">
+      <option name="closed" value="true" />
+      <created>1766440695673</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1766440695673</updated>
+    </task>
+    <task id="LOCAL-00027" summary="refactored login &amp; register form submission">
+      <option name="closed" value="true" />
+      <created>1766442743687</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1766442743687</updated>
+    </task>
+    <task id="LOCAL-00028" summary="feat: add / delete course">
+      <option name="closed" value="true" />
+      <created>1766445744614</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1766445744614</updated>
+    </task>
+    <task id="LOCAL-00029" summary="feat: add course selection and slot population">
+      <option name="closed" value="true" />
+      <created>1766448968149</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1766448968149</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,7 +355,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="initial commit, course info &amp; download" />
     <MESSAGE value="fix: navbar pages routing" />
     <MESSAGE value="feat: add FAQ content (unformatted)" />
     <MESSAGE value="style(faq): add collapsible sections with dropdown styling" />
@@ -318,6 +373,13 @@
     <MESSAGE value="fix .gitignore" />
     <MESSAGE value="server.js route fix" />
     <MESSAGE value="add /server" />
-    <option name="LAST_COMMIT_MESSAGE" value="add /server" />
+    <MESSAGE value="CommonJS --&gt; ES6, DB connection fix" />
+    <MESSAGE value="fix: redundant /public directory" />
+    <MESSAGE value="fixed css path issues" />
+    <MESSAGE value="refactored toggle password event listeners" />
+    <MESSAGE value="refactored login &amp; register form submission" />
+    <MESSAGE value="feat: add / delete course" />
+    <MESSAGE value="feat: add course selection and slot population" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add course selection and slot population" />
   </component>
 </project>
