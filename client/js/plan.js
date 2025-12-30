@@ -1,6 +1,7 @@
 import courses from '/data/courses.js';
 import {core, humanPhys} from '/data/required.js';
 import electives from '/data/electives.js';
+import progression from '/data/progression.js';
 import { createCourseRow } from "./main.js";
 
 const semestersGrid = document.getElementById('semesters-grid');
@@ -207,7 +208,91 @@ function populateElectives() {
     });
 }
 
+function populateSampleProgression() {
+    const progressionContainer = document.getElementById('recommended-courses');
+    progressionContainer.innerHTML = '';
+
+    const years = [
+        { title: 'Freshman Year', data: progression.freshman },
+        { title: 'Sophomore Year', data: progression.sophomore },
+        { title: 'Junior Year', data: progression.junior },
+        { title: 'Senior Year', data: progression.senior }
+    ];
+
+    years.forEach(({ title, data }) => {
+        // year section
+        const yearSection = document.createElement('div');
+        yearSection.className = 'subsection';
+        yearSection.innerHTML = `<h4>${title}</h4>`;
+
+        // fall semester
+        if (data.fall) {
+            const fallLabel = document.createElement('div');
+            fallLabel.style.fontWeight = 'bold';
+            fallLabel.style.fontSize = '13px';
+            fallLabel.style.marginTop = '8px';
+            fallLabel.style.marginBottom = '4px';
+            fallLabel.textContent = 'Fall';
+            yearSection.appendChild(fallLabel);
+
+            data.fall.forEach(courseCode => {
+                const row = createCourseRow(courseCode);
+                if (row) {
+                    row.style.cursor = 'pointer';
+                    row.addEventListener('click', () => {
+                        if (selectedSlot) {
+                            const courseData = courses[courseCode];
+                            if (courseData) {
+                                selectedSlot.value = `${courseCode} - ${courseData.name}`;
+                                selectedSlot.classList.remove('selected');
+                                selectedSlot = null;
+                            }
+                        } else {
+                            alert('Please select a course slot first');
+                        }
+                    });
+                    yearSection.appendChild(row);
+                }
+            });
+        }
+
+        // spring semester
+        if (data.spring) {
+            const springLabel = document.createElement('div');
+            springLabel.style.fontWeight = 'bold';
+            springLabel.style.fontSize = '13px';
+            springLabel.style.marginTop = '12px';
+            springLabel.style.marginBottom = '4px';
+            springLabel.textContent = 'Spring';
+            yearSection.appendChild(springLabel);
+
+            data.spring.forEach(courseCode => {
+                const row = createCourseRow(courseCode);
+                if (row) {
+                    row.style.cursor = 'pointer';
+                    row.addEventListener('click', () => {
+                        if (selectedSlot) {
+                            const courseData = courses[courseCode];
+                            if (courseData) {
+                                selectedSlot.value = `${courseCode} - ${courseData.name}`;
+                                selectedSlot.classList.remove('selected');
+                                selectedSlot = null;
+                            }
+                        } else {
+                            alert('Please select a course slot first');
+                        }
+                    });
+                    yearSection.appendChild(row);
+                }
+            });
+        }
+
+        progressionContainer.appendChild(yearSection);
+    });
+}
+
 // initialize
 initializeSemesters();
 populateRequiredCourses();
 populateElectives();
+populateSampleProgression();
