@@ -5,8 +5,26 @@ import progression from '/data/progression.js';
 import { createCourseRow } from "./main.js";
 
 const semestersGrid = document.getElementById('semesters-grid');
+if (!semestersGrid) {
+    console.error('Semesters grid not found');
+}
+
 let semesterCount = 0;
 let selectedSlot = null;
+
+// shared function for adding course to selected slot
+function addCourseToSelectedSlot(courseCode) {
+    if (selectedSlot) {
+        const courseData = courses[courseCode];
+        if (courseData) {
+            selectedSlot.value = `${courseCode} - ${courseData.name}`;
+            selectedSlot.classList.remove('selected');
+            selectedSlot = null;
+        }
+    } else {
+        alert('Please select a course slot first');
+    }
+}
 
 function createSemester(semesterName = '') {
     semesterCount++;
@@ -40,7 +58,7 @@ function createCourseSlots(count) {
     for (let i = 0; i < count; i++) {
         slots += `
             <div class="course-slot-container" data-slot="${i}">
-                <input type="text" class="course-slot" placeholder="type to search">
+                <input type="text" class="course-slot" placeholder="Type to search">
                 <button class="delete-course" title="Remove slot">×</button>
             </div>
         `;
@@ -48,7 +66,6 @@ function createCourseSlots(count) {
     return slots;
 }
 
-// initialize with 8 semesters
 function initializeSemesters() {
     const years = ['Freshman', 'Sophomore', 'Junior', 'Senior'];
     const terms = ['Fall', 'Spring'];
@@ -62,20 +79,16 @@ function initializeSemesters() {
     }
 }
 
-semestersGrid.addEventListener('click', (e) => {
-    // remove course from plan
+semestersGrid?.addEventListener('click', (e) => {
     if (e.target.classList.contains('course-slot')) {
         if (selectedSlot) {
             selectedSlot.classList.remove('selected');
         }
-
-        // set new selection
         selectedSlot = e.target;
         selectedSlot.classList.add('selected');
         return;
     }
 
-    // delete semester from plan
     if (e.target.classList.contains('delete-semester')) {
         const semesterCard = e.target.closest('.semester-card');
         if (confirm('Delete this semester?')) {
@@ -83,18 +96,15 @@ semestersGrid.addEventListener('click', (e) => {
         }
     }
 
-    // delete individual course
     if (e.target.classList.contains('delete-course')) {
         const semesterCard = e.target.closest('.semester-card');
         const courseSlotsContainer = semesterCard.querySelector('.course-slots');
         const slots = courseSlotsContainer.querySelectorAll('.course-slot-container');
 
-        // must have at least one course per semester
         if (slots.length > 1) {
             const slotToRemove = e.target.closest('.course-slot-container');
             const slotInput = slotToRemove.querySelector('.course-slot');
 
-            // clear selection if deleting selected slot
             if (slotInput === selectedSlot) {
                 selectedSlot = null;
             }
@@ -105,7 +115,6 @@ semestersGrid.addEventListener('click', (e) => {
         }
     }
 
-    // add course slot
     if (e.target.classList.contains('add-course-btn')) {
         const semesterCard = e.target.closest('.semester-card');
         const courseSlotsContainer = semesterCard.querySelector('.course-slots');
@@ -113,7 +122,7 @@ semestersGrid.addEventListener('click', (e) => {
         const newSlot = document.createElement('div');
         newSlot.className = 'course-slot-container';
         newSlot.innerHTML = `
-            <input type="text" class="course-slot" placeholder="+ Add Course">
+            <input type="text" class="course-slot" placeholder="Type to search">
             <button class="delete-course" title="Remove course">×</button>
         `;
 
@@ -139,13 +148,15 @@ tabs.forEach(tab => {
 });
 
 // add semester button
-document.getElementById('add-semester-btn').addEventListener('click', () => {
+document.getElementById('add-semester-btn')?.addEventListener('click', () => {
     const semester = createSemester();
     semestersGrid.appendChild(semester);
 });
 
 function populateRequiredCourses() {
     const requiredContainer = document.getElementById('required-courses');
+    if (!requiredContainer) return;
+
     requiredContainer.innerHTML = '';
 
     const sections = [
@@ -163,18 +174,7 @@ function populateRequiredCourses() {
             const row = createCourseRow(code);
             if (row) {
                 row.style.cursor = 'pointer';
-                row.addEventListener('click', () => {
-                    if (selectedSlot) {
-                        const courseData = courses[code];
-                        if (courseData) {
-                            selectedSlot.value = `${code} - ${courseData.name}`;
-                            selectedSlot.classList.remove('selected');
-                            selectedSlot = null;
-                        }
-                    } else {
-                        alert('Please select a course slot first');
-                    }
-                });
+                row.addEventListener('click', () => addCourseToSelectedSlot(code));
                 section.appendChild(row);
             }
         });
@@ -184,25 +184,15 @@ function populateRequiredCourses() {
 
 function populateElectives() {
     const electivesContainer = document.getElementById('electives-courses');
+    if (!electivesContainer) return;
+
     electivesContainer.innerHTML = '';
 
     electives.forEach(elective => {
         const row = createCourseRow(elective.code);
         if (row) {
             row.style.cursor = 'pointer';
-
-            row.addEventListener('click', () => {
-                if (selectedSlot) {
-                    const courseData = courses[elective.code];
-                    if (courseData) {
-                        selectedSlot.value = `${elective.code} - ${courseData.name}`;
-                        selectedSlot.classList.remove('selected');
-                        selectedSlot = null;
-                    }
-                } else {
-                    alert('Please select a course slot first');
-                }
-            });
+            row.addEventListener('click', () => addCourseToSelectedSlot(elective.code));
             electivesContainer.appendChild(row);
         }
     });
@@ -210,6 +200,8 @@ function populateElectives() {
 
 function populateSampleProgression() {
     const progressionContainer = document.getElementById('recommended-courses');
+    if (!progressionContainer) return;
+
     progressionContainer.innerHTML = '';
 
     const years = [
@@ -219,80 +211,43 @@ function populateSampleProgression() {
         { title: 'Senior Year', data: progression.senior }
     ];
 
+    const addSemester = (yearSection, semesterName, courseCodes) => {
+        if (!courseCodes) return;
+
+        const semesterLabel = document.createElement('div');
+        semesterLabel.style.fontWeight = 'bold';
+        semesterLabel.style.fontSize = '13px';
+        semesterLabel.style.marginTop = semesterName === 'Fall' ? '8px' : '12px';
+        semesterLabel.style.marginBottom = '4px';
+        semesterLabel.textContent = semesterName;
+        yearSection.appendChild(semesterLabel);
+
+        courseCodes.forEach(courseCode => {
+            const row = createCourseRow(courseCode);
+            if (row) {
+                row.style.cursor = 'pointer';
+                row.addEventListener('click', () => addCourseToSelectedSlot(courseCode));
+                yearSection.appendChild(row);
+            }
+        });
+    };
+
     years.forEach(({ title, data }) => {
-        // year section
         const yearSection = document.createElement('div');
         yearSection.className = 'subsection';
         yearSection.innerHTML = `<h4>${title}</h4>`;
 
-        // fall semester
-        if (data.fall) {
-            const fallLabel = document.createElement('div');
-            fallLabel.style.fontWeight = 'bold';
-            fallLabel.style.fontSize = '13px';
-            fallLabel.style.marginTop = '8px';
-            fallLabel.style.marginBottom = '4px';
-            fallLabel.textContent = 'Fall';
-            yearSection.appendChild(fallLabel);
-
-            data.fall.forEach(courseCode => {
-                const row = createCourseRow(courseCode);
-                if (row) {
-                    row.style.cursor = 'pointer';
-                    row.addEventListener('click', () => {
-                        if (selectedSlot) {
-                            const courseData = courses[courseCode];
-                            if (courseData) {
-                                selectedSlot.value = `${courseCode} - ${courseData.name}`;
-                                selectedSlot.classList.remove('selected');
-                                selectedSlot = null;
-                            }
-                        } else {
-                            alert('Please select a course slot first');
-                        }
-                    });
-                    yearSection.appendChild(row);
-                }
-            });
-        }
-
-        // spring semester
-        if (data.spring) {
-            const springLabel = document.createElement('div');
-            springLabel.style.fontWeight = 'bold';
-            springLabel.style.fontSize = '13px';
-            springLabel.style.marginTop = '12px';
-            springLabel.style.marginBottom = '4px';
-            springLabel.textContent = 'Spring';
-            yearSection.appendChild(springLabel);
-
-            data.spring.forEach(courseCode => {
-                const row = createCourseRow(courseCode);
-                if (row) {
-                    row.style.cursor = 'pointer';
-                    row.addEventListener('click', () => {
-                        if (selectedSlot) {
-                            const courseData = courses[courseCode];
-                            if (courseData) {
-                                selectedSlot.value = `${courseCode} - ${courseData.name}`;
-                                selectedSlot.classList.remove('selected');
-                                selectedSlot = null;
-                            }
-                        } else {
-                            alert('Please select a course slot first');
-                        }
-                    });
-                    yearSection.appendChild(row);
-                }
-            });
-        }
+        addSemester(yearSection, 'Fall', data.fall);
+        addSemester(yearSection, 'Spring', data.spring);
 
         progressionContainer.appendChild(yearSection);
     });
 }
 
 // initialize
-initializeSemesters();
-populateRequiredCourses();
-populateElectives();
-populateSampleProgression();
+if (semestersGrid) {
+    initializeSemesters();
+    populateRequiredCourses();
+    populateElectives();
+    populateSampleProgression();
+}
