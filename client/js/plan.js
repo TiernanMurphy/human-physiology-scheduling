@@ -1,5 +1,6 @@
 import courses from '/data/courses.js';
-import { humanPhys } from '/data/required.js';
+import {core, humanPhys} from '/data/required.js';
+import electives from '/data/electives.js';
 import { createCourseRow } from "./main.js";
 
 const semestersGrid = document.getElementById('semesters-grid');
@@ -180,6 +181,33 @@ function populateRequiredCourses() {
     });
 }
 
+function populateElectives() {
+    const electivesContainer = document.getElementById('electives-courses');
+    electivesContainer.innerHTML = '';
+
+    electives.forEach(elective => {
+        const row = createCourseRow(elective.code);
+        if (row) {
+            row.style.cursor = 'pointer';
+
+            row.addEventListener('click', () => {
+                if (selectedSlot) {
+                    const courseData = courses[elective.code];
+                    if (courseData) {
+                        selectedSlot.value = `${elective.code} - ${courseData.name}`;
+                        selectedSlot.classList.remove('selected');
+                        selectedSlot = null;
+                    }
+                } else {
+                    alert('Please select a course slot first');
+                }
+            });
+            electivesContainer.appendChild(row);
+        }
+    });
+}
+
 // initialize
 initializeSemesters();
 populateRequiredCourses();
+populateElectives();
