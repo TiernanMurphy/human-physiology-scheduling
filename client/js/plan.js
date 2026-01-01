@@ -168,16 +168,32 @@ function populateRequiredCourses() {
     sections.forEach(({ title, courses: courseCodes }) => {
         const section = document.createElement('div');
         section.className = 'subsection';
-        section.innerHTML = `<h4>${title}</h4>`;
+
+        const header = document.createElement('h4');
+        header.textContent = title;
+        header.classList.add('collapsed');
+
+        const content = document.createElement('div');
+        content.className = 'subsection-content collapsed';
 
         courseCodes.forEach(code => {
             const row = createCourseRow(code);
             if (row) {
                 row.style.cursor = 'pointer';
                 row.addEventListener('click', () => addCourseToSelectedSlot(code));
-                section.appendChild(row);
+                content.appendChild(row);
             }
         });
+
+        // toggle collapse on click
+        header.addEventListener('click', () => {
+            header.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+        });
+
+        section.appendChild(header);
+        section.appendChild(content);
+
         requiredContainer.appendChild(section);
     });
 }
@@ -211,36 +227,66 @@ function populateSampleProgression() {
         { title: 'Senior Year', data: progression.senior }
     ];
 
-    const addSemester = (yearSection, semesterName, courseCodes) => {
-        if (!courseCodes) return;
-
-        const semesterLabel = document.createElement('div');
-        semesterLabel.style.fontWeight = 'bold';
-        semesterLabel.style.fontSize = '13px';
-        semesterLabel.style.marginTop = semesterName === 'Fall' ? '8px' : '12px';
-        semesterLabel.style.marginBottom = '4px';
-        semesterLabel.textContent = semesterName;
-        yearSection.appendChild(semesterLabel);
-
-        courseCodes.forEach(courseCode => {
-            const row = createCourseRow(courseCode);
-            if (row) {
-                row.style.cursor = 'pointer';
-                row.addEventListener('click', () => addCourseToSelectedSlot(courseCode));
-                yearSection.appendChild(row);
-            }
-        });
-    };
-
     years.forEach(({ title, data }) => {
-        const yearSection = document.createElement('div');
-        yearSection.className = 'subsection';
-        yearSection.innerHTML = `<h4>${title}</h4>`;
+        const section = document.createElement('div');
+        section.className = 'subsection';
 
-        addSemester(yearSection, 'Fall', data.fall);
-        addSemester(yearSection, 'Spring', data.spring);
+        const header = document.createElement('h4');
+        header.textContent = title;
+        header.classList.add('collapsed');
 
-        progressionContainer.appendChild(yearSection);
+        const content = document.createElement('div');
+        content.className = 'subsection-content collapsed';
+
+        // add fall semester
+        if (data.fall) {
+            const fallLabel = document.createElement('div');
+            fallLabel.style.fontWeight = 'bold';
+            fallLabel.style.fontSize = '13px';
+            fallLabel.style.marginTop = '8px';
+            fallLabel.style.marginBottom = '4px';
+            fallLabel.textContent = 'Fall';
+            content.appendChild(fallLabel);
+
+            data.fall.forEach(courseCode => {
+                const row = createCourseRow(courseCode);
+                if (row) {
+                    row.style.cursor = 'pointer';
+                    row.addEventListener('click', () => addCourseToSelectedSlot(courseCode));
+                    content.appendChild(row);
+                }
+            });
+        }
+
+        // add spring semester
+        if (data.spring) {
+            const springLabel = document.createElement('div');
+            springLabel.style.fontWeight = 'bold';
+            springLabel.style.fontSize = '13px';
+            springLabel.style.marginTop = '12px';
+            springLabel.style.marginBottom = '4px';
+            springLabel.textContent = 'Spring';
+            content.appendChild(springLabel);
+
+            data.spring.forEach(courseCode => {
+                const row = createCourseRow(courseCode);
+                if (row) {
+                    row.style.cursor = 'pointer';
+                    row.addEventListener('click', () => addCourseToSelectedSlot(courseCode));
+                    content.appendChild(row);
+                }
+            });
+        }
+
+        // toggle collapse on click
+        header.addEventListener('click', () => {
+            header.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+        });
+
+        section.appendChild(header);
+        section.appendChild(content);
+        progressionContainer.appendChild(section);
     });
 }
 
