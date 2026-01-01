@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="feat: basic admin page &amp; login">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="feat: admin can view student responses">
       <change beforePath="$PROJECT_DIR$/client/pages/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/admin.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +105,7 @@
       <workItem from="1766431693726" duration="12743000" />
       <workItem from="1766453493278" duration="3666000" />
       <workItem from="1767129609686" duration="4568000" />
-      <workItem from="1767226772796" duration="24465000" />
+      <workItem from="1767226772796" duration="24779000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit, course info &amp; download">
       <option name="closed" value="true" />
@@ -484,7 +483,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767303812810</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="feat: admin can view student responses">
+      <option name="closed" value="true" />
+      <created>1767304726548</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1767304726548</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,7 +509,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="CommonJS --&gt; ES6, DB connection fix" />
     <MESSAGE value="fix: redundant /public directory" />
     <MESSAGE value="fixed css path issues" />
     <MESSAGE value="refactored toggle password event listeners" />
@@ -527,6 +533,7 @@
     <MESSAGE value="feat: download saved plan as pdf" />
     <MESSAGE value="feat: search for a course" />
     <MESSAGE value="feat: basic admin page &amp; login" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: basic admin page &amp; login" />
+    <MESSAGE value="feat: admin can view student responses" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: admin can view student responses" />
   </component>
 </project>

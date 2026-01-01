@@ -151,6 +151,30 @@
             font-size: 0.9rem;
             margin-bottom: 20px;
         }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #002f87;
+            box-shadow: 0 0 0 3px rgba(0, 47, 135, 0.1);
+        }
+
+        .user-card.hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -163,6 +187,14 @@
     <div class="users-section">
         <h2>Registered Students</h2>
         <div id="user-count" class="user-count"></div>
+        <div class="search-container">
+            <input
+                type="text"
+                id="search-input"
+                class="search-input"
+                placeholder="search for a student"
+            >
+        </div>
         <div id="error-message" class="error" style="display: none;"></div>
         <div id="users-container" class="loading">
             Loading users...
@@ -202,6 +234,39 @@
             document.getElementById('error-message').style.display = 'block';
             document.getElementById('users-container').innerHTML = '';
         }
+    }
+
+    function setupSearch() {
+        const searchInput = document.getElementById('search-input');
+
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            const userCards = document.querySelectorAll('.user-card');
+            let visibleCount = 0;
+
+            userCards.forEach(card => {
+                const userIndex = card.dataset.userIndex;
+                const user = users[userIndex];
+
+                const matchesName = user.name.toLowerCase().includes(searchTerm);
+                const matchesEmail = user.email.toLowerCase().includes(searchTerm);
+
+                if (matchesName || matchesEmail || searchTerm === '') {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // update count to show filtered results
+            const countElement = document.getElementById('user-count');
+            if (searchTerm === '') {
+                countElement.textContent = `Total Users: ${users.length}`;
+            } else {
+                countElement.textContent = `Showing ${visibleCount} of ${users.length} users`;
+            }
+        });
     }
 
     // display users in the DOM
@@ -266,6 +331,8 @@
                 card.classList.toggle('open');
             });
         });
+
+        setupSearch();
     }
 
     // escape HTML to prevent XSS
