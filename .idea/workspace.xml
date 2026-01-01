@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="refactored landing page to be index.html">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="fix: verify password &amp; confirm password match">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/js/my-plans.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/my-plans.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +106,7 @@
       <workItem from="1766431693726" duration="12743000" />
       <workItem from="1766453493278" duration="3666000" />
       <workItem from="1767129609686" duration="4568000" />
-      <workItem from="1767226772796" duration="15806000" />
+      <workItem from="1767226772796" duration="16875000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit, course info &amp; download">
       <option name="closed" value="true" />
@@ -443,7 +444,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767244236644</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="fix: verify password &amp; confirm password match">
+      <option name="closed" value="true" />
+      <created>1767244791339</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1767244791339</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,7 +470,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: required courses in create plan reference tab" />
     <MESSAGE value="fix: switched MongoDB from localhost to Atlas" />
     <MESSAGE value="fix .gitignore" />
     <MESSAGE value="server.js route fix" />
@@ -486,6 +494,7 @@
     <MESSAGE value="new &quot;my plans&quot; page for saved course plans" />
     <MESSAGE value="feat: view saved plan from my-plans.html page" />
     <MESSAGE value="refactored landing page to be index.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored landing page to be index.html" />
+    <MESSAGE value="fix: verify password &amp; confirm password match" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: verify password &amp; confirm password match" />
   </component>
 </project>

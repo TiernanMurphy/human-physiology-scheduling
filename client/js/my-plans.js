@@ -51,7 +51,7 @@ function createPlanCard(plan) {
 
     card.innerHTML = `
         <div class="plan-card-header">
-            <h3>${plan.planName}</h3>
+            <h3 class="plan-name"></h3>
             <div class="plan-meta">
                 <span>${plan.semesters.length} semesters</span>
                 <span>${totalCourses} courses</span>
@@ -59,21 +59,25 @@ function createPlanCard(plan) {
             </div>
         </div>
         <div class="plan-card-actions">
-            <button class="btn btn-primary" onclick="viewPlan('${plan._id}')">View</button>
-            <button class="btn btn-secondary" onclick="deletePlan('${plan._id}')">Delete</button>
+            <button class="btn btn-primary view-plan-btn">View</button>
+            <button class="btn btn-secondary delete-plan-btn">Delete</button>
         </div>
     `;
+
+    card.querySelector('.plan-name').textContent = plan.planName;
+
+    card.querySelector('.view-plan-btn').addEventListener('click', () => {
+        window.location.href = `/pages/plan.html?planId=${plan._id}`;
+    });
+
+    card.querySelector('.delete-plan-btn').addEventListener('click', () => {
+        deletePlan(plan._id);
+    });
 
     return card;
 }
 
-// view a specific plan (we'll implement this next)
-window.viewPlan = function(planId) {
-    window.location.href = `/pages/plan.html?planId=${planId}`;
-};
-
-// delete a plan
-window.deletePlan = async function(planId) {
+async function deletePlan(planId) {
     if (!confirm('Are you sure you want to delete this plan?')) {
         return;
     }
@@ -85,7 +89,7 @@ window.deletePlan = async function(planId) {
 
         if (response.ok) {
             alert('Plan deleted successfully');
-            loadUserPlans(); // Reload the list
+            loadUserPlans(); // reload the list
         } else {
             alert('Error deleting plan');
         }
@@ -93,7 +97,6 @@ window.deletePlan = async function(planId) {
         console.error('Delete error:', error);
         alert('Error deleting plan');
     }
-};
+}
 
-// load plans when page loads
 document.addEventListener('DOMContentLoaded', loadUserPlans);
