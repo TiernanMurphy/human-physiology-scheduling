@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="refactor plan.js duplicate code">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="fix: create new plan path">
+      <change beforePath="$PROJECT_DIR$/client/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +106,7 @@
       <workItem from="1766431693726" duration="12743000" />
       <workItem from="1766453493278" duration="3666000" />
       <workItem from="1767129609686" duration="4568000" />
-      <workItem from="1767226772796" duration="346000" />
+      <workItem from="1767226772796" duration="742000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit, course info &amp; download">
       <option name="closed" value="true" />
@@ -363,7 +364,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767132160669</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="fix: create new plan path">
+      <option name="closed" value="true" />
+      <created>1767227305181</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1767227305181</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -381,7 +390,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ui(auth): create login/register page with password toggle" />
     <MESSAGE value="refactor: use event listeners instead of inline onclick for section toggles" />
     <MESSAGE value="refactor: improve code organization in DOMContentLoaded event listener" />
     <MESSAGE value="refactor: move download button handlers from inline to event listeners" />
@@ -406,6 +414,7 @@
     <MESSAGE value="feat: electives in create a plan reference" />
     <MESSAGE value="feat: sample progression reference while creating plan" />
     <MESSAGE value="refactor plan.js duplicate code" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor plan.js duplicate code" />
+    <MESSAGE value="fix: create new plan path" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: create new plan path" />
   </component>
 </project>

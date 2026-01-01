@@ -212,4 +212,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // download all sheets
+    document.querySelector('.btn.btn-secondary').addEventListener('click', (e) => {
+       generateSectionPDF('required-courses');
+       generateSectionPDF('gu-core-courses');
+       generateSectionPDF('sample-plan');
+       generateSectionPDF('recommended');
+    });
 });
