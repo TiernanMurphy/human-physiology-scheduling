@@ -152,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
                localStorage.setItem('userId', result.user.id);
                localStorage.setItem('token', result.token);
 
-               alert('CHECK CONSOLE');
                window.location.href = '/pages/home.html';
            });
         });

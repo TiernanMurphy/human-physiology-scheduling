@@ -393,7 +393,7 @@ async function savePlan() {
 
     if (!userId) {
         alert('Please log in to save plans');
-        window.location.href = '/register';
+        window.location.href = '/';
         return;
     }
 

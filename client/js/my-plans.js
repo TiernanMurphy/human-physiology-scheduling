@@ -3,7 +3,7 @@ async function loadUserPlans() {
     const userId = localStorage.getItem('userId');
 
     if (!userId) {
-        window.location.href = '/register';
+        window.location.href = '/';
         return;
     }
 
