@@ -82,7 +82,7 @@ async function submitAuthForm(endpoint, data, successCallback) {
             console.log('User:', result.user);
             console.log('Token:', result.token);
 
-            alert(`${endpoint.charAt(0).toUpperCase() + endpoint.slice(1)} successful!`);
+            // alert(`${endpoint.charAt(0).toUpperCase() + endpoint.slice(1)} successful!`);
             if (successCallback) successCallback(result);
         } else {
             alert(result.message || `${endpoint} failed`);
@@ -142,7 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
                password: document.getElementById('login-password').value
            };
 
-           await submitAuthForm('login', loginData);
+           await submitAuthForm('login', loginData, () => {
+               window.location.href = '/pages/home.html';
+           });
         });
     }
 
@@ -165,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             await submitAuthForm('register', formData, () => {
-                switchScreen('login');
+                window.location.href = '/pages/home.html';
             });
         });
     }
