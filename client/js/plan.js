@@ -290,6 +290,89 @@ function populateSampleProgression() {
     });
 }
 
+function collectPlanData() {
+    const planName = document.getElementById('plan-name').value || 'Schedule Draft';
+    const semesterCards = document.querySelectorAll('.semester-card');
+
+    const semesters = [];
+
+    semesterCards.forEach(card => {
+        const semesterName = card.querySelector('.semester-title').value;
+        const courseSlots = card.querySelectorAll('.course-slot');
+
+        const courses = [];
+        courseSlots.forEach(slot => {
+            const value = slot.value.trim();
+            if (value) {
+                // parse course code & name format
+                const match = value.match(/^([A-Z]+\s+\d+)\s*-\s*(.+)$/);
+                if (match) {
+                    courses.push({
+                        courseCode: match[1],
+                        courseName: match[2]
+                    });
+                } else {
+                    // just save as-is
+                    courses.push({
+                        courseCode: value,
+                        courseName: ''
+                    });
+                }
+            }
+        });
+
+        semesters.push({
+            name: semesterName,
+            courses: courses
+        });
+    });
+
+    return { planName, semesters };
+}
+
+// save plan
+async function savePlan() {
+    // get userId from localStorage (stored during login)
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+        alert('Please log in to save plans');
+        window.location.href = '/register';
+        return;
+    }
+
+    const planData = collectPlanData();
+
+    try {
+        const response = await fetch('/api/plans', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId: userId,
+                planName: planData.planName,
+                semesters: planData.semesters
+            })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert('Plan saved successfully!');
+            console.log('Saved plan:', result);
+        } else {
+            alert('Error saving plan: ' + result.message);
+        }
+    } catch (error) {
+        console.error('Save error:', error);
+        alert('Error connecting to server');
+    }
+}
+
+// event listener for save button
+document.getElementById('save-plan-btn')?.addEventListener('click', savePlan);
+
 // initialize
 if (semestersGrid) {
     initializeSemesters();

@@ -142,7 +142,17 @@ document.addEventListener('DOMContentLoaded', () => {
                password: document.getElementById('login-password').value
            };
 
-           await submitAuthForm('login', loginData, () => {
+           await submitAuthForm('login', loginData, (result) => {
+               // debugging save plan button
+               console.log('Login result:', result);
+               console.log('User object:', result.user);
+               console.log('User ID:', result.user._id);
+
+               // store userId in localStorage
+               localStorage.setItem('userId', result.user.id);
+               localStorage.setItem('token', result.token);
+
+               alert('CHECK CONSOLE');
                window.location.href = '/pages/home.html';
            });
         });
@@ -166,7 +176,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 additional: document.getElementById('student-additional').value
             };
 
-            await submitAuthForm('register', formData, () => {
+            await submitAuthForm('register', formData, (result) => {
+                localStorage.setItem('userId', result.user.id);
+                localStorage.setItem('token', result.token);
+
                 window.location.href = '/pages/home.html';
             });
         });
