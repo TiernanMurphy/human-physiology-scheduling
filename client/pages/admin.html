@@ -5,19 +5,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #002f87;
+        }
+
+        .admin-header h1 {
+            color: #002f87;
+            margin: 0;
+        }
+
+        .logout-btn {
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+        }
+
+        .users-section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .users-section h2 {
+            color: #002f87;
+            margin-bottom: 20px;
+        }
+
+        .user-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .user-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-header {
+            padding: 20px;
+            background: #f8f9fa;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-header:hover {
+            background: #e9ecef;
+        }
+
+        .user-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #002f87;
+            margin: 0;
+        }
+
+        .user-email {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+
+        .user-card.open .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .user-details {
+            display: none;
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+
+        .user-card.open .user-details {
+            display: block;
+        }
+
+        .detail-row {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .detail-value {
+            color: #555;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .error {
+            background: #fee;
+            border: 1px solid #e74c3c;
+            color: #e74c3c;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .user-count {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="admin-container">
-    <h1>Admin Dashboard</h1>
-    <div id="admin-content">
-        <p>Loading...</p>
+    <div class="admin-header">
+        <h1>Admin Dashboard</h1>
+        <button id="logout-btn" class="logout-btn">Logout</button>
     </div>
-    <button id="logout-btn">Logout</button>
+
+    <div class="users-section">
+        <h2>Registered Students</h2>
+        <div id="user-count" class="user-count"></div>
+        <div id="error-message" class="error" style="display: none;"></div>
+        <div id="users-container" class="loading">
+            Loading users...
+        </div>
+    </div>
 </div>
 
 <script>
-    // check admin access on page load
-    async function checkAdminAccess() {
+    let users = [];
+
+    // fetch all users from the API
+    async function loadUsers() {
         const token = localStorage.getItem('token');
 
         if (!token) {
@@ -26,29 +183,96 @@
         }
 
         try {
-            const response = await fetch('/api/admin/dashboard', {
+            const response = await fetch('/api/admin/users', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
 
             if (!response.ok) {
-                alert('Access denied. Admin privileges required.');
-                window.location.href = '/pages/home.html';
-                return;
+                throw new Error('Failed to fetch users');
             }
 
             const data = await response.json();
-            document.getElementById('admin-content').innerHTML = `
-                    <h2>Welcome, ${data.user.name}!</h2>
-                    <p>Email: ${data.user.email}</p>
-                    <p>This is your admin dashboard.</p>
-                `;
+            users = data.users;
+            displayUsers();
         } catch (error) {
             console.error('Error:', error);
-            alert('Error checking admin access');
-            window.location.href = '/pages/index.html';
+            document.getElementById('error-message').textContent = 'Failed to load users. Please try again.';
+            document.getElementById('error-message').style.display = 'block';
+            document.getElementById('users-container').innerHTML = '';
         }
+    }
+
+    // display users in the DOM
+    function displayUsers() {
+        const container = document.getElementById('users-container');
+        const countElement = document.getElementById('user-count');
+
+        if (users.length === 0) {
+            container.innerHTML = '<p style="color: #666; text-align: center;">No users registered yet.</p>';
+            countElement.textContent = '';
+            return;
+        }
+
+        countElement.textContent = `Total Users: ${users.length}`;
+
+        container.innerHTML = users.map((user, index) => `
+                <div class="user-card" data-user-index="${index}">
+                    <div class="user-header">
+                        <div>
+                            <div class="user-name">${escapeHtml(user.name)}</div>
+                            <div class="user-email">${escapeHtml(user.email)}</div>
+                        </div>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="user-details">
+                        <div class="detail-row">
+                            <div class="detail-label">Major:</div>
+                            <div class="detail-value">${escapeHtml(user.major)}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Minor:</div>
+                            <div class="detail-value">${escapeHtml(user.minor || 'N/A')}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Study Abroad:</div>
+                            <div class="detail-value">${escapeHtml(user.abroad)}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Career Interest:</div>
+                            <div class="detail-value">${escapeHtml(user.career)}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Clubs:</div>
+                            <div class="detail-value">${escapeHtml(user.clubs || 'N/A')}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Additional Info:</div>
+                            <div class="detail-value">${escapeHtml(user.additional || 'N/A')}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Registered:</div>
+                            <div class="detail-value">${new Date(user.createdAt).toLocaleDateString()}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+        // add click event listeners to toggle dropdowns
+        document.querySelectorAll('.user-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const card = this.closest('.user-card');
+                card.classList.toggle('open');
+            });
+        });
+    }
+
+    // escape HTML to prevent XSS
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
 
     // logout functionality
@@ -58,8 +282,8 @@
         window.location.href = '/pages/index.html';
     });
 
-    // run access check
-    checkAdminAccess();
+    // load users on page load
+    loadUsers();
 </script>
 </body>
 </html>
