@@ -152,7 +152,12 @@ document.addEventListener('DOMContentLoaded', () => {
                localStorage.setItem('userId', result.user.id);
                localStorage.setItem('token', result.token);
 
-               window.location.href = '/pages/home.html';
+               // check for admin redirect
+               if (result.user.isAdmin) {
+                   window.location.href = '/pages/admin.html';
+               } else {
+                   window.location.href = '/pages/home.html';
+               }
            });
         });
     }
