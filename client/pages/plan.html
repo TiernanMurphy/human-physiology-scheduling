@@ -275,6 +275,44 @@
             background: #f0f0f0;
         }
 
+        .autocomplete-dropdown {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .autocomplete-item {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .autocomplete-item:hover {
+            background: #f8f9fa;
+        }
+
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+
+        .autocomplete-code {
+            font-weight: bold;
+            color: #002f87;
+            font-size: 14px;
+        }
+
+        .autocomplete-name {
+            color: #666;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
     </style>
 </head>
 <body>
@@ -300,12 +338,11 @@
                        placeholder="Schedule Draft"
                        value="Schedule Draft">
             </div>
-            <button class="notes-btn" id="notes-btn">📝 Add Note</button>
             <button class="btn btn-primary" id="save-plan-btn">Save Plan</button>
         </div>
 
         <div class="semesters-grid" id="semesters-grid">
-            <!-- semesters will be generated here by js -->
+            <!-- semesters put here by js -->
         </div>
 
         <button class="add-semester-btn" id="add-semester-btn">

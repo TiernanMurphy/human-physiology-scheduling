@@ -383,6 +383,16 @@ export function generatePlanPDF(plan) {
     doc.text(`Total Semesters: ${plan.semesters.length}  |  Total Courses: ${totalCourses}  |  Updated: ${updatedDate}`, 105, yPosition, { align: 'center' });
     yPosition += 15;
 
+    const config = {
+        xOffset: 20,
+        codeX: 25,
+        nameX: 70,
+        creditsX: 170,
+        codeWidth: 40,
+        nameWidth: 95,
+        rowWidth: 170
+    };
+
     // iterate through semesters
     plan.semesters.forEach(semester => {
         // check if we need a new page
@@ -395,33 +405,28 @@ export function generatePlanPDF(plan) {
         yPosition = addSubsectionHeader(doc, semester.name, yPosition);
 
         // column headers
-        doc.setFontSize(FONTS.COLUMN_HEADER.size);
-        doc.setFont(undefined, FONTS.COLUMN_HEADER.style);
-        doc.text('Course Code', 25, yPosition);
-        doc.text('Course Name', 70, yPosition);
-        yPosition += 6;
+        const headers = {
+            columns: [
+                { text: 'Course Code', x: config.codeX },
+                { text: 'Course Name', x: config.nameX },
+                { text: 'Credits', x: config.creditsX }
+            ]
+        };
+        yPosition = addColumnHeaders(doc, headers, yPosition);
 
         // courses
-        doc.setFontSize(FONTS.NORMAL.size);
-        doc.setFont(undefined, FONTS.NORMAL.style);
-
         if (semester.courses.length === 0) {
+            doc.setFontSize(FONTS.NORMAL.size);
             doc.text('No courses', 25, yPosition);
             yPosition += 8;
         } else {
             semester.courses.forEach((course, index) => {
-                // alternating background
-                const fillColor = index % 2 === 0 ? COLORS.LIGHT_GRAY : COLORS.WHITE;
-                doc.setFillColor(...fillColor);
-                doc.rect(20, yPosition - 4, 170, 8, 'F');
-
-                // course text
-                const courseCode = course.courseCode || '';
-                const courseName = course.courseName || '';
-
-                doc.text(courseCode, 25, yPosition);
-                doc.text(courseName, 70, yPosition);
-                yPosition += 8;
+                const courseData = {
+                  code: course.courseCode || '',
+                  name: course.courseName || '',
+                  credits: ''  // configure later
+                };
+                yPosition = renderCourseRow(doc, courseData, config, yPosition, index);
 
                 // check if we need a new page
                 if (yPosition > 270) {
@@ -431,7 +436,7 @@ export function generatePlanPDF(plan) {
             });
         }
 
-        yPosition += 5;  // space after each semester
+        yPosition += 5;
     });
 
     // save the PDF

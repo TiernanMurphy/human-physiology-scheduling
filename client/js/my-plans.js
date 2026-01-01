@@ -74,7 +74,7 @@ function createPlanCard(plan) {
     });
 
     card.querySelector('.download-plan-btn').addEventListener('click', () => {
-       downloadPlanPDF(plan);
+       generatePlanPDF(plan);
     });
 
     card.querySelector('.delete-plan-btn').addEventListener('click', () => {
@@ -82,10 +82,6 @@ function createPlanCard(plan) {
     });
 
     return card;
-}
-
-function downloadPlanPDF(plan) {
-    generatePlanPDF(plan);
 }
 
 async function deletePlan(planId) {

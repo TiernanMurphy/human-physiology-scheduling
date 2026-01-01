@@ -290,6 +290,83 @@ function populateSampleProgression() {
     });
 }
 
+// autocomplete functionality for course slots
+function setupCourseAutocomplete() {
+    let currentDropdown = null;
+
+    // event delegation for all course slots
+    semestersGrid.addEventListener('input', (e) => {
+        if (e.target.classList.contains('course-slot')) {
+            const input = e.target;
+            const searchTerm = input.value.trim().toLowerCase();
+
+            // remove old dropdown if exists
+            if (currentDropdown) {
+                currentDropdown.remove();
+                currentDropdown = null;
+            }
+
+            // don't show dropdown if input is too short or already selected
+            if (searchTerm.length < 2 || input.value.includes(' - ')) {
+                return;
+            }
+
+            // search for matching courses
+            const matches = Object.entries(courses)
+                .filter(([code, data]) => {
+                    return code.toLowerCase().includes(searchTerm) ||
+                        data.name.toLowerCase().includes(searchTerm);
+                })
+                .slice(0, 8);  // limit to 8 results
+
+            if (matches.length > 0) {
+                currentDropdown = createDropdown(matches, input);
+            }
+        }
+    });
+
+    // close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (currentDropdown && !e.target.classList.contains('course-slot') && !e.target.classList.contains('autocomplete-item')) {
+            currentDropdown.remove();
+            currentDropdown = null;
+        }
+    });
+}
+
+function createDropdown(matches, inputElement) {
+    const dropdown = document.createElement('div');
+    dropdown.className = 'autocomplete-dropdown';
+
+    matches.forEach(([code, data]) => {
+        const item = document.createElement('div');
+        item.className = 'autocomplete-item';
+        item.innerHTML = `
+            <span class="autocomplete-code">${code}</span>
+            <span class="autocomplete-name">${data.name}</span>
+        `;
+
+        item.addEventListener('click', () => {
+            inputElement.value = `${code} - ${data.name}`;
+            dropdown.remove();
+            inputElement.classList.remove('selected');
+            selectedSlot = null;
+        });
+
+        dropdown.appendChild(item);
+    });
+
+    // position dropdown below input
+    const rect = inputElement.getBoundingClientRect();
+    dropdown.style.position = 'absolute';
+    dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+    dropdown.style.left = `${rect.left + window.scrollX}px`;
+    dropdown.style.width = `${rect.width}px`;
+
+    document.body.appendChild(dropdown);
+    return dropdown;
+}
+
 // get plan ID from URL if present
 function getPlanIdFromURL() {
     const params = new URLSearchParams(window.location.search);
@@ -434,15 +511,15 @@ if (semestersGrid) {
     const planId = getPlanIdFromURL();
 
     if (planId) {
-        // Load existing plan
         loadExistingPlan(planId);
     } else {
-        // Start with empty semesters
+        // start with empty semesters
         initializeSemesters();
     }
 
-    // Always populate the reference sections
+    // always populate the reference sections
     populateRequiredCourses();
     populateElectives();
     populateSampleProgression();
+    setupCourseAutocomplete();
 }
