@@ -1,3 +1,5 @@
+import { generatePlanPDF } from "./pdf-generator.js";
+
 // fetch and display all plans for the logged-in user
 async function loadUserPlans() {
     const userId = localStorage.getItem('userId');
@@ -60,6 +62,7 @@ function createPlanCard(plan) {
         </div>
         <div class="plan-card-actions">
             <button class="btn btn-primary view-plan-btn">View</button>
+            <button class="btn btn-secondary download-plan-btn">Download PDF</button>
             <button class="btn btn-secondary delete-plan-btn">Delete</button>
         </div>
     `;
@@ -70,11 +73,19 @@ function createPlanCard(plan) {
         window.location.href = `/pages/plan.html?planId=${plan._id}`;
     });
 
+    card.querySelector('.download-plan-btn').addEventListener('click', () => {
+       downloadPlanPDF(plan);
+    });
+
     card.querySelector('.delete-plan-btn').addEventListener('click', () => {
         deletePlan(plan._id);
     });
 
     return card;
+}
+
+function downloadPlanPDF(plan) {
+    generatePlanPDF(plan);
 }
 
 async function deletePlan(planId) {

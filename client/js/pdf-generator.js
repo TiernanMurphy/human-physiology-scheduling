@@ -55,7 +55,7 @@ function addSubsectionHeader(doc, text, yPosition) {
     return yPosition + 5;
 }
 
-// Helper: Add column headers
+// helper: add column headers
 function addColumnHeaders(doc, headers, yPosition) {
     doc.setFontSize(headers.fontSize || FONTS.COLUMN_HEADER.size);
     doc.setFont(undefined, FONTS.COLUMN_HEADER.style);
@@ -67,7 +67,7 @@ function addColumnHeaders(doc, headers, yPosition) {
     return yPosition + 5;
 }
 
-// Helper: Extract course data from a row element
+// helper: extract course data from a row element
 function getCourseData(row) {
     const code = row.querySelector('.course-code')?.textContent.trim() || '';
     const name = row.querySelector('.course-name')?.textContent.trim() || '';
@@ -77,7 +77,7 @@ function getCourseData(row) {
     return { code, name, credits };
 }
 
-// Helper: Render a single course row with alternating background
+// helper: render a single course row with alternating background
 function renderCourseRow(doc, courseData, config, yPosition, rowIndex) {
     const { code, name, credits } = courseData;
     const { xOffset = 20, codeX = 25, nameX = 90, creditsX = 170,
@@ -103,7 +103,7 @@ function renderCourseRow(doc, courseData, config, yPosition, rowIndex) {
     return yPosition + rowHeight + 2;
 }
 
-// Helper: Render all courses in a container
+// helper: render all courses in a container
 function renderCourseList(doc, container, config, yPosition) {
     if (!container) return yPosition;
 
@@ -119,7 +119,7 @@ function renderCourseList(doc, container, config, yPosition) {
     return yPosition + 8; // Space after section
 }
 
-// Helper: Render subsection with courses
+// helper: render subsection with courses
 function renderSubsection(doc, subsectionId, title, config, yPosition) {
     const container = document.getElementById(subsectionId);
     if (!container) return yPosition;
@@ -141,7 +141,7 @@ function renderSubsection(doc, subsectionId, title, config, yPosition) {
     return renderCourseList(doc, container, config, yPosition);
 }
 
-// Required Courses PDF
+// required courses PDF
 function generateRequiredCoursesPDF() {
     const doc = new jsPDF();
     let yPosition = addTitle(doc, 'Human Physiology Required Courses');
@@ -198,7 +198,7 @@ function generateGUCorePDF() {
     doc.save('gu-core-requirements.pdf');
 }
 
-// Sample Plan PDF (side-by-side layout)
+// sample plan PDF (side-by-side layout)
 function generateSamplePlanPDF() {
     const doc = new jsPDF();
     let yPosition = addTitle(doc, 'Sample 4-Year Progression');
@@ -276,7 +276,7 @@ function generateSamplePlanPDF() {
     doc.save('sample-4-year-progression.pdf');
 }
 
-// Helper for compact course rendering (used in sample plan)
+// helper for compact course rendering (used in sample plan)
 function renderCourseListCompact(doc, container, config, yPosition) {
     if (!container) return yPosition;
 
@@ -313,7 +313,7 @@ function renderCourseRowCompact(doc, courseData, config, yPosition, rowIndex) {
     return yPosition + rowHeight + 1;
 }
 
-// Recommended Courses PDF
+// recommended courses PDF
 function generateRecommendedPDF() {
     const doc = new jsPDF();
 
@@ -368,7 +368,78 @@ function generateRecommendedPDF() {
     doc.save(filename);
 }
 
-// Fallback generic PDF generator
+// generate PDF for a saved plan
+export function generatePlanPDF(plan) {
+    const doc = new jsPDF();
+
+    // title
+    let yPosition = addTitle(doc, plan.planName || 'Course Plan');
+
+    // plan metadata
+    doc.setFontSize(FONTS.NORMAL.size);
+    doc.setFont(undefined, FONTS.NORMAL.style);
+    const totalCourses = plan.semesters.reduce((sum, sem) => sum + sem.courses.length, 0);
+    const updatedDate = new Date(plan.updatedAt).toLocaleDateString();
+    doc.text(`Total Semesters: ${plan.semesters.length}  |  Total Courses: ${totalCourses}  |  Updated: ${updatedDate}`, 105, yPosition, { align: 'center' });
+    yPosition += 15;
+
+    // iterate through semesters
+    plan.semesters.forEach(semester => {
+        // check if we need a new page
+        if (yPosition > 250) {
+            doc.addPage();
+            yPosition = 20;
+        }
+
+        // semester header
+        yPosition = addSubsectionHeader(doc, semester.name, yPosition);
+
+        // column headers
+        doc.setFontSize(FONTS.COLUMN_HEADER.size);
+        doc.setFont(undefined, FONTS.COLUMN_HEADER.style);
+        doc.text('Course Code', 25, yPosition);
+        doc.text('Course Name', 70, yPosition);
+        yPosition += 6;
+
+        // courses
+        doc.setFontSize(FONTS.NORMAL.size);
+        doc.setFont(undefined, FONTS.NORMAL.style);
+
+        if (semester.courses.length === 0) {
+            doc.text('No courses', 25, yPosition);
+            yPosition += 8;
+        } else {
+            semester.courses.forEach((course, index) => {
+                // alternating background
+                const fillColor = index % 2 === 0 ? COLORS.LIGHT_GRAY : COLORS.WHITE;
+                doc.setFillColor(...fillColor);
+                doc.rect(20, yPosition - 4, 170, 8, 'F');
+
+                // course text
+                const courseCode = course.courseCode || '';
+                const courseName = course.courseName || '';
+
+                doc.text(courseCode, 25, yPosition);
+                doc.text(courseName, 70, yPosition);
+                yPosition += 8;
+
+                // check if we need a new page
+                if (yPosition > 270) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+            });
+        }
+
+        yPosition += 5;  // space after each semester
+    });
+
+    // save the PDF
+    const filename = `${plan.planName.replace(/\s+/g, '-').toLowerCase()}.pdf`;
+    doc.save(filename);
+}
+
+// fallback generic PDF generator
 function generateGenericPDF(sectionId) {
     const doc = new jsPDF();
     const section = document.getElementById(sectionId);
