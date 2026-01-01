@@ -980,3 +980,32 @@ body {
 .subsection-content.collapsed {
     display: none;
 }
+
+/* My Plans page styling */
+.plan-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.plan-card-header h3 {
+    margin: 0 0 10px 0;
+    color: #002f87;
+    font-size: 1.5rem;
+}
+
+.plan-meta {
+    display: flex;
+    gap: 20px;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.plan-card-actions {
+    display: flex;
+    gap: 10px;
+}

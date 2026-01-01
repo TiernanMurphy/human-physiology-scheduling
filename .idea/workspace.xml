@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="feat: save course plan(s) to MongoDB">
-      <change afterPath="$PROJECT_DIR$/client/pages/my-plans.html" afterDir="false" />
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="new &quot;my plans&quot; page for saved course plans">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/faq.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/plan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/my-plans.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/my-plans.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/plan.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -109,7 +108,7 @@
       <workItem from="1766431693726" duration="12743000" />
       <workItem from="1766453493278" duration="3666000" />
       <workItem from="1767129609686" duration="4568000" />
-      <workItem from="1767226772796" duration="10673000" />
+      <workItem from="1767226772796" duration="12577000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit, course info &amp; download">
       <option name="closed" value="true" />
@@ -423,7 +422,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767237233679</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="new &quot;my plans&quot; page for saved course plans">
+      <option name="closed" value="true" />
+      <created>1767237661894</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1767237661894</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -441,7 +448,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: implement user authentication backend with MongoDB" />
     <MESSAGE value="feat: connected login/register forms to MongoDB" />
     <MESSAGE value="feat: add basic schedule builder UI structure" />
     <MESSAGE value="feat: required courses in create plan reference tab" />
@@ -466,6 +472,7 @@
     <MESSAGE value="feat: reference course dropdowns" />
     <MESSAGE value="fix: navbar links" />
     <MESSAGE value="feat: save course plan(s) to MongoDB" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: save course plan(s) to MongoDB" />
+    <MESSAGE value="new &quot;my plans&quot; page for saved course plans" />
+    <option name="LAST_COMMIT_MESSAGE" value="new &quot;my plans&quot; page for saved course plans" />
   </component>
 </project>

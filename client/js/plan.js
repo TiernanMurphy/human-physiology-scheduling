@@ -290,6 +290,62 @@ function populateSampleProgression() {
     });
 }
 
+// get plan ID from URL if present
+function getPlanIdFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('planId');
+}
+
+// load an existing plan
+async function loadExistingPlan(planId) {
+    try {
+        const response = await fetch(`/api/plans/${planId}`);
+        const plan = await response.json();
+
+        if (!response.ok) {
+            alert('Error loading plan');
+            return;
+        }
+
+        // set plan name
+        document.getElementById('plan-name').value = plan.planName;
+
+        // clear existing semesters
+        semestersGrid.innerHTML = '';
+        semesterCount = 0;
+
+        // load semesters from plan
+        plan.semesters.forEach(semester => {
+            const semesterCard = createSemester(semester.name);
+            semestersGrid.appendChild(semesterCard);
+
+            // load courses into this semester
+            const courseSlots = semesterCard.querySelectorAll('.course-slot');
+            semester.courses.forEach((course, index) => {
+                if (courseSlots[index]) {
+                    courseSlots[index].value = `${course.courseCode} - ${course.courseName}`;
+                } else {
+                    // need to add more slots
+                    const courseSlotsContainer = semesterCard.querySelector('.course-slots');
+                    const newSlot = document.createElement('div');
+                    newSlot.className = 'course-slot-container';
+                    newSlot.innerHTML = `
+                        <input type="text" class="course-slot" placeholder="Type to search" value="${course.courseCode} - ${course.courseName}">
+                        <button class="delete-course" title="Remove course">×</button>
+                    `;
+                    courseSlotsContainer.appendChild(newSlot);
+                }
+            });
+        });
+
+        console.log('Plan loaded successfully');
+
+    } catch (error) {
+        console.error('Error loading plan:', error);
+        alert('Error loading plan');
+    }
+}
+
 function collectPlanData() {
     const planName = document.getElementById('plan-name').value || 'Schedule Draft';
     const semesterCards = document.querySelectorAll('.semester-card');
@@ -375,7 +431,17 @@ document.getElementById('save-plan-btn')?.addEventListener('click', savePlan);
 
 // initialize
 if (semestersGrid) {
-    initializeSemesters();
+    const planId = getPlanIdFromURL();
+
+    if (planId) {
+        // Load existing plan
+        loadExistingPlan(planId);
+    } else {
+        // Start with empty semesters
+        initializeSemesters();
+    }
+
+    // Always populate the reference sections
     populateRequiredCourses();
     populateElectives();
     populateSampleProgression();
