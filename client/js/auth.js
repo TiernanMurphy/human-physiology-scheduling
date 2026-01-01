@@ -163,6 +163,15 @@ document.addEventListener('DOMContentLoaded', () => {
         registrationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            // ensure passwords match
+            const password = document.getElementById('student-password').value;
+            const confirmPassword = document.getElementById('password-confirm').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords don't match!");
+                return;
+            }
+
             const formData = {
                 name: document.getElementById('student-name').value,
                 email: document.getElementById('student-email').value,

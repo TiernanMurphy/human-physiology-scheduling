@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="feat: view saved plan from my-plans.html page">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/auth.js" afterDir="false" />
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="refactored landing page to be index.html">
       <change beforePath="$PROJECT_DIR$/client/js/my-plans.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/my-plans.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/plan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/faq.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/my-plans.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/my-plans.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/plan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +105,7 @@
       <workItem from="1766431693726" duration="12743000" />
       <workItem from="1766453493278" duration="3666000" />
       <workItem from="1767129609686" duration="4568000" />
-      <workItem from="1767226772796" duration="15474000" />
+      <workItem from="1767226772796" duration="15806000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit, course info &amp; download">
       <option name="closed" value="true" />
@@ -444,7 +435,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767240811770</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="refactored landing page to be index.html">
+      <option name="closed" value="true" />
+      <created>1767244236644</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1767244236644</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -462,7 +461,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: add basic schedule builder UI structure" />
     <MESSAGE value="feat: required courses in create plan reference tab" />
     <MESSAGE value="fix: switched MongoDB from localhost to Atlas" />
     <MESSAGE value="fix .gitignore" />
@@ -487,6 +485,7 @@
     <MESSAGE value="feat: save course plan(s) to MongoDB" />
     <MESSAGE value="new &quot;my plans&quot; page for saved course plans" />
     <MESSAGE value="feat: view saved plan from my-plans.html page" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: view saved plan from my-plans.html page" />
+    <MESSAGE value="refactored landing page to be index.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored landing page to be index.html" />
   </component>
 </project>

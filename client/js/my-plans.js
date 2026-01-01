@@ -1,4 +1,4 @@
-// Fetch and display all plans for the logged-in user
+// fetch and display all plans for the logged-in user
 async function loadUserPlans() {
     const userId = localStorage.getItem('userId');
 
@@ -26,7 +26,7 @@ async function loadUserPlans() {
             return;
         }
 
-        // Display plans
+        // display plans
         plansContainer.innerHTML = '';
         plans.forEach(plan => {
             const planCard = createPlanCard(plan);
@@ -43,10 +43,10 @@ function createPlanCard(plan) {
     const card = document.createElement('div');
     card.className = 'plan-card';
 
-    // Count total courses
+    // count total courses
     const totalCourses = plan.semesters.reduce((sum, sem) => sum + sem.courses.length, 0);
 
-    // Format date
+    // format date
     const updatedDate = new Date(plan.updatedAt).toLocaleDateString();
 
     card.innerHTML = `
@@ -67,12 +67,12 @@ function createPlanCard(plan) {
     return card;
 }
 
-// View a specific plan (we'll implement this next)
+// view a specific plan (we'll implement this next)
 window.viewPlan = function(planId) {
     window.location.href = `/pages/plan.html?planId=${planId}`;
 };
 
-// Delete a plan
+// delete a plan
 window.deletePlan = async function(planId) {
     if (!confirm('Are you sure you want to delete this plan?')) {
         return;
@@ -95,5 +95,5 @@ window.deletePlan = async function(planId) {
     }
 };
 
-// Load plans when page loads
+// load plans when page loads
 document.addEventListener('DOMContentLoaded', loadUserPlans);
