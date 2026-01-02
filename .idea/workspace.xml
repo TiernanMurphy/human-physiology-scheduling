@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="feat: collapsible subsections within required hphy courses">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="feat: collapsible subsections within all dashboard sections">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/faq.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/my-plans.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/my-plans.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/plan.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,15 +110,7 @@
       <workItem from="1766431693726" duration="12743000" />
       <workItem from="1766453493278" duration="3666000" />
       <workItem from="1767129609686" duration="4568000" />
-      <workItem from="1767226772796" duration="29450000" />
-    </task>
-    <task id="LOCAL-00003" summary="fix: navbar pages routing">
-      <option name="closed" value="true" />
-      <created>1765936855831</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1765936855831</updated>
+      <workItem from="1767226772796" duration="32971000" />
     </task>
     <task id="LOCAL-00004" summary="feat: add FAQ content (unformatted)">
       <option name="closed" value="true" />
@@ -501,7 +496,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767332266839</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="feat: collapsible subsections within all dashboard sections">
+      <option name="closed" value="true" />
+      <created>1767333244385</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1767333244385</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -519,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactored login &amp; register form submission" />
     <MESSAGE value="feat: add / delete course" />
     <MESSAGE value="feat: add course selection and slot population" />
     <MESSAGE value="feat: electives in create a plan reference" />
@@ -544,6 +546,7 @@
     <MESSAGE value="feat: admin can search for a student" />
     <MESSAGE value="feat: admin can view course plans" />
     <MESSAGE value="feat: collapsible subsections within required hphy courses" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: collapsible subsections within required hphy courses" />
+    <MESSAGE value="feat: collapsible subsections within all dashboard sections" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: collapsible subsections within all dashboard sections" />
   </component>
 </project>
