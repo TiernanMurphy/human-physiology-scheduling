@@ -164,17 +164,26 @@ function displayRecommendedCourses(courseCodes, pathKey) {
 
             const heading = document.createElement('h4');
             heading.textContent = subjectLabels[subject];
+            heading.className = 'collapsed';
+
+            // add click handler for this dynamically created subsection
+            heading.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('collapsed');
+                content.classList.toggle('collapsed');
+            });
+
             subsection.appendChild(heading);
 
-            const courseList = document.createElement('div');
-            courseList.className = 'course-list';
+            const content = document.createElement('div');
+            content.className = 'subsection-content collapsed';
 
             codes.forEach(code => {
                 const row = createCourseRow(code);
-                if (row) courseList.appendChild(row);
+                if (row) content.appendChild(row);
             });
 
-            subsection.appendChild(courseList);
+            subsection.appendChild(content);
             displayContainer.appendChild(subsection);
         }
     });

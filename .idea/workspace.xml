@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="feat: admin can view course plans">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="feat: collapsible subsections within required hphy courses">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/plan.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/my-plans.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/my-plans.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,15 +107,7 @@
       <workItem from="1766431693726" duration="12743000" />
       <workItem from="1766453493278" duration="3666000" />
       <workItem from="1767129609686" duration="4568000" />
-      <workItem from="1767226772796" duration="28486000" />
-    </task>
-    <task id="LOCAL-00002" summary="initial commit, course info &amp; download">
-      <option name="closed" value="true" />
-      <created>1765844118491</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1765844118491</updated>
+      <workItem from="1767226772796" duration="29450000" />
     </task>
     <task id="LOCAL-00003" summary="fix: navbar pages routing">
       <option name="closed" value="true" />
@@ -504,7 +493,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767305728359</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="feat: collapsible subsections within required hphy courses">
+      <option name="closed" value="true" />
+      <created>1767332266839</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1767332266839</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -522,7 +519,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactored toggle password event listeners" />
     <MESSAGE value="refactored login &amp; register form submission" />
     <MESSAGE value="feat: add / delete course" />
     <MESSAGE value="feat: add course selection and slot population" />
@@ -547,6 +543,7 @@
     <MESSAGE value="feat: admin can view student responses" />
     <MESSAGE value="feat: admin can search for a student" />
     <MESSAGE value="feat: admin can view course plans" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: admin can view course plans" />
+    <MESSAGE value="feat: collapsible subsections within required hphy courses" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: collapsible subsections within required hphy courses" />
   </component>
 </project>
