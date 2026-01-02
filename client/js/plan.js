@@ -155,6 +155,7 @@ document.getElementById('add-semester-btn')?.addEventListener('click', () => {
 
 function populateRequiredCourses() {
     const requiredContainer = document.getElementById('required-courses');
+    console.log('Required container:', requiredContainer);
     if (!requiredContainer) return;
 
     requiredContainer.innerHTML = '';
@@ -187,6 +188,8 @@ function populateRequiredCourses() {
 
         // toggle collapse on click
         header.addEventListener('click', () => {
+            console.log('Header clicked!', title);
+            e.stopPropagation();
             header.classList.toggle('collapsed');
             content.classList.toggle('collapsed');
         });
@@ -196,6 +199,8 @@ function populateRequiredCourses() {
 
         requiredContainer.appendChild(section);
     });
+
+    console.log("required courses populated");
 }
 
 function populateElectives() {
@@ -216,6 +221,7 @@ function populateElectives() {
 
 function populateSampleProgression() {
     const progressionContainer = document.getElementById('recommended-courses');
+    console.log('Sample container:', progressionContainer);
     if (!progressionContainer) return;
 
     progressionContainer.innerHTML = '';
@@ -280,6 +286,8 @@ function populateSampleProgression() {
 
         // toggle collapse on click
         header.addEventListener('click', () => {
+            console.log('Header clicked!', title);
+            e.stopPropagation();
             header.classList.toggle('collapsed');
             content.classList.toggle('collapsed');
         });
@@ -288,6 +296,8 @@ function populateSampleProgression() {
         section.appendChild(content);
         progressionContainer.appendChild(section);
     });
+
+    console.log('Required courses populated');
 }
 
 // autocomplete functionality for course slots

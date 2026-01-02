@@ -81,7 +81,7 @@ body {
 }
 
 .page-header p {
-    color: #666;
+    color: black;
 }
 
 /* Course Sections */
@@ -153,6 +153,7 @@ body {
 
 .course-name {
     color: #555;
+    text-align: center;
 }
 
 .course-credits {
@@ -166,44 +167,47 @@ body {
 }
 
 .subsection h4 {
-    margin-bottom: 12px;
-    padding-bottom: 5px;
+    margin-bottom: 0;
+    padding: 10px;
     border-bottom: 2px solid #3498db;
     color: #2c3e50;
-}
-
-.course-card {
-    border: 1px solid #ddd;
-    padding: 15px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    padding-right: 30px;
+    transition: background-color 0.2s ease;
     border-radius: 4px;
-    background-color: #fafafa;
+    font-size: 14px;
+    font-weight: 600;
 }
 
-.course-card h4 {
-    margin-bottom: 5px;
-    color: #2c3e50;
+.subsection h4:hover {
+    background-color: #f0f0f0;
 }
 
-.course-card p {
-    margin-bottom: 8px;
-    color: #555;
+.subsection h4::after {
+    content: '▼';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.7em;
+    transition: transform 0.3s ease;
 }
 
-.credits {
-    display: block;
-    font-size: 0.9rem;
-    color: #7f8c8d;
-    margin-bottom: 10px;
+.subsection h4.collapsed::after {
+    transform: translateY(-50%) rotate(-90deg);
 }
 
-.course-link {
-    color: #3498db;
-    text-decoration: none;
-    font-size: 0.9rem;
+.subsection-content {
+    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
 }
 
-.course-link:hover {
-    text-decoration: underline;
+.subsection-content.collapsed {
+    max-height: 0;
+    display: none;
 }
 
 /* Sample Plan */
@@ -265,21 +269,21 @@ body {
 }
 
 .btn-primary {
-    background-color: #3498db;
+    background-color: #002f87;
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: #2980b9;
+    background-color: #001f5c;
 }
 
 .btn-secondary {
-    background-color: #95a5a6;
+    background-color: #8B0000;
     color: white;
 }
 
 .btn-secondary:hover {
-    background-color: #7f8c8d;
+    background-color: #6B0000;
 }
 
 /* recommended courses and career path selector */
@@ -323,7 +327,7 @@ body {
 .btn-download {
     padding: 6px 12px;
     margin-right: 25px;
-    background-color: #3498db;
+    background-color: #002f87;
     color: white;
     border: none;
     border-radius: 4px;
@@ -332,8 +336,10 @@ body {
 }
 
 .btn-download:hover {
-    background-color: #2980b9;
+    background-color: #001f5c;
 }
+
+
 
 /* FAQ Container */
 .faq-container {
@@ -961,76 +967,6 @@ body {
     .auth-container .button-group {
         flex-direction: column;
     }
-}
-
-/* dropdowns for reference courses in plan.html */
-.subsection h4 {
-    font-size: 14px;
-    font-weight: 600;
-    color: #002f87;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #ddd;
-    cursor: pointer; /* Make it clear it's clickable */
-    user-select: none;
-    position: relative;
-    padding-right: 20px;
-}
-
-.subsection h4::after {
-    content: '▼';
-    position: absolute;
-    right: 0;
-    font-size: 10px;
-    transition: transform 0.2s;
-}
-
-.subsection h4.collapsed::after {
-    transform: rotate(-90deg);
-}
-
-.subsection-content {
-    display: block;
-}
-
-.subsection-content.collapsed {
-    display: none;
-}
-
-/* Collapsible subsections */
-.subsection h4 {
-    cursor: pointer;
-    user-select: none;
-    position: relative;
-    padding-right: 20px;
-    transition: background-color 0.2s ease;
-    padding: 10px;
-    border-radius: 4px;
-}
-
-.subsection h4:hover {
-    background-color: #f0f0f0;
-}
-
-.subsection h4::after {
-    content: '▼';
-    position: absolute;
-    right: 10px;
-    font-size: 0.7em;
-    transition: transform 0.3s ease;
-}
-
-.subsection h4.collapsed::after {
-    transform: rotate(-90deg);
-}
-
-.subsection-content {
-    display: block;
-    transition: max-height 0.3s ease;
-}
-
-.subsection-content.collapsed {
-    display: none;
 }
 
 /* My Plans page styling */
