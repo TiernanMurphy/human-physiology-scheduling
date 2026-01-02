@@ -339,8 +339,6 @@ body {
     background-color: #001f5c;
 }
 
-
-
 /* FAQ Container */
 .faq-container {
     max-width: 900px;
@@ -996,4 +994,14 @@ body {
 .plan-card-actions {
     display: flex;
     gap: 10px;
+}
+
+/* My plans download as pdf button */
+.btn-tertiary {
+    background-color: #34495e;
+    color: white;
+}
+
+.btn-tertiary:hover {
+    background-color: #1a252f;
 }
