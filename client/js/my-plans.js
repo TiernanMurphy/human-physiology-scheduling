@@ -1,4 +1,4 @@
-import { generatePlanPDF } from "./pdf-generator.js";
+import {generatePlanPDF} from "./pdf-generator.js";
 
 // fetch and display all plans for the logged-in user
 async function loadUserPlans() {
@@ -74,7 +74,7 @@ function createPlanCard(plan) {
     });
 
     card.querySelector('.download-plan-btn').addEventListener('click', () => {
-       generatePlanPDF(plan);
+        generatePlanPDF(plan);
     });
 
     card.querySelector('.delete-plan-btn').addEventListener('click', () => {

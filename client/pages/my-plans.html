@@ -1,42 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Plans - ASPN</title>
-  <link rel="stylesheet" href="/css/styles.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Plans - ASPN</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 <nav class="navbar">
-  <div class="nav-container">
-    <div class="logo">
-      <img src="/assets/logo.jpg" alt="Gonzaga Logo" class="logo-img">
-      <h1>Gonzaga's Advising Software Planning Network</h1>
+    <div class="nav-container">
+        <div class="logo">
+            <img src="/assets/logo.jpg" alt="Gonzaga Logo" class="logo-img">
+            <h1>Gonzaga's Advising Software Planning Network</h1>
+        </div>
+        <div class="nav-links">
+            <a href="/pages/home.html">Dashboard</a>
+            <a href="/pages/plan.html">Create Plan</a>
+            <a href="/pages/my-plans.html" class="active">My Plans</a>
+            <a href="/pages/faq.html">FAQ</a>
+            <a href="/pages/index.html">Logout</a>
+        </div>
     </div>
-    <div class="nav-links">
-      <a href="/pages/home.html">Dashboard</a>
-      <a href="/pages/plan.html">Create Plan</a>
-      <a href="/pages/my-plans.html" class="active">My Plans</a>
-      <a href="/pages/faq.html">FAQ</a>
-      <a href="/pages/index.html">Logout</a>
-    </div>
-  </div>
 </nav>
-
 <div class="container">
-  <div class="page-header">
-    <h2>Saved Plans</h2>
-    <p>View and manage your course plans</p>
-  </div>
-
-  <div id="plans-list">
-    <!-- Plans will be loaded here by JavaScript -->
-    <p>Loading plans...</p>
-  </div>
-  <section class="quick-actions">
-    <a href="/pages/plan.html" class="btn btn-primary">Create New Plan</a>
-  </section>
+    <div class="page-header">
+        <h2>Saved Plans</h2>
+        <p>View and manage your course plans</p>
+    </div>
+    <div id="plans-list">
+        <!-- Plans will be loaded here by JavaScript -->
+        <p>Loading plans...</p>
+    </div>
+    <section class="quick-actions">
+        <a href="/pages/plan.html" class="btn btn-primary">Create New Plan</a>
+    </section>
 </div>
 <script type="module" src="/js/my-plans.js"></script>
 </body>
