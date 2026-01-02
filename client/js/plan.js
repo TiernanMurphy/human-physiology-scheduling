@@ -45,7 +45,7 @@ function createSemester(semesterName = '') {
             </div>
         </div>
         <div class="course-slots">
-            ${createCourseSlots(3)}
+            ${createCourseSlots(5)}
         </div>
         <button class="add-course-btn">+ Add Course</button>
     `;

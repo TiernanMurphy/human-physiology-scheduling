@@ -981,6 +981,42 @@ body {
     display: none;
 }
 
+/* Collapsible subsections */
+.subsection h4 {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    padding-right: 20px;
+    transition: background-color 0.2s ease;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.subsection h4:hover {
+    background-color: #f0f0f0;
+}
+
+.subsection h4::after {
+    content: '▼';
+    position: absolute;
+    right: 10px;
+    font-size: 0.7em;
+    transition: transform 0.3s ease;
+}
+
+.subsection h4.collapsed::after {
+    transform: rotate(-90deg);
+}
+
+.subsection-content {
+    display: block;
+    transition: max-height 0.3s ease;
+}
+
+.subsection-content.collapsed {
+    display: none;
+}
+
 /* My Plans page styling */
 .plan-card {
     background: white;

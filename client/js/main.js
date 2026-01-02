@@ -22,6 +22,21 @@ document.querySelectorAll('.section-header').forEach(header => {
    });
 });
 
+// toggle subsections (nested dropdowns)
+function initializeSubsectionToggles() {
+    document.querySelectorAll('.subsection h4').forEach(header => {
+        header.addEventListener('click', function(e) {
+            e.stopPropagation();  // prevent parent section from toggling
+
+            const content = this.nextElementSibling;
+
+            // toggle collapsed class on both header and content
+            this.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+        });
+    });
+}
+
 // create a course record
 export function createCourseRow(courseCode) {
     const courseData = courses[courseCode];
@@ -223,4 +238,5 @@ document.addEventListener('DOMContentLoaded', function() {
             generateSectionPDF('recommended');
         });
     }
+    initializeSubsectionToggles();
 });
