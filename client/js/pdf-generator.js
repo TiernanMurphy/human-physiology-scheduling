@@ -321,7 +321,7 @@ function generateRecommendedPDF() {
     const selectedPath = careerPathSelect?.value;
 
     if (!selectedPath) {
-        alert('Please select a career path first!');
+        alert('Please select a career path first!', 'error');
         return;
     }
 
@@ -330,7 +330,7 @@ function generateRecommendedPDF() {
 
     const displayContainer = document.getElementById('recommended-courses-display');
     if (!displayContainer || displayContainer.children.length === 0) {
-        alert('No coursework displayed. Please select a career path first!');
+        alert('No coursework displayed. Please select a career path first!', 'error');
         return;
     }
 
