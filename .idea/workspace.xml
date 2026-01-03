@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="CSS to Gonzaga colors">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="reorganized styles.css">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/my-plans.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/my-plans.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/my-plans.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/my-plans.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/plan.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,15 +109,7 @@
       <workItem from="1766431693726" duration="12743000" />
       <workItem from="1766453493278" duration="3666000" />
       <workItem from="1767129609686" duration="4568000" />
-      <workItem from="1767226772796" duration="40206000" />
-    </task>
-    <task id="LOCAL-00008" summary="refactor: improve code organization in DOMContentLoaded event listener">
-      <option name="closed" value="true" />
-      <created>1766014073221</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1766014073221</updated>
+      <workItem from="1767226772796" duration="40933000" />
     </task>
     <task id="LOCAL-00009" summary="refactor: move download button handlers from inline to event listeners">
       <option name="closed" value="true" />
@@ -503,7 +495,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767395059513</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="reorganized styles.css">
+      <option name="closed" value="true" />
+      <created>1767397956006</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1767397956007</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -521,7 +521,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor plan.js duplicate code" />
     <MESSAGE value="fix: create new plan path" />
     <MESSAGE value="feat: download all sheets button functionality" />
     <MESSAGE value="fix: login/register landing page, then home page" />
@@ -546,6 +545,7 @@
     <MESSAGE value="dashboard link fix" />
     <MESSAGE value="fix: reference dropdowns not working" />
     <MESSAGE value="CSS to Gonzaga colors" />
-    <option name="LAST_COMMIT_MESSAGE" value="CSS to Gonzaga colors" />
+    <MESSAGE value="reorganized styles.css" />
+    <option name="LAST_COMMIT_MESSAGE" value="reorganized styles.css" />
   </component>
 </project>
