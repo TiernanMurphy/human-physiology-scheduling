@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="fix: add missing authentication to plans API calls">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/pdf-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/pdf-generator.js" afterDir="false" />
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="refactor">
+      <change beforePath="$PROJECT_DIR$/client/pages/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/faq.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,15 +109,7 @@
       <workItem from="1767226772796" duration="44680000" />
       <workItem from="1767408364991" duration="613000" />
       <workItem from="1767417318555" duration="3862000" />
-      <workItem from="1767460713817" duration="2722000" />
-    </task>
-    <task id="LOCAL-00012" summary="feat: show/hide login password">
-      <option name="closed" value="true" />
-      <created>1766047635514</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1766047635514</updated>
+      <workItem from="1767460713817" duration="3327000" />
     </task>
     <task id="LOCAL-00013" summary="feat: implement user authentication backend with MongoDB">
       <option name="closed" value="true" />
@@ -504,7 +495,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767420887746</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="refactor">
+      <option name="closed" value="true" />
+      <created>1767480560925</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1767480560925</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -522,7 +521,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="basic login/register styling (usable but bad)" />
     <MESSAGE value="feat: reference course dropdowns" />
     <MESSAGE value="fix: navbar links" />
     <MESSAGE value="feat: save course plan(s) to MongoDB" />
@@ -547,6 +545,7 @@
     <MESSAGE value="fix: CSS in html files --&gt; styles.css" />
     <MESSAGE value="fixed subsections not displaying courses" />
     <MESSAGE value="fix: add missing authentication to plans API calls" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: add missing authentication to plans API calls" />
+    <MESSAGE value="refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
   </component>
 </project>
