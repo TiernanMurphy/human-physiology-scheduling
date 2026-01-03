@@ -1,21 +1,46 @@
 import {generatePlanPDF} from "./pdf-generator.js";
 
+function showMessage(message, type = 'info') {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message message-${type}`;
+    messageDiv.textContent = message;
+
+    document.body.appendChild(messageDiv);
+
+    setTimeout(() => messageDiv.remove(), 3000);
+}
+
 // fetch and display all plans for the logged-in user
 async function loadUserPlans() {
     const userId = localStorage.getItem('userId');
+    const plansContainer = document.getElementById('plans-list');
+
+    // show loading state immediately
+    plansContainer.innerHTML = '<p class="loading">Loading your plans...</p>';
 
     if (!userId) {
         window.location.href = '/';
         return;
     }
 
-    const plansContainer = document.getElementById('plans-list');
-
     try {
-        const response = await fetch(`/api/plans/user/${userId}`);
+        const token = localStorage.getItem('token');
+        const response = await fetch(`/api/plans/user/${userId}`, {
+            header: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
         const plans = await response.json();
 
         if (!response.ok) {
+            if (response.status === 401) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('userId');
+                window.location.href = '/';
+                return;
+            }
+
             plansContainer.innerHTML = '<p>Error loading plans</p>';
             return;
         }
@@ -90,19 +115,30 @@ async function deletePlan(planId) {
     }
 
     try {
+        const token = localStorage.getItem('token');
         const response = await fetch(`/api/plans/${planId}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
 
         if (response.ok) {
-            alert('Plan deleted successfully');
+            showMessage('Plan deleted successfully', 'success');
             loadUserPlans(); // reload the list
         } else {
-            alert('Error deleting plan');
+            if (response.status === 401) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('userId');
+                window.location.href = '/';
+                return;
+            }
+
+            showMessage('error deleting plan', 'error');
         }
     } catch (error) {
         console.error('Delete error:', error);
-        alert('Error deleting plan');
+        showMessage('Error deleting plan', 'error');
     }
 }
 

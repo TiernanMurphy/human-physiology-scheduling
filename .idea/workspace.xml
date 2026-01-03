@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="fix: CSS in html files --&gt; styles.css">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="fixed subsections not displaying courses">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/my-plans.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/my-plans.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,25 +46,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "/Users/tmurph/WebstormProjects/scheduling/src/main.js",
-    "prettierjs.PrettierConfiguration.Package": "/Users/tmurph/WebstormProjects/scheduling/node_modules/prettier",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/tmurph/WebstormProjects/scheduling/src/main.js&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/tmurph/WebstormProjects/scheduling/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client/assets" />
@@ -108,15 +109,9 @@
       <workItem from="1766431693726" duration="12743000" />
       <workItem from="1766453493278" duration="3666000" />
       <workItem from="1767129609686" duration="4568000" />
-      <workItem from="1767226772796" duration="43741000" />
-    </task>
-    <task id="LOCAL-00010" summary="refactor: fix redundancy in pdf generator">
-      <option name="closed" value="true" />
-      <created>1766045104556</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1766045104556</updated>
+      <workItem from="1767226772796" duration="44680000" />
+      <workItem from="1767408364991" duration="613000" />
+      <workItem from="1767417318555" duration="3208000" />
     </task>
     <task id="LOCAL-00011" summary="feat: registration survey">
       <option name="closed" value="true" />
@@ -502,7 +497,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767398888346</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="fixed subsections not displaying courses">
+      <option name="closed" value="true" />
+      <created>1767405066107</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1767405066107</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: download all sheets button functionality" />
     <MESSAGE value="fix: login/register landing page, then home page" />
     <MESSAGE value="basic login/register styling (usable but bad)" />
     <MESSAGE value="feat: reference course dropdowns" />
@@ -545,6 +547,7 @@
     <MESSAGE value="CSS to Gonzaga colors" />
     <MESSAGE value="reorganized styles.css" />
     <MESSAGE value="fix: CSS in html files --&gt; styles.css" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: CSS in html files --&gt; styles.css" />
+    <MESSAGE value="fixed subsections not displaying courses" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed subsections not displaying courses" />
   </component>
 </project>

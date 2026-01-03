@@ -78,7 +78,6 @@ async function submitAuthForm(endpoint, data, successCallback) {
         const result = await response.json();
 
         if (response.ok) {
-            // TODO: store token in localStorage here
             console.log('User:', result.user);
             console.log('Token:', result.token);
 

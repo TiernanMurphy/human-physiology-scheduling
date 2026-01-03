@@ -24,21 +24,19 @@ document.querySelectorAll('.section-header').forEach(header => {
 
 // toggle subsections (nested dropdowns)
 function initializeSubsectionToggles() {
-    const headers = document.querySelectorAll('.subsection h4');
-    console.log('Initializing toggles, found headers:', headers.length); // ADD THIS
+    document.querySelectorAll('.subsection h4').forEach(header => {
+        const content = header.nextElementSibling;
+        if (content) {
+            attachSubsectionToggle(header, content);
+        }
+    });
+}
 
-    headers.forEach(header => {
-        header.addEventListener('click', function(e) {
-            console.log('Header clicked:', this.textContent); // ADD THIS
-            e.stopPropagation();
-
-            const content = this.nextElementSibling;
-            console.log('Next sibling:', content); // ADD THIS
-
-            // toggle collapsed class on both header and content
-            this.classList.toggle('collapsed');
-            content.classList.toggle('collapsed');
-        });
+function attachSubsectionToggle(heading, content) {
+    heading.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.classList.toggle('collapsed');
+        content.classList.toggle('collapsed');
     });
 }
 
@@ -64,7 +62,7 @@ export function createCourseRow(courseCode) {
         ? `<a href="${link}" class="course-link" target="_blank" rel="noopener noreferrer">Course Info</a>`
         : `<span class="course-link disabled">No Link</span>`;
 
-    // add content to <div class="course-row">
+    // add html to course row
     row.innerHTML = `
         <div class="course-code">${courseCode}</div>
         <div class="course-name">${courseData.name}</div>
@@ -78,9 +76,6 @@ export function createCourseRow(courseCode) {
 // add courses to a section
 function populateCourseSection(elementId, courseCodes) {
     const container = document.getElementById(elementId);
-
-    console.log('Populating:', elementId, 'with', courseCodes.length, 'courses'); // ADD THIS
-    console.log('Container found:', container);
 
     if (!container) {
         console.error(`Container not found: ${elementId}`);
@@ -174,13 +169,6 @@ function displayRecommendedCourses(courseCodes, pathKey) {
             heading.textContent = subjectLabels[subject];
             heading.className = 'collapsed';
 
-            // add click handler for this dynamically created subsection
-            heading.addEventListener('click', function(e) {
-                e.stopPropagation();
-                this.classList.toggle('collapsed');
-                content.classList.toggle('collapsed');
-            });
-
             subsection.appendChild(heading);
 
             const content = document.createElement('div');
@@ -190,6 +178,8 @@ function displayRecommendedCourses(courseCodes, pathKey) {
                 const row = createCourseRow(code);
                 if (row) content.appendChild(row);
             });
+
+            attachSubsectionToggle(heading, content);
 
             subsection.appendChild(content);
             displayContainer.appendChild(subsection);

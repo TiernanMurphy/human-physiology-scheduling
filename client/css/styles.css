@@ -1644,3 +1644,44 @@ body {
     font-size: 12px;
     margin-top: 2px;
 }
+
+/* ========================================
+   NOTIFICATION MESSAGES
+   ======================================== */
+
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: messageSlideIn 0.3s ease;
+}
+
+.message-success {
+    background-color: #4caf50;
+    color: white;
+}
+
+.message-error {
+    background-color: #f44336;
+    color: white;
+}
+
+.message-info {
+    background-color: #2196F3;
+    color: white;
+}
+
+@keyframes messageSlideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
