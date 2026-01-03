@@ -24,11 +24,16 @@ document.querySelectorAll('.section-header').forEach(header => {
 
 // toggle subsections (nested dropdowns)
 function initializeSubsectionToggles() {
-    document.querySelectorAll('.subsection h4').forEach(header => {
+    const headers = document.querySelectorAll('.subsection h4');
+    console.log('Initializing toggles, found headers:', headers.length); // ADD THIS
+
+    headers.forEach(header => {
         header.addEventListener('click', function(e) {
-            e.stopPropagation();  // prevent parent section from toggling
+            console.log('Header clicked:', this.textContent); // ADD THIS
+            e.stopPropagation();
 
             const content = this.nextElementSibling;
+            console.log('Next sibling:', content); // ADD THIS
 
             // toggle collapsed class on both header and content
             this.classList.toggle('collapsed');
@@ -73,6 +78,9 @@ export function createCourseRow(courseCode) {
 // add courses to a section
 function populateCourseSection(elementId, courseCodes) {
     const container = document.getElementById(elementId);
+
+    console.log('Populating:', elementId, 'with', courseCodes.length, 'courses'); // ADD THIS
+    console.log('Container found:', container);
 
     if (!container) {
         console.error(`Container not found: ${elementId}`);

@@ -279,6 +279,7 @@ body {
 }
 
 .subsection-content {
+    display: block;
     max-height: 1000px;
     overflow: hidden;
     transition: max-height 0.3s ease;
@@ -286,7 +287,6 @@ body {
 
 .subsection-content.collapsed {
     max-height: 0;
-    display: none;
 }
 
 /* ========================================
@@ -1498,11 +1498,11 @@ body {
     color: #002f87;
 }
 
-.course-list {
+.reference-card .course-list {
     display: none;
 }
 
-.course-list.active {
+.reference-card .course-list.active {
     display: block;
 }
 
