@@ -26,7 +26,7 @@ async function loadUserPlans() {
     try {
         const token = localStorage.getItem('token');
         const response = await fetch(`/api/plans/user/${userId}`, {
-            header: {
+            headers: {
                 'Authorization': `Bearer ${token}`
             }
         });

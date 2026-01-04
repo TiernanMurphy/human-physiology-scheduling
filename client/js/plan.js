@@ -386,7 +386,12 @@ function getPlanIdFromURL() {
 // load an existing plan
 async function loadExistingPlan(planId) {
     try {
-        const response = await fetch(`/api/plans/${planId}`);
+        const token = localStorage.getItem('token');
+        const response = await fetch(`/api/plans/${planId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         const plan = await response.json();
 
         if (!response.ok) {
@@ -487,9 +492,11 @@ async function savePlan() {
     const planData = collectPlanData();
 
     try {
+        const token = localStorage.getItem('token');
         const response = await fetch('/api/plans', {
             method: 'POST',
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({

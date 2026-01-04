@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="refactor">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="removed favicon">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/my-plans.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/my-plans.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/plan.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/faq.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/my-plans.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/my-plans.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/plan.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,8 +71,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/client/assets" />
       <recent name="$PROJECT_DIR$/client" />
+      <recent name="$PROJECT_DIR$/client/assets" />
       <recent name="$PROJECT_DIR$/client/public" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/server" />
@@ -109,15 +116,8 @@
       <workItem from="1767226772796" duration="44680000" />
       <workItem from="1767408364991" duration="613000" />
       <workItem from="1767417318555" duration="3862000" />
-      <workItem from="1767460713817" duration="3327000" />
-    </task>
-    <task id="LOCAL-00013" summary="feat: implement user authentication backend with MongoDB">
-      <option name="closed" value="true" />
-      <created>1766049425357</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1766049425357</updated>
+      <workItem from="1767460713817" duration="4632000" />
+      <workItem from="1767559049520" duration="5204000" />
     </task>
     <task id="LOCAL-00014" summary="feat: implement user authentication backend with MongoDB">
       <option name="closed" value="true" />
@@ -503,7 +503,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767480560925</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="removed favicon">
+      <option name="closed" value="true" />
+      <created>1767481002145</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1767481002145</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -521,7 +529,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: reference course dropdowns" />
     <MESSAGE value="fix: navbar links" />
     <MESSAGE value="feat: save course plan(s) to MongoDB" />
     <MESSAGE value="new &quot;my plans&quot; page for saved course plans" />
@@ -546,6 +553,7 @@
     <MESSAGE value="fixed subsections not displaying courses" />
     <MESSAGE value="fix: add missing authentication to plans API calls" />
     <MESSAGE value="refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
+    <MESSAGE value="removed favicon" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed favicon" />
   </component>
 </project>
