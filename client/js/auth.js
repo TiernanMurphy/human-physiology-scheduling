@@ -145,18 +145,20 @@ document.addEventListener('DOMContentLoaded', () => {
                // debugging save plan button
                console.log('Login result:', result);
                console.log('User object:', result.user);
-               console.log('User ID:', result.user._id);
+               console.log('User ID:', result.user.id);
 
                // store userId in localStorage
-               localStorage.setItem('userId', result.user._id);
+               localStorage.setItem('userId', result.user.id);
                localStorage.setItem('token', result.token);
 
-               // check for admin redirect
-               if (result.user.isAdmin) {
-                   window.location.href = '/pages/admin.html';
-               } else {
-                   window.location.href = '/pages/home.html';
-               }
+               // wait for localStorage to persist before redirecting
+               setTimeout(() => {
+                   if (result.user.isAdmin) {
+                       window.location.href = '/pages/admin.html';
+                   } else {
+                       window.location.href = '/pages/home.html';
+                   }
+               }, 100);
            });
         });
     }
@@ -192,7 +194,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('userId', result.user.id);
                 localStorage.setItem('token', result.token);
 
-                window.location.href = '/pages/home.html';
+                setTimeout(() => {
+                    if (result.user.isAdmin) {
+                        window.location.href = '/pages/admin.html';
+                    } else {
+                        window.location.href = '/pages/home.html';
+                    }
+                }, 100);
             });
         });
     }
