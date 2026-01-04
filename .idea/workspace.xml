@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="removed favicon">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="fixed middleware issues">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/my-plans.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/my-plans.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/plan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/faq.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/my-plans.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/my-plans.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/plan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/auth.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,15 +111,7 @@
       <workItem from="1767408364991" duration="613000" />
       <workItem from="1767417318555" duration="3862000" />
       <workItem from="1767460713817" duration="4632000" />
-      <workItem from="1767559049520" duration="5204000" />
-    </task>
-    <task id="LOCAL-00014" summary="feat: implement user authentication backend with MongoDB">
-      <option name="closed" value="true" />
-      <created>1766049537442</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1766049537442</updated>
+      <workItem from="1767559049520" duration="6219000" />
     </task>
     <task id="LOCAL-00015" summary="feat: connected login/register forms to MongoDB">
       <option name="closed" value="true" />
@@ -511,7 +497,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767481002145</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="fixed middleware issues">
+      <option name="closed" value="true" />
+      <created>1767568801739</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1767568801739</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -529,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: navbar links" />
     <MESSAGE value="feat: save course plan(s) to MongoDB" />
     <MESSAGE value="new &quot;my plans&quot; page for saved course plans" />
     <MESSAGE value="feat: view saved plan from my-plans.html page" />
@@ -554,6 +547,7 @@
     <MESSAGE value="fix: add missing authentication to plans API calls" />
     <MESSAGE value="refactor" />
     <MESSAGE value="removed favicon" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed favicon" />
+    <MESSAGE value="fixed middleware issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed middleware issues" />
   </component>
 </project>

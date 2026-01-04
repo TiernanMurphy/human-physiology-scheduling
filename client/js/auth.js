@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
                console.log('User ID:', result.user._id);
 
                // store userId in localStorage
-               localStorage.setItem('userId', result.user.id);
+               localStorage.setItem('userId', result.user._id);
                localStorage.setItem('token', result.token);
 
                // check for admin redirect
