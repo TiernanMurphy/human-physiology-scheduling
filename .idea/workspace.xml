@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="problematic logging fix" />
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="problematic logging fix">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/admin.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -108,7 +111,7 @@
       <workItem from="1767408364991" duration="613000" />
       <workItem from="1767417318555" duration="3862000" />
       <workItem from="1767460713817" duration="4632000" />
-      <workItem from="1767559049520" duration="8810000" />
+      <workItem from="1767559049520" duration="9916000" />
     </task>
     <task id="LOCAL-00020" summary="server.js route fix">
       <option name="closed" value="true" />

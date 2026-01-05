@@ -37,7 +37,7 @@
     let users = [];
     let userPlansCache = {}; // Cache plans to avoid refetching
 
-    // Fetch all users from the API
+    // fetch all users from the API
     async function loadUsers() {
         const token = localStorage.getItem('token');
 
@@ -68,9 +68,9 @@
         }
     }
 
-    // Fetch plans for a specific user
+    // fetch plans for a specific user
     async function loadUserPlans(userId) {
-        // Return cached plans if available
+        // return cached plans if available
         if (userPlansCache[userId]) {
             return userPlansCache[userId];
         }
@@ -97,7 +97,7 @@
         }
     }
 
-    // Display users in the DOM
+    // display users in the DOM
     function displayUsers() {
         const container = document.getElementById('users-container');
         const countElement = document.getElementById('user-count');
@@ -164,7 +164,7 @@
                 </div>
             `).join('');
 
-        // Add click event listeners to toggle dropdowns
+        // add click event listeners to toggle dropdowns
         document.querySelectorAll('.user-header').forEach(header => {
             header.addEventListener('click', async function() {
                 const card = this.closest('.user-card');
@@ -172,7 +172,7 @@
 
                 card.classList.toggle('open');
 
-                // Load plans when opening for the first time
+                // load plans when opening for the first time
                 if (isOpening) {
                     const userId = card.dataset.userId;
                     const plansContainer = card.querySelector('.plans-container');
@@ -186,7 +186,7 @@
         setupSearch();
     }
 
-    // Display plans for a user
+    // display plans for a user
     function displayUserPlans(plans, container) {
         if (!plans) {
             container.innerHTML = '<div class="no-plans">Error loading plans</div>';
@@ -231,7 +231,7 @@
         `;
         }).join('');
 
-        // Add click handlers for plan dropdowns
+        // add click handlers for plan dropdowns
         container.querySelectorAll('.plan-toggle').forEach(toggle => {
             toggle.addEventListener('click', function() {
                 const planItem = this.closest('.plan-item');
@@ -240,47 +240,7 @@
         });
     }
 
-    // function displayUserPlans(plans, container) {
-    //     if (!plans) {
-    //         container.innerHTML = '<div class="no-plans">Error loading plans</div>';
-    //         return;
-    //     }
-    //
-    //     if (plans.length === 0) {
-    //         container.innerHTML = '<div class="no-plans">No saved plans yet</div>';
-    //         return;
-    //     }
-    //
-    //     container.innerHTML = plans.map(plan => {
-    //         const totalCourses = plan.semesters.reduce((sum, sem) => sum + sem.courses.length, 0);
-    //         const updatedDate = new Date(plan.updatedAt).toLocaleDateString();
-    //
-    //         return `
-    //                 <div class="plan-item">
-    //                     <div class="plan-header">
-    //                         <div class="plan-name">${escapeHtml(plan.planName)}</div>
-    //                         <div class="plan-meta">
-    //                             ${plan.semesters.length} semesters • ${totalCourses} courses • Updated ${updatedDate}
-    //                         </div>
-    //                     </div>
-    //                     ${plan.semesters.map(semester => `
-    //                         <div class="semester-item">
-    //                             <div class="semester-name">${escapeHtml(semester.name)}</div>
-    //                             ${semester.courses.length > 0 ? `
-    //                                 <ul class="course-list">
-    //                                     ${semester.courses.map(course =>
-    //             `<li>${escapeHtml(course.courseCode)} - ${escapeHtml(course.courseName)}</li>`
-    //         ).join('')}
-    //                                 </ul>
-    //                             ` : '<div style="color: #999; font-size: 0.9rem; padding: 5px 0;">No courses added</div>'}
-    //                         </div>
-    //                     `).join('')}
-    //                 </div>
-    //             `;
-    //     }).join('');
-    // }
-
-    // Search functionality
+    // search functionality
     function setupSearch() {
         const searchInput = document.getElementById('search-input');
 
@@ -313,18 +273,18 @@
         });
     }
 
-    // Escape HTML to prevent XSS
+    // escape HTML to prevent XSS
     function escapeHtml(text) {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
     }
 
-    // Logout functionality
+    // logout functionality
     document.getElementById('logout-btn').addEventListener('click', () => {
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
-        window.location.href = '/pages/index.html';
+        window.location.href = '/index.html';
     });
 
     // Load users on page load
