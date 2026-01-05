@@ -92,6 +92,9 @@ async function submitAuthForm(endpoint, data, successCallback) {
     }
 }
 
+let isLoggingIn = false;
+let isRegistering = false;
+
 // event listeners
 document.addEventListener('DOMContentLoaded', () => {
     // screen switching
@@ -136,6 +139,9 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.addEventListener('submit', async (e) => {
            e.preventDefault();
 
+           if (isLoggingIn) return;
+           isLoggingIn = true;
+
            const loginData = {
                email: document.getElementById('login-email').value,
                password: document.getElementById('login-password').value
@@ -152,13 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
                localStorage.setItem('token', result.token);
 
                // wait for localStorage to persist before redirecting
-               setTimeout(() => {
-                   if (result.user.isAdmin) {
-                       window.location.href = '/pages/admin.html';
-                   } else {
-                       window.location.href = '/pages/home.html';
-                   }
-               }, 100);
+               if (result.user.isAdmin) {
+                   window.location.href = '/pages/admin.html';
+               } else {
+                   window.location.href = '/pages/home.html';
+               }
            });
         });
     }
@@ -169,12 +173,17 @@ document.addEventListener('DOMContentLoaded', () => {
         registrationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            // prevent multiple submissions
+            if (isRegistering) return;
+            isRegistering = true;
+
             // ensure passwords match
             const password = document.getElementById('student-password').value;
             const confirmPassword = document.getElementById('password-confirm').value;
 
             if (password !== confirmPassword) {
                 alert("Passwords don't match!");
+                isRegistering = false;
                 return;
             }
 
@@ -194,13 +203,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('userId', result.user.id);
                 localStorage.setItem('token', result.token);
 
-                setTimeout(() => {
-                    if (result.user.isAdmin) {
-                        window.location.href = '/pages/admin.html';
-                    } else {
-                        window.location.href = '/pages/home.html';
-                    }
-                }, 100);
+                if (result.user.isAdmin) {
+                    window.location.href = '/pages/admin.html';
+                } else {
+                    window.location.href = '/pages/home.html';
+                }
             });
         });
     }
