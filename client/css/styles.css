@@ -1359,6 +1359,7 @@ body {
 /* left side - schedule grid */
 .schedule-section {
     flex: 2;
+    min-width: 0;
 }
 
 .plan-header {
@@ -1376,7 +1377,8 @@ body {
     border: none;
     border-bottom: 2px solid #ddd;
     padding: 5px;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
 }
 
 .plan-title input:focus {
@@ -1458,6 +1460,7 @@ body {
 /* right side - course reference */
 .reference-section {
     flex: 1;
+    min-width: 0;
     position: sticky;
     top: 20px;
     height: fit-content;
@@ -1643,6 +1646,20 @@ body {
     color: #666;
     font-size: 12px;
     margin-top: 2px;
+}
+
+@media (max-width: 1024px) {
+    .plan-container {
+        flex-direction: column;
+    }
+
+    .reference-section {
+        position: static; /* Remove sticky on smaller screens */
+    }
+
+    .semesters-grid {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
 }
 
 /* ========================================
