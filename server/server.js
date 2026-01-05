@@ -39,21 +39,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/plans', planRoutes);
 app.use('/api/admin', adminRoutes);
 
-// log all registered routes
-console.log('=== Registered Routes ===');
-app._router.stack.forEach(function(r){
-    if (r.route && r.route.path){
-        console.log('Route:', Object.keys(r.route.methods), r.route.path);
-    } else if (r.name === 'router') {
-        r.handle.stack.forEach(function(rr){
-            if (rr.route) {
-                console.log('Route:', Object.keys(rr.route.methods), rr.route.path);
-            }
-        });
-    }
-});
-console.log('========================');
-
 // serve static files from client directory
 app.use(express.static(path.join(__dirname, '../client')));
 
