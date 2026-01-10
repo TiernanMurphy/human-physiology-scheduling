@@ -9,10 +9,19 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #f4f4f4;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
 }
 
 /* ========================================
@@ -49,6 +58,8 @@ body {
 .logo h1 {
     font-size: 1.2rem;
     margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
 }
 
 .nav-links {
@@ -98,12 +109,15 @@ body {
 .btn {
     padding: 12px 24px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
     text-decoration: none;
     display: inline-block;
 }
+
 
 .btn-primary {
     background-color: #002f87;
@@ -115,12 +129,12 @@ body {
 }
 
 .btn-secondary {
-    background-color: #8B0000;
-    color: white;
+    background-color: #f0f0f0;
+    color: #333;
 }
 
 .btn-secondary:hover {
-    background-color: #6B0000;
+    background-color: #e0e0e0;
 }
 
 .btn-tertiary {
@@ -348,6 +362,7 @@ body {
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 1rem;
+    font-family: 'Inter', sans-serif;
     background-color: white;
 }
 
@@ -369,7 +384,16 @@ body {
 }
 
 .course-slot {
-    flex: 1;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    min-height: 50px;
+    font-family: 'Inter', sans-serif;
+    cursor: text;
+    transition: all 0.2s;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .delete-course {
@@ -622,19 +646,16 @@ body {
 
 /* Auth Container */
 .auth-container {
-    max-width: 900px;
+    position: relative;
     margin: 0 auto;
     padding: 40px 20px;
     min-height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: #f5f5f5;
-}
-
-.auth-container:has(#login-screen.active),
-.auth-container:has(#register-screen.active) {
-    max-width: 1000px;
+    align-items: center;
+    background: linear-gradient(135deg, #002f87 0%, #8B0000 100%);
 }
 
 /* Screen Switching */
@@ -643,33 +664,41 @@ body {
 }
 
 .auth-container .screen.active {
-    display: block;
+    display: inline-block;
 }
 
 /* Home/Welcome Screen */
 .auth-container #home-screen {
     text-align: center;
-    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .auth-container #home-screen h1 {
-    font-size: 2.5rem;
-    color: #002f87;
-    margin-bottom: 10px;
+    font-size: 3.0rem;
+    color: #333333;
+    margin-bottom: 12px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .auth-container #home-screen .subtitle {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: #666;
     margin-bottom: 40px;
+    line-height: 1.5;
+    font-weight: 400;
 }
 
 /* Login Screen */
 .auth-container #login-screen {
     background: white;
-    padding: 50px 60px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px 60px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    max-width: 650px;
+    width: 100%;
 }
 
 .auth-container #login-screen h1 {
@@ -681,9 +710,11 @@ body {
 /* Registration Screen */
 .auth-container #register-screen {
     background: white;
-    padding: 50px 60px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px 60px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    max-width: 650px;
+    width: 100%;
 }
 
 /* Progress Bar */
@@ -799,19 +830,20 @@ body {
     font-size: 0.95em;
 }
 
-.form-group input {
+.form-group input:not([type="checkbox"]):not([type="radio"]) {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     border-radius: 6px;
     font-size: 1em;
+    font-family: 'Inter', sans-serif;
     transition: border-color 0.3s ease;
     box-sizing: border-box;
 }
 
 .form-group input:focus {
     outline: none;
-    border-color: #002f87;
+    border-color: #001f5c;
 }
 
 /* Auth Forms (scoped to auth-container) */
@@ -843,26 +875,34 @@ body {
 .auth-container .input-field {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
     font-size: 1rem;
+    font-family: 'Inter', sans-serif;
     transition: border-color 0.3s ease;
     box-sizing: border-box;
 }
 
 .auth-container .input-field:focus {
     outline: none;
-    border-color: #002f87;
-    box-shadow: 0 0 0 3px rgba(0, 47, 135, 0.1);
+    border-color: #001f5c;
+    box-shadow: none;
+}
+
+/* Override form-group styles when inside auth-container */
+.auth-container .form-group input:focus {
+    outline: none;
+    border-color: #001f5c;
+    box-shadow: none;
 }
 
 .auth-container .textarea-field {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     border-radius: 6px;
     font-size: 1rem;
-    font-family: inherit;
+    font-family: 'Inter', sans-serif;
     resize: vertical;
     transition: border-color 0.3s ease;
     box-sizing: border-box;
@@ -870,8 +910,8 @@ body {
 
 .auth-container .textarea-field:focus {
     outline: none;
-    border-color: #002f87;
-    box-shadow: 0 0 0 3px rgba(0, 47, 135, 0.1);
+    border-color: #001f5c;
+    box-shadow: none;
 }
 
 /* Auth Button */
@@ -912,27 +952,27 @@ body {
 }
 
 .password-input input {
-    padding-right: 45px;
+    padding-right: 70px;
 }
 
-.toggle-password {
+.toggle-password-text {
     position: absolute;
-    right: 10px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
     border: none;
+    color: #002f87;
+    font-weight: 600;
+    font-size: 0.95em;
     cursor: pointer;
-    font-size: 1.2em;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
+    padding: 5px 8px;
+    transition: color 0.2s ease;
 }
 
-.toggle-password:hover {
-    opacity: 1;
+.toggle-password-text:hover {
+    color: #001f5c;
+    opacity: 0.7;
 }
 
 /* Radio Buttons */
@@ -982,6 +1022,9 @@ body {
 }
 
 .auth-container .checkbox-label input[type="checkbox"] {
+    width: auto;
+    padding: 0;
+    margin: 0;
     cursor: pointer;
 }
 
@@ -990,10 +1033,53 @@ body {
     display: flex;
     gap: 12px;
     margin-top: 30px;
+    justify-content: center;
 }
 
 .auth-container .button-group .btn {
-    flex: 1;
+    flex: 0 0 auto;
+    min-width: 140px;
+    padding: 14px 32px;
+    font-size: 1.05rem;
+}
+
+.auth-container #home-screen .button-group .btn {
+    width: 100%;
+    min-width: auto;
+    padding: 16px 40px;
+    font-size: 1.0625rem;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.auth-container #home-screen .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Auth Logo - Top Left */
+.auth-container .auth-logo {
+    position: absolute;
+    top: 0px;
+    left: 15px;
+    max-width: 600px;
+    height: auto;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+    z-index: 10;
+}
+
+.auth-container #home-screen .home-card {
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    max-width: 750px;
+    width: 100%;
+    padding: 30px 90px 45px;
+}
+
+.auth-container #home-screen:not(.active) {
+    display: none !important;
 }
 
 /* Error Messages */
@@ -1015,7 +1101,7 @@ body {
    RESPONSIVE DESIGN
    ======================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .auth-container {
         padding: 20px 15px;
     }
@@ -1031,6 +1117,7 @@ body {
 
     .auth-container .button-group {
         flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -1093,6 +1180,7 @@ body {
     border: 2px solid #ddd;
     border-radius: 6px;
     font-size: 1rem;
+    font-family: 'Inter', sans-serif;
     transition: border-color 0.3s ease;
     box-sizing: border-box;
 }
@@ -1374,6 +1462,7 @@ body {
 
 .plan-title input {
     font-size: 24px;
+    font-family: 'Inter', sans-serif;
     border: none;
     border-bottom: 2px solid #ddd;
     padding: 5px;

@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="bad create plan CSS">
+      <change afterPath="$PROJECT_DIR$/client/assets/removedBackground.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/plan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/faq.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/my-plans.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/my-plans.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/plan.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,8 +73,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/client" />
       <recent name="$PROJECT_DIR$/client/assets" />
+      <recent name="$PROJECT_DIR$/client" />
       <recent name="$PROJECT_DIR$/client/public" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/server" />
@@ -111,7 +119,9 @@
       <workItem from="1767408364991" duration="613000" />
       <workItem from="1767417318555" duration="3862000" />
       <workItem from="1767460713817" duration="4632000" />
-      <workItem from="1767559049520" duration="14313000" />
+      <workItem from="1767559049520" duration="17931000" />
+      <workItem from="1767642543880" duration="7043000" />
+      <workItem from="1767687232243" duration="11482000" />
     </task>
     <task id="LOCAL-00022" summary="add /server">
       <option name="closed" value="true" />

@@ -51,19 +51,6 @@ function prevQuestion() {
     }
 }
 
-function setUpPasswordToggle(checkboxId, passwordFieldIds) {
-    const checkbox = document.getElementById(checkboxId);
-    if (checkbox) {
-        checkbox.addEventListener('change', (e) => {
-            const type = e.target.checked ? 'text' : 'password';
-            passwordFieldIds.forEach(fieldId => {
-               const field = document.getElementById(fieldId);
-               if (field) field.type = type;
-            });
-        });
-    }
-}
-
 // helper function for API calls
 async function submitAuthForm(endpoint, data, successCallback) {
     try {
@@ -127,11 +114,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // registration
-    setUpPasswordToggle('show-password', ['student-password', 'password-confirm']);
-
-    // login
-    setUpPasswordToggle('show-login-password', ['login-password']);
+    // password toggle functionality - LinkedIn style
+    document.querySelectorAll('.toggle-password-text').forEach(button => {
+        button.addEventListener('click', function() {
+            const input = this.parentElement.querySelector('input');
+            if (input.type === 'password') {
+                input.type = 'text';
+                this.textContent = 'Hide';
+            } else {
+                input.type = 'password';
+                this.textContent = 'Show';
+            }
+        });
+    });
 
     // new login form submission
     const loginForm = document.getElementById('login-form');
@@ -179,13 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // ensure passwords match
             const password = document.getElementById('student-password').value;
-            const confirmPassword = document.getElementById('password-confirm').value;
-
-            if (password !== confirmPassword) {
-                alert("Passwords don't match!");
-                isRegistering = false;
-                return;
-            }
 
             const formData = {
                 name: document.getElementById('student-name').value,
