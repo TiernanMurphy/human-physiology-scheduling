@@ -1,3 +1,5 @@
+const registrationData = {};
+
 // registration screen navigation
 function switchScreen(screenId) {
     // hide all screens
@@ -68,7 +70,6 @@ async function submitAuthForm(endpoint, data, successCallback) {
             console.log('User:', result.user);
             console.log('Token:', result.token);
 
-            // alert(`${endpoint.charAt(0).toUpperCase() + endpoint.slice(1)} successful!`);
             if (successCallback) successCallback(result);
         } else {
             alert(result.message || `${endpoint} failed`);

@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="bad create plan CSS">
-      <change afterPath="$PROJECT_DIR$/client/assets/removedBackground.png" afterDir="false" />
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="styling updates">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/faq.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/my-plans.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/my-plans.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/plan.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,14 +114,11 @@
       <workItem from="1767559049520" duration="17931000" />
       <workItem from="1767642543880" duration="7043000" />
       <workItem from="1767687232243" duration="11482000" />
-    </task>
-    <task id="LOCAL-00022" summary="add /server">
-      <option name="closed" value="true" />
-      <created>1766184219843</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1766184219844</updated>
+      <workItem from="1768065847068" duration="693000" />
+      <workItem from="1768067024208" duration="2575000" />
+      <workItem from="1768106482745" duration="782000" />
+      <workItem from="1768512527265" duration="622000" />
+      <workItem from="1768958285604" duration="3021000" />
     </task>
     <task id="LOCAL-00023" summary="CommonJS --&gt; ES6, DB connection fix">
       <option name="closed" value="true" />
@@ -515,7 +504,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767575350067</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="bad create plan CSS">
+      <option name="closed" value="true" />
+      <created>1768066120335</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1768066120335</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
