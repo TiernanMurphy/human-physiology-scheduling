@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="submit registration bug">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="Arial font">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,14 +121,8 @@
       <workItem from="1768958285604" duration="3563000" />
       <workItem from="1769047985137" duration="2245000" />
       <workItem from="1769108910278" duration="115000" />
-    </task>
-    <task id="LOCAL-00024" summary="fix: redundant /public directory">
-      <option name="closed" value="true" />
-      <created>1766432950487</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1766432950487</updated>
+      <workItem from="1769118067589" duration="456000" />
+      <workItem from="1769118755484" duration="744000" />
     </task>
     <task id="LOCAL-00025" summary="fixed css path issues">
       <option name="closed" value="true" />
@@ -514,7 +508,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768961590246</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Arial font">
+      <option name="closed" value="true" />
+      <created>1769118402692</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1769118402692</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -532,7 +534,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: basic admin page &amp; login" />
     <MESSAGE value="feat: admin can view student responses" />
     <MESSAGE value="feat: admin can search for a student" />
     <MESSAGE value="feat: admin can view course plans" />
@@ -557,6 +558,7 @@
     <MESSAGE value="fix admin logout button route" />
     <MESSAGE value="bad create plan CSS" />
     <MESSAGE value="submit registration bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="submit registration bug" />
+    <MESSAGE value="Arial font" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arial font" />
   </component>
 </project>
