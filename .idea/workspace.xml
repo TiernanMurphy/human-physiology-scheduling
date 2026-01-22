@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="styling updates">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="submit registration bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,15 +118,9 @@
       <workItem from="1768067024208" duration="2575000" />
       <workItem from="1768106482745" duration="782000" />
       <workItem from="1768512527265" duration="622000" />
-      <workItem from="1768958285604" duration="3021000" />
-    </task>
-    <task id="LOCAL-00023" summary="CommonJS --&gt; ES6, DB connection fix">
-      <option name="closed" value="true" />
-      <created>1766432412630</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1766432412630</updated>
+      <workItem from="1768958285604" duration="3563000" />
+      <workItem from="1769047985137" duration="2245000" />
+      <workItem from="1769108910278" duration="115000" />
     </task>
     <task id="LOCAL-00024" summary="fix: redundant /public directory">
       <option name="closed" value="true" />
@@ -512,7 +506,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768066120335</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="submit registration bug">
+      <option name="closed" value="true" />
+      <created>1768961590246</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1768961590246</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,7 +532,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: search for a course" />
     <MESSAGE value="feat: basic admin page &amp; login" />
     <MESSAGE value="feat: admin can view student responses" />
     <MESSAGE value="feat: admin can search for a student" />
@@ -555,6 +556,7 @@
     <MESSAGE value="problematic logging fix" />
     <MESSAGE value="fix admin logout button route" />
     <MESSAGE value="bad create plan CSS" />
-    <option name="LAST_COMMIT_MESSAGE" value="bad create plan CSS" />
+    <MESSAGE value="submit registration bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="submit registration bug" />
   </component>
 </project>

@@ -9,18 +9,18 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #f4f4f4;
 }
 
 h1, h2, h3 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h4, h5, h6 {
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
 }
 
@@ -58,7 +58,7 @@ h4, h5, h6 {
 .logo h1 {
     font-size: 1.2rem;
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
 }
 
@@ -112,7 +112,7 @@ h4, h5, h6 {
     border-radius: 8px;
     cursor: pointer;
     font-size: 1rem;
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
     text-decoration: none;
     display: inline-block;
@@ -261,13 +261,12 @@ h4, h5, h6 {
 
 .subsection h4 {
     margin-bottom: 0;
-    padding: 10px;
+    padding: 30px 30px 10px 30px;
     border-bottom: 2px solid #3498db;
     color: #2c3e50;
     cursor: pointer;
     user-select: none;
     position: relative;
-    padding-right: 30px;
     transition: background-color 0.2s ease;
     border-radius: 4px;
     font-size: 14px;
@@ -362,7 +361,7 @@ h4, h5, h6 {
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 1rem;
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: white;
 }
 
@@ -388,7 +387,7 @@ h4, h5, h6 {
     border: 2px solid #ddd;
     border-radius: 4px;
     min-height: 50px;
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     cursor: text;
     transition: all 0.2s;
     font-size: 14px;
@@ -528,7 +527,7 @@ h4, h5, h6 {
 }
 
 .faq-section summary::after {
-    content: '▼';
+    content: '▶';
     position: absolute;
     right: 30px;
     top: 30px;
@@ -538,7 +537,7 @@ h4, h5, h6 {
 }
 
 .faq-section[open] summary::after {
-    transform: rotate(180deg);
+    transform: rotate(90deg);
 }
 
 .faq-section summary h3 {
@@ -836,7 +835,7 @@ h4, h5, h6 {
     border: 2px solid #ddd;
     border-radius: 6px;
     font-size: 1em;
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     transition: border-color 0.3s ease;
     box-sizing: border-box;
 }
@@ -878,7 +877,7 @@ h4, h5, h6 {
     border: 2px solid #ddd;
     border-radius: 8px;
     font-size: 1rem;
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     transition: border-color 0.3s ease;
     box-sizing: border-box;
 }
@@ -902,7 +901,7 @@ h4, h5, h6 {
     border: 2px solid #ddd;
     border-radius: 6px;
     font-size: 1rem;
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     resize: vertical;
     transition: border-color 0.3s ease;
     box-sizing: border-box;
@@ -1061,7 +1060,7 @@ h4, h5, h6 {
 /* Auth Logo - Top Left */
 .auth-container .auth-logo {
     position: absolute;
-    top: 0px;
+    top: 0;
     left: 15px;
     max-width: 600px;
     height: auto;
@@ -1180,7 +1179,7 @@ h4, h5, h6 {
     border: 2px solid #ddd;
     border-radius: 6px;
     font-size: 1rem;
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     transition: border-color 0.3s ease;
     box-sizing: border-box;
 }
@@ -1462,7 +1461,7 @@ h4, h5, h6 {
 
 .plan-title input {
     font-size: 24px;
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     border: none;
     border-bottom: 2px solid #ddd;
     padding: 5px;
