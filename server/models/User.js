@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
     },
     minor: {
         type: String,
-        default: ''
+        default: 'none'
     },
     abroad: {
         type: String,
