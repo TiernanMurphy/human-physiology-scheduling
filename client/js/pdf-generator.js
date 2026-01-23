@@ -3,7 +3,7 @@ const { jsPDF } = window.jspdf;
 // PDF styling constants
 const COLORS = {
     BLUE: [52, 152, 219],
-    LIGHT_GRAY: [250, 250, 250],
+    LIGHT_BLUE: [232, 240, 254],
     WHITE: [255, 255, 255]
 };
 
@@ -69,7 +69,7 @@ function addColumnHeaders(doc, headers, yPosition) {
 
 // helper: extract course data from a row element
 function getCourseData(row) {
-    const code = row.querySelector('.course-code')?.textContent.trim() || '';
+    const code = row.querySelector('.course-code, .course-code-link')?.textContent.trim() || '';
     const name = row.querySelector('.course-name')?.textContent.trim() || '';
     const creditsText = row.querySelector('.course-credits')?.textContent.trim() || '';
     const credits = creditsText.split(' ')[0];
@@ -83,18 +83,18 @@ function renderCourseRow(doc, courseData, config, yPosition, rowIndex) {
     const { xOffset = 20, codeX = 25, nameX = 90, creditsX = 170,
         codeWidth = 40, nameWidth = 75, rowWidth = 170 } = config;
 
-    // Wrap text
+    // wrap text
     const wrappedCode = doc.splitTextToSize(code, codeWidth);
     const wrappedName = doc.splitTextToSize(name, nameWidth);
     const maxLines = Math.max(wrappedCode.length, wrappedName.length);
     const rowHeight = maxLines * 5;
 
-    // Alternating background
-    const fillColor = rowIndex % 2 === 0 ? COLORS.LIGHT_GRAY : COLORS.WHITE;
+    // alternating background
+    const fillColor = rowIndex % 2 === 0 ? COLORS.LIGHT_BLUE : COLORS.WHITE;
     doc.setFillColor(...fillColor);
     doc.rect(xOffset, yPosition - 4, rowWidth, rowHeight + 2, 'F');
 
-    // Text content
+    // text content
     doc.setFont(undefined, FONTS.NORMAL.style);
     doc.text(wrappedCode, codeX, yPosition);
     doc.text(wrappedName, nameX, yPosition);
@@ -116,7 +116,7 @@ function renderCourseList(doc, container, config, yPosition) {
         rowIndex++;
     });
 
-    return yPosition + 8; // Space after section
+    return yPosition + 8; // space after section
 }
 
 // helper: render subsection with courses
@@ -124,10 +124,10 @@ function renderSubsection(doc, subsectionId, title, config, yPosition) {
     const container = document.getElementById(subsectionId);
     if (!container) return yPosition;
 
-    // Subsection header
+    // subsection header
     yPosition = addSubsectionHeader(doc, title, yPosition);
 
-    // Column headers
+    // column headers
     const headers = {
         columns: [
             { text: 'Course Code', x: config.codeX || 25 },
@@ -137,7 +137,7 @@ function renderSubsection(doc, subsectionId, title, config, yPosition) {
     };
     yPosition = addColumnHeaders(doc, headers, yPosition);
 
-    // Course list
+    // course list
     return renderCourseList(doc, container, config, yPosition);
 }
 
@@ -213,14 +213,14 @@ function generateSamplePlanPDF() {
     years.forEach(year => {
         yPosition = addSubsectionHeader(doc, year.name, yPosition);
 
-        // Semester titles
+        // semester titles
         doc.setFontSize(FONTS.SUBSECTION.size - 2);
         doc.setFont(undefined, FONTS.SUBSECTION.style);
         doc.text('Fall', 25, yPosition);
         doc.text('Spring', 110, yPosition);
         yPosition += 6;
 
-        // Config for left column (Fall)
+        // config for left column (Fall)
         const fallConfig = {
             xOffset: 20,
             codeX: 22,
@@ -231,7 +231,7 @@ function generateSamplePlanPDF() {
             rowWidth: 80
         };
 
-        // Config for right column (Spring)
+        // config for right column (Spring)
         const springConfig = {
             xOffset: 105,
             codeX: 107,
@@ -244,7 +244,7 @@ function generateSamplePlanPDF() {
 
         const startY = yPosition;
 
-        // Render Fall semester
+        // render Fall semester
         const fallContainer = document.getElementById(year.fall);
         const fallHeaders = {
             fontSize: FONTS.SMALL.size,
@@ -257,7 +257,7 @@ function generateSamplePlanPDF() {
         let fallY = addColumnHeaders(doc, fallHeaders, yPosition);
         fallY = renderCourseListCompact(doc, fallContainer, fallConfig, fallY);
 
-        // Render Spring semester
+        // render Spring semester
         const springContainer = document.getElementById(year.spring);
         const springHeaders = {
             fontSize: FONTS.SMALL.size,
@@ -301,7 +301,7 @@ function renderCourseRowCompact(doc, courseData, config, yPosition, rowIndex) {
     const maxLines = Math.max(wrappedCode.length, wrappedName.length);
     const rowHeight = maxLines * 4;
 
-    const fillColor = rowIndex % 2 === 0 ? COLORS.LIGHT_GRAY : COLORS.WHITE;
+    const fillColor = rowIndex % 2 === 0 ? COLORS.LIGHT_BLUE : COLORS.WHITE;
     doc.setFillColor(...fillColor);
     doc.rect(xOffset, yPosition - 3, rowWidth, rowHeight + 1, 'F');
 
@@ -321,7 +321,7 @@ function generateRecommendedPDF() {
     const selectedPath = careerPathSelect?.value;
 
     if (!selectedPath) {
-        alert('Please select a career path first!', 'error');
+        alert('Please select a career path first!');
         return;
     }
 
@@ -330,7 +330,7 @@ function generateRecommendedPDF() {
 
     const displayContainer = document.getElementById('recommended-courses-display');
     if (!displayContainer || displayContainer.children.length === 0) {
-        alert('No coursework displayed. Please select a career path first!', 'error');
+        alert('Please select a career path first!');
         return;
     }
 
@@ -360,8 +360,11 @@ function generateRecommendedPDF() {
         };
         yPosition = addColumnHeaders(doc, headers, yPosition);
 
-        const courseList = subsection.querySelector('.course-list');
-        yPosition = renderCourseList(doc, courseList, config, yPosition);
+        const subsectionContent = subsection.querySelector('.subsection-content');
+
+        if (subsectionContent) {
+            yPosition = renderCourseList(doc, subsectionContent, config, yPosition);
+        }
     });
 
     const filename = `pre-${selectedPath}-recommended-coursework.pdf`;
@@ -378,6 +381,7 @@ export function generatePlanPDF(plan) {
     // plan metadata
     doc.setFontSize(FONTS.NORMAL.size);
     doc.setFont(undefined, FONTS.NORMAL.style);
+
     const totalCourses = plan.semesters.reduce((sum, sem) => sum + sem.courses.length, 0);
     const updatedDate = new Date(plan.updatedAt).toLocaleDateString();
     doc.text(`Total Semesters: ${plan.semesters.length}  |  Total Courses: ${totalCourses}  |  Updated: ${updatedDate}`, 105, yPosition, { align: 'center' });

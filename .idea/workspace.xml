@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="Arial font">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="easier survey navigation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/pdf-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/pdf-generator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,15 +125,7 @@
       <workItem from="1769047985137" duration="2245000" />
       <workItem from="1769108910278" duration="115000" />
       <workItem from="1769118067589" duration="456000" />
-      <workItem from="1769118755484" duration="744000" />
-    </task>
-    <task id="LOCAL-00025" summary="fixed css path issues">
-      <option name="closed" value="true" />
-      <created>1766438867277</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1766438867277</updated>
+      <workItem from="1769118755484" duration="5223000" />
     </task>
     <task id="LOCAL-00026" summary="refactored toggle password event listeners">
       <option name="closed" value="true" />
@@ -516,7 +511,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769118402692</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="easier survey navigation">
+      <option name="closed" value="true" />
+      <created>1769119681169</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1769119681169</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -534,7 +537,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: admin can view student responses" />
     <MESSAGE value="feat: admin can search for a student" />
     <MESSAGE value="feat: admin can view course plans" />
     <MESSAGE value="feat: collapsible subsections within required hphy courses" />
@@ -559,6 +561,7 @@
     <MESSAGE value="bad create plan CSS" />
     <MESSAGE value="submit registration bug" />
     <MESSAGE value="Arial font" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arial font" />
+    <MESSAGE value="easier survey navigation" />
+    <option name="LAST_COMMIT_MESSAGE" value="easier survey navigation" />
   </component>
 </project>

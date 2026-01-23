@@ -57,17 +57,16 @@ export function createCourseRow(courseCode) {
     // get course's link, use '#' if not found
     const link = courseLinks[courseCode] || '#';
 
-    // "course info" if link, otherwise "no link" text
-    const linkHTML = link !== '#'
-        ? `<a href="${link}" class="course-link" target="_blank" rel="noopener noreferrer">Course Info</a>`
-        : `<span class="course-link disabled">No Link</span>`;
+    // wrap course code in link if available
+    const courseCodeHTML = link !== '#'
+        ? `<a href="${link}" class="course-code" target="_blank" rel="noopener noreferrer">${courseCode}</a>`
+        : `<div class="course-code">${courseCode}</div>`;
 
     // add html to course row
     row.innerHTML = `
-        <div class="course-code">${courseCode}</div>
+        ${courseCodeHTML}
         <div class="course-name">${courseData.name}</div>
         <div class="course-credits">${courseData.credits} ${courseData.credits === 1 ? 'credit' : 'credits'}</div>    
-        ${linkHTML}
     `;
 
     return row;

@@ -230,11 +230,6 @@ h4, h5, h6 {
     background: #f0f0f0;
 }
 
-.course-code {
-    font-weight: bold;
-    color: #2c3e50;
-}
-
 .course-name {
     color: #555;
     text-align: center;
@@ -1616,11 +1611,6 @@ h4, h5, h6 {
     cursor: grabbing;
 }
 
-.course-code {
-    font-weight: bold;
-    color: #002f87;
-}
-
 .course-name {
     font-size: 14px;
     color: #666;
@@ -1789,4 +1779,14 @@ h4, h5, h6 {
         transform: translateX(0);
         opacity: 1;
     }
+}
+
+.course-code {
+    font-weight: bold;
+    color: #0047b3;
+    text-decoration: none;
+}
+
+.course-code:hover {
+    text-decoration: underline;
 }
