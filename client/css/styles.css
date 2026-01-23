@@ -218,8 +218,8 @@ h4, h5, h6 {
 
 .course-row {
     display: grid;
-    grid-template-columns: 120px 1fr 100px 80px;
-    gap: 15px;
+    grid-template-columns: 100px minmax(75px, 1fr) 2fr 120px;
+    gap: 20px;
     align-items: center;
     padding: 12px 15px;
     background-color: #fafafa;
@@ -233,12 +233,14 @@ h4, h5, h6 {
 
 .course-name {
     color: #555;
-    text-align: center;
+    text-align: left;
+    grid-column: 3;
 }
 
 .course-credits {
     color: #7f8c8d;
     font-size: 0.9rem;
+    grid-column: 4;
 }
 
 .course-link.disabled {
