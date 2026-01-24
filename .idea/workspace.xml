@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="course name layout fix">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="multiple course codes link fix">
+      <change afterPath="$PROJECT_DIR$/client/assets/coreIntegration.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/pages/core-integration.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/pages/scientific-inquiry.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/course-links.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/course-links.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/recommended.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/recommended.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -125,15 +128,7 @@
       <workItem from="1769118067589" duration="456000" />
       <workItem from="1769118755484" duration="5223000" />
       <workItem from="1769132354342" duration="8774000" />
-      <workItem from="1769224332802" duration="325000" />
-    </task>
-    <task id="LOCAL-00029" summary="feat: add course selection and slot population">
-      <option name="closed" value="true" />
-      <created>1766448968149</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1766448968149</updated>
+      <workItem from="1769224332802" duration="6096000" />
     </task>
     <task id="LOCAL-00030" summary="feat: electives in create a plan reference">
       <option name="closed" value="true" />
@@ -519,7 +514,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769140810741</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="multiple course codes link fix">
+      <option name="closed" value="true" />
+      <created>1769224956109</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1769224956109</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,7 +540,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: collapsible subsections within all dashboard sections" />
     <MESSAGE value="navbar styling" />
     <MESSAGE value="dashboard link fix" />
     <MESSAGE value="fix: reference dropdowns not working" />
@@ -562,6 +564,7 @@
     <MESSAGE value="recommended coursework pdf fix" />
     <MESSAGE value="scrollbar fix" />
     <MESSAGE value="course name layout fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="course name layout fix" />
+    <MESSAGE value="multiple course codes link fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="multiple course codes link fix" />
   </component>
 </project>

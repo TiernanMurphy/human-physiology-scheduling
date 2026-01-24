@@ -172,7 +172,7 @@ const recommended = {
         'BIOL 105L',
         'BIOL 106',
         'BIOL 170 or 370',
-        'BIOL I70L or 370L',
+        'BIOL 170L or 370L',
         // 4 semesters of chemistry
         'CHEM 101',
         'CHEM 101L',
@@ -204,7 +204,7 @@ const recommended = {
         'BIOL 105',
         'BIOL 105L',
         'BIOL 170 or 370',
-        'BIOL I70L or 370L',
+        'BIOL 170L or 370L',
         // 1 semester of chemistry
         'CHEM 101',
         'CHEM 101L',

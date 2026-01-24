@@ -9,6 +9,8 @@ const courseLinks = {
     'BIOL 207L': 'https://catalog.gonzaga.edu/search/?search=BIOL+207L',
     'BIOL 370': 'https://catalog.gonzaga.edu/search/?search=BIOL+370',
     'BIOL 370L': 'https://catalog.gonzaga.edu/search/?search=BIOL+370L',
+    '370': 'https://catalog.gonzaga.edu/search/?search=BIOL+370',
+    '370L': 'https://catalog.gonzaga.edu/search/?search=BIOL+370L',
 
     // chemistry
     'CHEM 101': 'https://catalog.gonzaga.edu/search/?search=CHEM+101',
@@ -26,9 +28,9 @@ const courseLinks = {
     'COMM 100': 'https://catalog.gonzaga.edu/search/?search=COMM+100',
 
     // dept
-    'DEPT 104': '',  // think these are bio, chem, or phys courses
+    'DEPT 104': '../pages/scientific-inquiry.html',
     'DEPT 193': 'https://www.gonzaga.edu/academics/undergraduate/general-degree-requirements-procedures/first-year-seminar-topics',
-    'DEPT 492': 'https://gonzaga.azureedge.net/-/media/Website/Documents/University-Core/CIS-Course-Titles-and-Discriptions/CIS-Course-Titles-and-Discriptions.ashx?rev=665356119b8145c495e4069757535e40&hash=C1A2A698DCFFC542BD65568A37745CD8&_gl=1*1v9o6ew*_gcl_au*MTAyMDk0OTM0OC4xNzY0MTg0NDA0*_ga*MTI1NzM3MzkxMi4xNzY0MTM5ODY1*_ga_D9YJSENXGZ*czE3NjQxODQ0MDMkbzEkZzEkdDE3NjQxODUzOTgkajU3JGwwJGgw',
+    'DEPT 432': '../pages/core-integration.html',
 
     // english
     'ENGL 101': 'https://catalog.gonzaga.edu/search/?search=ENGL+101',
@@ -61,6 +63,7 @@ const courseLinks = {
     'MATH 121': 'https://catalog.gonzaga.edu/search/?search=MATH+121',
     'MATH 148': 'https://catalog.gonzaga.edu/search/?search=MATH+148',
     'MATH 157': 'https://catalog.gonzaga.edu/search/?search=MATH+157',
+    '157': 'https://catalog.gonzaga.edu/search/?search=MATH+157',
 
     // philosophy
     'PHIL 101': 'https://catalog.gonzaga.edu/search/?search=PHIL+101',
@@ -75,12 +78,19 @@ const courseLinks = {
 
     // psychology
     'PSYC 101': 'https://catalog.gonzaga.edu/search/?search=PSYC+101',
+    'PSYC 364': 'https://catalog.gonzaga.edu/search/?search=PSYC+364',
+    'PSYC 357': 'https://catalog.gonzaga.edu/search/?search=PSYC+357',
+    '390': 'https://catalog.gonzaga.edu/search/?search=PSYC+390',
+    'PSYC': 'https://catalog.gonzaga.edu/undergraduate/arts-sciences/psychology/#coursestext',
 
     // religion
     'RELI': 'https://catalog.gonzaga.edu/undergraduate/arts-sciences/religious-studies/#coursestext',
 
     // sociology
     'SOCI 101': 'https://catalog.gonzaga.edu/search/?search=SOCI+101',
+
+    // other
+    'CLAS 199': 'https://catalog.gonzaga.edu/search/?search=CLAS+199',
 };
 
 export default courseLinks;
