@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="easier survey navigation">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="course name layout fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/pdf-generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/pdf-generator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/course-links.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/course-links.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,30 +124,8 @@
       <workItem from="1769108910278" duration="115000" />
       <workItem from="1769118067589" duration="456000" />
       <workItem from="1769118755484" duration="5223000" />
-    </task>
-    <task id="LOCAL-00026" summary="refactored toggle password event listeners">
-      <option name="closed" value="true" />
-      <created>1766440695673</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1766440695673</updated>
-    </task>
-    <task id="LOCAL-00027" summary="refactored login &amp; register form submission">
-      <option name="closed" value="true" />
-      <created>1766442743687</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1766442743687</updated>
-    </task>
-    <task id="LOCAL-00028" summary="feat: add / delete course">
-      <option name="closed" value="true" />
-      <created>1766445744614</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1766445744614</updated>
+      <workItem from="1769132354342" duration="8774000" />
+      <workItem from="1769224332802" duration="325000" />
     </task>
     <task id="LOCAL-00029" summary="feat: add course selection and slot population">
       <option name="closed" value="true" />
@@ -519,7 +495,31 @@
       <option name="project" value="LOCAL" />
       <updated>1769119681169</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="recommended coursework pdf fix">
+      <option name="closed" value="true" />
+      <created>1769134177819</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1769134177819</updated>
+    </task>
+    <task id="LOCAL-00076" summary="scrollbar fix">
+      <option name="closed" value="true" />
+      <created>1769138130500</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1769138130500</updated>
+    </task>
+    <task id="LOCAL-00077" summary="course name layout fix">
+      <option name="closed" value="true" />
+      <created>1769140810741</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1769140810741</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,9 +537,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: admin can search for a student" />
-    <MESSAGE value="feat: admin can view course plans" />
-    <MESSAGE value="feat: collapsible subsections within required hphy courses" />
     <MESSAGE value="feat: collapsible subsections within all dashboard sections" />
     <MESSAGE value="navbar styling" />
     <MESSAGE value="dashboard link fix" />
@@ -562,6 +559,9 @@
     <MESSAGE value="submit registration bug" />
     <MESSAGE value="Arial font" />
     <MESSAGE value="easier survey navigation" />
-    <option name="LAST_COMMIT_MESSAGE" value="easier survey navigation" />
+    <MESSAGE value="recommended coursework pdf fix" />
+    <MESSAGE value="scrollbar fix" />
+    <MESSAGE value="course name layout fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="course name layout fix" />
   </component>
 </project>

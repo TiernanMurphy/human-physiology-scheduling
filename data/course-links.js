@@ -27,7 +27,7 @@ const courseLinks = {
 
     // dept
     'DEPT 104': '',  // think these are bio, chem, or phys courses
-    'DEPT 193': '',
+    'DEPT 193': 'https://www.gonzaga.edu/academics/undergraduate/general-degree-requirements-procedures/first-year-seminar-topics',
     'DEPT 492': 'https://gonzaga.azureedge.net/-/media/Website/Documents/University-Core/CIS-Course-Titles-and-Discriptions/CIS-Course-Titles-and-Discriptions.ashx?rev=665356119b8145c495e4069757535e40&hash=C1A2A698DCFFC542BD65568A37745CD8&_gl=1*1v9o6ew*_gcl_au*MTAyMDk0OTM0OC4xNzY0MTg0NDA0*_ga*MTI1NzM3MzkxMi4xNzY0MTM5ODY1*_ga_D9YJSENXGZ*czE3NjQxODQ0MDMkbzEkZzEkdDE3NjQxODUzOTgkajU3JGwwJGgw',
 
     // english
@@ -58,7 +58,9 @@ const courseLinks = {
 
     // math
     'MATH': 'https://catalog.gonzaga.edu/courses/math/',  // list of MATH courses
+    'MATH 121': 'https://catalog.gonzaga.edu/search/?search=MATH+121',
     'MATH 148': 'https://catalog.gonzaga.edu/search/?search=MATH+148',
+    'MATH 157': 'https://catalog.gonzaga.edu/search/?search=MATH+157',
 
     // philosophy
     'PHIL 101': 'https://catalog.gonzaga.edu/search/?search=PHIL+101',

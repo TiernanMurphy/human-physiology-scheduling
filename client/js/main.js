@@ -50,17 +50,34 @@ export function createCourseRow(courseCode) {
         return null;
     }
 
-    // creates <div class="course-row">
+    // creates course row div
     const row = document.createElement('div');
     row.className = 'course-row';
 
-    // get course's link, use '#' if not found
-    const link = courseLinks[courseCode] || '#';
+    let courseCodeHTML;
 
-    // wrap course code in link if available
-    const courseCodeHTML = link !== '#'
-        ? `<a href="${link}" class="course-code" target="_blank" rel="noopener noreferrer">${courseCode}</a>`
-        : `<div class="course-code">${courseCode}</div>`;
+    // check if courseCode contains " or " (multiple courses)
+    if (courseCode.includes(' or ')) {
+        const codes = courseCode.split(' or ').map(c => c.trim());
+
+        // create links for each code
+        const linkedCodes = codes.map(code => {
+            const link = courseLinks[code] || '#';
+            if (link !== '#') {
+                return `<a href="${link}" class="course-code" target="_blank" rel="noopener noreferrer">${code}</a>`;
+            } else {
+                return code;
+            }
+        }).join(' or ');
+
+        courseCodeHTML = `<div class="course-code-container">${linkedCodes}</div>`;
+    } else {
+        // single course code - existing logic
+        const link = courseLinks[courseCode] || '#';
+        courseCodeHTML = link !== '#'
+            ? `<a href="${link}" class="course-code" target="_blank" rel="noopener noreferrer">${courseCode}</a>`
+            : `<div class="course-code">${courseCode}</div>`;
+    }
 
     // add html to course row
     row.innerHTML = `
