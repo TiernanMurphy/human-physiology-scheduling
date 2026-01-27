@@ -1,28 +1,33 @@
 const courses = {
     // biology
+    'BIOL 105 & 105L': { name: 'Information Flow in Biological Systems with Lab', credits: 4 },
     'BIOL 105': { name: 'Information Flow in Biological Systems', credits: 3 },
     'BIOL 105L': { name: 'Information Flow in Biological Systems Lab', credits: 1 },
     'BIOL 106': { name: 'Energy Flow in Biological Systems', credits: 3 },
     'BIOL 170': { name: 'Intro to Microbiology', credits: 3 },
     'BIOL 170L': { name: 'Intro to Microbiology Lab', credits: 1 },
+    'BIOL 170 & 170L': { name: 'Intro to Microbiology with Lab', credits: 1 },
     'BIOL 207': { name: 'Genetics', credits: 3 },
     'BIOL 207L': { name: 'Genetics Lab', credits: 1 },
+    'BIOL 207 & 207L': { name: 'Genetics with Lab', credits: 4 },
     'BIOL 370': { name: 'Microbiology', credits: 3 },
     'BIOL 370L': { name: 'Microbiology Lab', credits: 1 },
+    'BIOL 370 & 370L': { name: 'Microbiology with Lab', credits: 4 },
     'BIOL 170 or 370': { name: '170 Intro to Microbiology or 370 Microbiology', credits: 3 },
-    'BIOL I70L or 370L': { name: '170 Intro to Micriobiology Lab or 370 Microbiology with Lab', credits: 1 },
+    'BIOL 170L or 370L': { name: '170 Intro to Microbiology Lab or 370 Microbiology with Lab', credits: 1 },
 
     // chemistry
-    'CHEM 101': { name: 'General Chemistry 1', credits: 3 },
-    'CHEM 101L': { name: 'General Chemistry 1 Lab', credits: 1 },
-    'CHEM 102': { name: 'General Chemistry 2', credits: 3 },
-    'CHEM 102L': { name: 'General Chemistry 2 Lab', credits: 1 },
+    'CHEM 101 & 101L': { name: 'General Chemistry 1 with Lab', credits: 4 },
+    'CHEM 102 & 102L': { name: 'General Chemistry 2 with Lab', credits: 4 },
+    'CHEM 230 & 230L': {name: 'Organic Chemistry 1 with Lab', credits: 4 },
     'CHEM 230': { name: 'Organic Chemistry 1', credits: 3 },
     'CHEM 230L': { name: 'Organic Chemistry 1 Lab', credits: 1 },
+    'CHEM 231 & 231L': { name: 'Organic Chemistry 2 with Lab', credits: 4 },
     'CHEM 231': { name: 'Organic Chemistry 2', credits: 3 },
     'CHEM 231L': { name: 'Organic Chemistry 2 Lab', credits: 1 },
     'CHEM 307': { name: 'Biochemistry 1', credits: 3 },
     'CHEM 307L': { name: 'Biochemistry 1 with Lab', credits: 1 },
+    'CHEM 307 & 307L': { name: 'Biochemistry 1 with Lab', credits: 4 },
 
     // classic
     'CLAS 199': { name: 'Medical Terminology', credits: 1 },
@@ -41,25 +46,22 @@ const courses = {
     // human physiology
     'HPHY 205': { name: 'Experimental Design & Statistics', credits: 3 },
     'HPHY 210': { name: 'Scientific Writing', credits: 3 },
-    'HPHY 241': { name: 'Human Anatomy & Physiology 1', credits: 3 },
-    'HPHY 241L': { name: 'Human Anatomy & Physiology 1 Lab', credits: 1 },
-    'HPHY 242': { name: 'Human Anatomy & Physiology 2', credits: 3 },
-    'HPHY 242L': { name: 'Human Anatomy & Physiology 2 Lab', credits: 1 },
+    'HPHY 241 & 241L': { name: 'Human Anatomy & Physiology 1 with Lab', credits: 4 },
+    'HPHY 242 & 242L': { name: 'Human Anatomy & Physiology 2 with Lab', credits: 4 },
     'HPHY 244': { name: 'Nutrition and Metabolism', credits: 3 },
     'HPHY 274': { name: 'Musculoskeletal Dynamics & Physiology', credits: 3 },
-    'HPHY 375': { name: 'Biomechanics', credits: 3 },
-    'HPHY 375L': { name: 'Biomechanics Lab', credits: 1 },
-    'HPHY 376': { name: 'Exercise Physiology', credits: 3 },
-    'HPHY 376L': { name: 'Exercise Physiology Lab', credits: 1 },
+    'HPHY 375 & 375L': { name: 'Biomechanics with Lab', credits: 4 },
+    'HPHY 376 & 376L': { name: 'Exercise Physiology with Lab', credits: 4 },
     'HPHY 422': { name: 'Cardiovascular Physiology', credits: 3 },
-    'HPHY 441L': { name: 'Guided Experimental Design', credits: 1 },
-    'HPHY 442L': { name: 'Guided Research', credits: 1 },
+    'HPHY 441L': { name: 'Guided Experimental Design Lab', credits: 1 },
+    'HPHY 442L': { name: 'Guided Research Lab', credits: 1 },
     'HPHY 451': { name: 'Systems Neurophysiology', credits: 3 },
     'HPHY 453': { name: 'Neuroanatomy', credits: 3 },
     'HPHY 477': { name: 'Environmental Physiology', credits: 3 },
     'HPHY 480': { name: 'Applied Immunology', credits: 3 },
-    'HPHY 489': { name: 'Special Topics (varies)', credits: 3 }, // several HPHY 489 offerings
+    'HPHY 489': { name: 'Special Topics (varies)', credits: 3 },
     'HPHY 499': { name: 'Culminating Experience', credits: 1 },
+    'HPHY Elective': { name: 'x credits required, see FAQ page for more info', credits: 0 },
 
     // math
     'MATH': { name: 'MATH 148 or Higher', credits: 3 },
@@ -67,18 +69,15 @@ const courses = {
     'MATH 148': { name: 'Survey of Calculus', credits: 3 },
     'MATH 157': { name: 'Calculus-Analytic Geometry', credits: 4 },
     'MATH 148 or MATH 157': { name: 'Survey of Calculus or Calculus-Analytic Geometry', credits: 3 },
-    'MATH 148 or 157': { name: '148 Survey of Calculus or 157 Calculus-Analytic Geometry', credits: 3 },
-
     // philosophy
     'PHIL 101': { name: 'Reasoning', credits: 3 },
     'PHIL 201': { name: 'Philosophy of Human Nature', credits: 3 },
-    'PHIL 301 or RELI': { name: 'Philosophy 301 or Religion Ethics', credits: 3 },
+    'PHIL 301 or RELI': { name: 'Ethics (take PHIL 301 or RELI 301)', credits: 3 },
+    'PHIL 301': { name: 'Ethics', credits: 3 },
 
     // physics
-    'PHYS 111': { name: 'General Physics 1', credits: 4 },
-    'PHYS 111L': { name: 'General Physics 1 Lab', credits: 1 },
-    'PHYS 112': { name: 'General Physics 2', credits: 4 },
-    'PHYS 112L': { name: 'General Physics 2 Lab', credits: 1 },
+    'PHYS 111 & 111L': { name: 'General Physics 1', credits: 5 },
+    'PHYS 112 & 112L': { name: 'General Physics 2', credits: 5 },
 
     // psychology
     'PSYC 101': { name: 'General Psychology', credits: 3 },
@@ -91,9 +90,15 @@ const courses = {
 
     // religion
     'RELI': { name: 'Christianity & Catholic Traditions', credits: 3 },
+    'RELI World/Comp': { name: 'World and Comparative Religions', credits: 3 },
 
-    // sociology
+    // other
     'SOCI 101': { name: 'Introduction to Sociology', credits: 3 },
+    'HIST/LIT/ART': { name: 'History, Literature, or Art course', credits: 3 },
+    'Global Studies': { name: 'Global Studies', credits: 3 },
+    'WE': { name: 'Writing Enriched', credits: 3 },
+    'SOCI': { name: 'Social Justice', credits: 3 },
+
 };
 
 // special variations

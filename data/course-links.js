@@ -8,13 +8,14 @@ const courseLinks = {
     'BIOL 207': 'https://catalog.gonzaga.edu/search/?search=biol+207',
     'BIOL 207L': 'https://catalog.gonzaga.edu/search/?search=BIOL+207L',
     'BIOL 370': 'https://catalog.gonzaga.edu/search/?search=BIOL+370',
-    'BIOL 370L': 'https://catalog.gonzaga.edu/search/?search=BIOL+370L',
-    '370': 'https://catalog.gonzaga.edu/search/?search=BIOL+370',
+    '105L': 'https://catalog.gonzaga.edu/search/?search=BIOL+105L',
+    '170L': 'https://catalog.gonzaga.edu/search/?search=BIOL+170L',
+    '207L': 'https://catalog.gonzaga.edu/search/?search=BIOL+207L',
     '370L': 'https://catalog.gonzaga.edu/search/?search=BIOL+370L',
+    '370': 'https://catalog.gonzaga.edu/search/?search=BIOL+370',
 
     // chemistry
     'CHEM 101': 'https://catalog.gonzaga.edu/search/?search=CHEM+101',
-    'CHEM 101L': 'https://catalog.gonzaga.edu/search/?search=CHEM+101L',
     'CHEM 102': 'https://catalog.gonzaga.edu/search/?search=CHEM+102',
     'CHEM 102L': 'https://catalog.gonzaga.edu/search/?search=CHEM+102L',
     'CHEM 230': 'https://catalog.gonzaga.edu/search/?search=CHEM+230',
@@ -23,6 +24,11 @@ const courseLinks = {
     'CHEM 231L': 'https://catalog.gonzaga.edu/search/?search=CHEM+231L',
     'CHEM 307': 'https://catalog.gonzaga.edu/search/?search=CHEM+307',
     'CHEM 307L': 'https://catalog.gonzaga.edu/search/?search=CHEM+307L',
+    '101L': 'https://catalog.gonzaga.edu/search/?search=CHEM+101L',
+    '102L': 'https://catalog.gonzaga.edu/search/?search=CHEM+102L',
+    '230L': 'https://catalog.gonzaga.edu/search/?search=CHEM+230L',
+    '231L': 'https://catalog.gonzaga.edu/search/?search=CHEM+231L',
+    '307L': 'https://catalog.gonzaga.edu/search/?search=CHEM+307L',
 
     // communication
     'COMM 100': 'https://catalog.gonzaga.edu/search/?search=COMM+100',
@@ -57,6 +63,12 @@ const courseLinks = {
     'HPHY 480': 'https://catalog.gonzaga.edu/search/?search=HPHY+480',
     'HPHY 489': 'https://catalog.gonzaga.edu/search/?search=HPHY+489',
     'HPHY 499': 'https://catalog.gonzaga.edu/search/?search=HPHY+499',
+    '241L': 'https://catalog.gonzaga.edu/search/?search=HPHY+241L',
+    '242L': 'https://catalog.gonzaga.edu/search/?search=HPHY+242L',
+    '375L': 'https://catalog.gonzaga.edu/search/?search=HPHY+375l',
+    '376L': 'https://catalog.gonzaga.edu/search/?search=HPHY+376L',
+    '441L': 'https://catalog.gonzaga.edu/search/?search=HPHY+441L',
+    '442L': 'https://catalog.gonzaga.edu/search/?search=HPHY+442L',
 
     // math
     'MATH': 'https://catalog.gonzaga.edu/courses/math/',  // list of MATH courses
@@ -75,6 +87,8 @@ const courseLinks = {
     'PHYS 111L': 'https://catalog.gonzaga.edu/search/?search=PHYS+111L',
     'PHYS 112': 'https://catalog.gonzaga.edu/search/?search=PHYS+112',
     'PHYS 112L': 'https://catalog.gonzaga.edu/search/?search=PHYS+112L',
+    '111L': 'https://catalog.gonzaga.edu/search/?search=PHYS+111L',
+    '112L': 'https://catalog.gonzaga.edu/search/?search=PHYS+112L',
 
     // psychology
     'PSYC 101': 'https://catalog.gonzaga.edu/search/?search=PSYC+101',

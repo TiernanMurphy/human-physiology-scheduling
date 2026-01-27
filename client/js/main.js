@@ -55,24 +55,28 @@ export function createCourseRow(courseCode) {
     row.className = 'course-row';
 
     let courseCodeHTML;
+    let separator = null;
 
-    // check if courseCode contains " or " (multiple courses)
+    // split courseCode links if needed
     if (courseCode.includes(' or ')) {
-        const codes = courseCode.split(' or ').map(c => c.trim());
+        separator = ' or ';
+    } else if (courseCode.includes(' & ')) {
+        separator = ' & ';
+    }
 
-        // create links for each code
+    if (separator) {
+        const codes = courseCode.split(separator).map(c => c.trim());
+
         const linkedCodes = codes.map(code => {
             const link = courseLinks[code] || '#';
             if (link !== '#') {
                 return `<a href="${link}" class="course-code" target="_blank" rel="noopener noreferrer">${code}</a>`;
-            } else {
-                return code;
-            }
-        }).join(' or ');
+            } else return code;
+        }).join(separator);
 
         courseCodeHTML = `<div class="course-code-container">${linkedCodes}</div>`;
+
     } else {
-        // single course code - existing logic
         const link = courseLinks[courseCode] || '#';
         courseCodeHTML = link !== '#'
             ? `<a href="${link}" class="course-code" target="_blank" rel="noopener noreferrer">${courseCode}</a>`
@@ -88,6 +92,53 @@ export function createCourseRow(courseCode) {
 
     return row;
 }
+
+export function createReferenceRow(courseCode) {
+    const courseData = courses[courseCode];
+
+    if (!courseData) return null;
+
+    const row = document.createElement('div');
+    // row.className = 'course-row';
+
+    row.className = 'reference-course-row';
+
+    let referenceCodeHTML;
+    let separator = null;
+
+    if (courseCode.includes(' or ')) {
+        separator = ' or ';
+    } else if (courseCode.includes(' & ')) {
+        separator = ' & ';
+    }
+
+    if (separator) {
+        const codes = courseCode.split(separator).map(c => c.trim());
+
+        const linkedCodes = codes.map(code => {
+            const link = courseLinks[code] || '#';
+            if (link !== '#') {
+                return `<a href="${link}" class="course-code" target="_blank" rel="noopener noreferrer">${code}</a>`;
+            } else return code;
+        }).join(separator);
+
+        referenceCodeHTML = `<div class="course-code-container">${linkedCodes}</div>`;
+    } else {
+        const link = courseLinks[courseCode] || '#';
+        referenceCodeHTML = link !== '#'
+            ? `<a href="${link}" class="course-code" target="_blank" rel="noopener noreferrer">${courseCode}</a>`
+            : `<div class="course-code">${courseCode}</div>`;
+    }
+
+    row.innerHTML = `
+        ${referenceCodeHTML}
+        <div class="course-name">${courseData.name}</div>
+        <div class="course-credits">${courseData.credits} ${courseData.credits === 1 ? 'credit' : 'credits'}</div>    
+    `;
+
+    return row;
+}
+
 
 // add courses to a section
 function populateCourseSection(elementId, courseCodes) {

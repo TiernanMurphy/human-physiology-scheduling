@@ -2,7 +2,7 @@ import courses from '/data/courses.js';
 import {core, humanPhys} from '/data/required.js';
 import electives from '/data/electives.js';
 import progression from '/data/progression.js';
-import { createCourseRow } from "./main.js";
+import { createCourseRow, createReferenceRow } from "./main.js";
 
 const semestersGrid = document.getElementById('semesters-grid');
 if (!semestersGrid) {
@@ -178,7 +178,7 @@ function populateRequiredCourses() {
         content.className = 'subsection-content collapsed';
 
         courseCodes.forEach(code => {
-            const row = createCourseRow(code);
+            const row = createReferenceRow(code);
             if (row) {
                 row.style.cursor = 'pointer';
                 row.addEventListener('click', () => addCourseToSelectedSlot(code));
@@ -210,7 +210,7 @@ function populateElectives() {
     electivesContainer.innerHTML = '';
 
     electives.forEach(elective => {
-        const row = createCourseRow(elective.code);
+        const row = createReferenceRow(elective.code);
         if (row) {
             row.style.cursor = 'pointer';
             row.addEventListener('click', () => addCourseToSelectedSlot(elective.code));
@@ -255,7 +255,7 @@ function populateSampleProgression() {
             content.appendChild(fallLabel);
 
             data.fall.forEach(courseCode => {
-                const row = createCourseRow(courseCode);
+                const row = createReferenceRow(courseCode);
                 if (row) {
                     row.style.cursor = 'pointer';
                     row.addEventListener('click', () => addCourseToSelectedSlot(courseCode));
@@ -275,7 +275,7 @@ function populateSampleProgression() {
             content.appendChild(springLabel);
 
             data.spring.forEach(courseCode => {
-                const row = createCourseRow(courseCode);
+                const row = createReferenceRow(courseCode);
                 if (row) {
                     row.style.cursor = 'pointer';
                     row.addEventListener('click', () => addCourseToSelectedSlot(courseCode));

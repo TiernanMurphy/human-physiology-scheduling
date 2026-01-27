@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="multiple course codes link fix">
-      <change afterPath="$PROJECT_DIR$/client/assets/coreIntegration.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/core-integration.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/scientific-inquiry.html" afterDir="false" />
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="DEPT custom course info pages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/js/plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/plan.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/course-links.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/course-links.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/courses.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/courses.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/progression.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/progression.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/recommended.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/recommended.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/required.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/required.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,15 +130,8 @@
       <workItem from="1769118067589" duration="456000" />
       <workItem from="1769118755484" duration="5223000" />
       <workItem from="1769132354342" duration="8774000" />
-      <workItem from="1769224332802" duration="6096000" />
-    </task>
-    <task id="LOCAL-00030" summary="feat: electives in create a plan reference">
-      <option name="closed" value="true" />
-      <created>1767131487530</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1767131487530</updated>
+      <workItem from="1769224332802" duration="8355000" />
+      <workItem from="1769537353388" duration="9596000" />
     </task>
     <task id="LOCAL-00031" summary="feat: sample progression reference while creating plan">
       <option name="closed" value="true" />
@@ -522,7 +517,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769224956109</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="DEPT custom course info pages">
+      <option name="closed" value="true" />
+      <created>1769286161374</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1769286161375</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,7 +543,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="navbar styling" />
     <MESSAGE value="dashboard link fix" />
     <MESSAGE value="fix: reference dropdowns not working" />
     <MESSAGE value="CSS to Gonzaga colors" />
@@ -565,6 +567,7 @@
     <MESSAGE value="scrollbar fix" />
     <MESSAGE value="course name layout fix" />
     <MESSAGE value="multiple course codes link fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="multiple course codes link fix" />
+    <MESSAGE value="DEPT custom course info pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="DEPT custom course info pages" />
   </component>
 </project>
