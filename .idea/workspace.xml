@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="DEPT custom course info pages">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="fix: course codes and links">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/js/plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/plan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/course-links.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/course-links.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/courses.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/courses.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/progression.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/progression.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/recommended.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/recommended.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/required.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/required.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/plan.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,15 +128,8 @@
       <workItem from="1769118755484" duration="5223000" />
       <workItem from="1769132354342" duration="8774000" />
       <workItem from="1769224332802" duration="8355000" />
-      <workItem from="1769537353388" duration="9596000" />
-    </task>
-    <task id="LOCAL-00031" summary="feat: sample progression reference while creating plan">
-      <option name="closed" value="true" />
-      <created>1767131884815</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1767131884815</updated>
+      <workItem from="1769537353388" duration="10744000" />
+      <workItem from="1769550399257" duration="2906000" />
     </task>
     <task id="LOCAL-00032" summary="refactor plan.js duplicate code">
       <option name="closed" value="true" />
@@ -525,7 +515,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769286161375</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="fix: course codes and links">
+      <option name="closed" value="true" />
+      <created>1769549420925</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1769549420926</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -543,7 +541,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="dashboard link fix" />
     <MESSAGE value="fix: reference dropdowns not working" />
     <MESSAGE value="CSS to Gonzaga colors" />
     <MESSAGE value="reorganized styles.css" />
@@ -568,6 +565,7 @@
     <MESSAGE value="course name layout fix" />
     <MESSAGE value="multiple course codes link fix" />
     <MESSAGE value="DEPT custom course info pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="DEPT custom course info pages" />
+    <MESSAGE value="fix: course codes and links" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: course codes and links" />
   </component>
 </project>

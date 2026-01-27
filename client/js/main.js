@@ -126,14 +126,14 @@ export function createReferenceRow(courseCode) {
     } else {
         const link = courseLinks[courseCode] || '#';
         referenceCodeHTML = link !== '#'
-            ? `<a href="${link}" class="course-code" target="_blank" rel="noopener noreferrer">${courseCode}</a>`
-            : `<div class="course-code">${courseCode}</div>`;
+            ? `<a href="${link}" class="reference-course-code" target="_blank" rel="noopener noreferrer">${courseCode}</a>`
+            : `<div class="reference-course-code">${courseCode}</div>`;
     }
 
     row.innerHTML = `
         ${referenceCodeHTML}
-        <div class="course-name">${courseData.name}</div>
-        <div class="course-credits">${courseData.credits} ${courseData.credits === 1 ? 'credit' : 'credits'}</div>    
+        <div class="reference-course-name">${courseData.name}</div>
+        <div class="reference-course-credits">${courseData.credits} ${courseData.credits === 1 ? 'credit' : 'credits'}</div>    
     `;
 
     return row;

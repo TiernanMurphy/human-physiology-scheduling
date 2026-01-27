@@ -1,8 +1,8 @@
 import courses from '/data/courses.js';
-import {core, humanPhys} from '/data/required.js';
+import { humanPhys } from '/data/required.js';
 import electives from '/data/electives.js';
 import progression from '/data/progression.js';
-import { createCourseRow, createReferenceRow } from "./main.js";
+import { createReferenceRow } from "./main.js";
 
 const semestersGrid = document.getElementById('semesters-grid');
 if (!semestersGrid) {
@@ -522,6 +522,18 @@ async function savePlan() {
 
 // event listener for save button
 document.getElementById('save-plan-btn')?.addEventListener('click', savePlan);
+
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('toggle-sidebar-btn');
+    const referenceCard = document.getElementById('reference-card');
+
+    if (toggleBtn && referenceCard) {
+        toggleBtn.addEventListener('click', () => {
+            const isHidden = referenceCard.classList.toggle('hidden');
+            toggleBtn.textContent = isHidden ? 'Show' : 'Hide';
+        });
+    }
+});
 
 // initialize
 if (semestersGrid) {
