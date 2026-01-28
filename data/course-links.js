@@ -5,6 +5,7 @@ const courseLinks = {
     'BIOL 106': 'https://catalog.gonzaga.edu/search/?search=BIOL+106',
     'BIOL 170': 'https://catalog.gonzaga.edu/search/?search=BIOL+170',
     'BIOL 170L': 'https://catalog.gonzaga.edu/search/?search=BIOL+170L',
+    'BIOL 170/L': 'https://catalog.gonzaga.edu/search/?search=BIOL+170L',
     'BIOL 207': 'https://catalog.gonzaga.edu/search/?search=biol+207',
     'BIOL 207L': 'https://catalog.gonzaga.edu/search/?search=BIOL+207L',
     'BIOL 370': 'https://catalog.gonzaga.edu/search/?search=BIOL+370',
@@ -12,14 +13,17 @@ const courseLinks = {
     '170L': 'https://catalog.gonzaga.edu/search/?search=BIOL+170L',
     '207L': 'https://catalog.gonzaga.edu/search/?search=BIOL+207L',
     '370L': 'https://catalog.gonzaga.edu/search/?search=BIOL+370L',
+    '370/L': 'https://catalog.gonzaga.edu/search/?search=BIOL+370L',
     '370': 'https://catalog.gonzaga.edu/search/?search=BIOL+370',
 
     // chemistry
     'CHEM 101': 'https://catalog.gonzaga.edu/search/?search=CHEM+101',
     'CHEM 102': 'https://catalog.gonzaga.edu/search/?search=CHEM+102',
     'CHEM 102L': 'https://catalog.gonzaga.edu/search/?search=CHEM+102L',
+    'CHEM 102/L': 'https://catalog.gonzaga.edu/search/?search=CHEM+102L',
     'CHEM 230': 'https://catalog.gonzaga.edu/search/?search=CHEM+230',
     'CHEM 230L': 'https://catalog.gonzaga.edu/search/?search=CHEM+230L',
+    'CHEM 230/L': 'https://catalog.gonzaga.edu/search/?search=CHEM+230L',
     'CHEM 231': 'https://catalog.gonzaga.edu/search/?search=CHEM+231',
     'CHEM 231L': 'https://catalog.gonzaga.edu/search/?search=CHEM+231L',
     'CHEM 307': 'https://catalog.gonzaga.edu/search/?search=CHEM+307',
@@ -85,10 +89,14 @@ const courseLinks = {
     // physics
     'PHYS 111': 'https://catalog.gonzaga.edu/search/?search=PHYS+111',
     'PHYS 111L': 'https://catalog.gonzaga.edu/search/?search=PHYS+111L',
+    'PHYS 111/L': 'https://catalog.gonzaga.edu/search/?search=PHYS+111',
     'PHYS 112': 'https://catalog.gonzaga.edu/search/?search=PHYS+112',
     'PHYS 112L': 'https://catalog.gonzaga.edu/search/?search=PHYS+112L',
+    'PHYS 112/L': 'https://catalog.gonzaga.edu/search/?search=PHYS+112',
     '111L': 'https://catalog.gonzaga.edu/search/?search=PHYS+111L',
     '112L': 'https://catalog.gonzaga.edu/search/?search=PHYS+112L',
+    'PHYS 121/L': 'https://catalog.gonzaga.edu/search/?search=PHYS+121L',
+    'PHYS 122/L': 'https://catalog.gonzaga.edu/search/?search=PHYS+122L',
 
     // psychology
     'PSYC 101': 'https://catalog.gonzaga.edu/search/?search=PSYC+101',

@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="fix: course codes and links">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="toggle reference courses visibility">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/js/plan.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/js/plan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/plan.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,15 +125,7 @@
       <workItem from="1769132354342" duration="8774000" />
       <workItem from="1769224332802" duration="8355000" />
       <workItem from="1769537353388" duration="10744000" />
-      <workItem from="1769550399257" duration="2906000" />
-    </task>
-    <task id="LOCAL-00032" summary="refactor plan.js duplicate code">
-      <option name="closed" value="true" />
-      <created>1767132160669</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1767132160669</updated>
+      <workItem from="1769550399257" duration="3285000" />
     </task>
     <task id="LOCAL-00033" summary="fix: create new plan path">
       <option name="closed" value="true" />
@@ -523,7 +511,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769549420926</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="toggle reference courses visibility">
+      <option name="closed" value="true" />
+      <created>1769554527209</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1769554527209</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,7 +537,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: reference dropdowns not working" />
     <MESSAGE value="CSS to Gonzaga colors" />
     <MESSAGE value="reorganized styles.css" />
     <MESSAGE value="fix: CSS in html files --&gt; styles.css" />
@@ -566,6 +561,7 @@
     <MESSAGE value="multiple course codes link fix" />
     <MESSAGE value="DEPT custom course info pages" />
     <MESSAGE value="fix: course codes and links" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: course codes and links" />
+    <MESSAGE value="toggle reference courses visibility" />
+    <option name="LAST_COMMIT_MESSAGE" value="toggle reference courses visibility" />
   </component>
 </project>

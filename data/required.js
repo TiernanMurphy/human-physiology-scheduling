@@ -8,8 +8,8 @@ const humanPhys = {
         'MATH'
     ],
     lowerDivision: [
-        'HPHY 210',
         'HPHY 205',
+        'HPHY 210',
         'HPHY 241 & 241L',
         'HPHY 242 & 242L',
         'HPHY 274',

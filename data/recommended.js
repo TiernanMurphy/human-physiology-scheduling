@@ -11,8 +11,8 @@ const recommended = {
         'CHEM 231 & 231L',
         'CHEM 307 & 307L',
         // 2 semesters of physics
-        'PHYS 111 & 111L',
-        'PHYS 112 & 112L',
+        'PHYS 111/L or PHYS 121/L',
+        'PHYS 112/L or PHYS 122/L',
         // 1-2 semesters of mathematics
         'MATH 121',
         'MATH 148 or MATH 157',
@@ -42,17 +42,18 @@ const recommended = {
         // 3 semesters of biology
         'BIOL 105 & 105L',
         'BIOL 170 & 170L',
+        'OTHER',
         // 2 semesters of chemistry
         'CHEM 101 & 101L',
-        'CHEM 102 & 102L',
+        'CHEM 102/L or CHEM 230/L',
         // 2 semesters of anatomy & physiology
         'HPHY 241 & 241L',
         'HPHY 242 & 242L',
         // 1 semester of math
         'MATH 121',
         // 2 semesters of physics
-        'PHYS 111 & 111L',
-        'PHYS 112 & 112L', ,
+        'PHYS 111/L or PHYS 121/L',
+        'PHYS 112/L or PHYS 122/L',
         // 2 semesters of psychology
         'PSYC 101',
         'PSYC',
@@ -70,8 +71,8 @@ const recommended = {
         'CHEM 231 & 231L',
         'CHEM 307 & 307L',
         // 2 semesters of physics
-        'PHYS 111 & 111L',
-        'PHYS 112 & 112L',
+        'PHYS 111/L or PHYS 121/L',
+        'PHYS 112/L or PHYS 122/L',
         // 1 - 2 semesters of mathematics
         'MATH 121',
         'MATH 148 or MATH 157',
@@ -101,7 +102,7 @@ const recommended = {
         // 3 semesters of biology
         'BIOL 105 & 105L',
         'BIOL 106',
-        'BIOL 170 & 170L',
+        'BIOL 170L or 370/L',
         // 5 semesters of chemistry
         'CHEM 101 & 101L',
         'CHEM 102 & 102L',
@@ -109,8 +110,8 @@ const recommended = {
         'CHEM 231 & 231L',
         'CHEM 307 & 307L',
         // 2 semesters of physics
-        'PHYS 111 & 111L',
-        'PHYS 112 & 112L',
+        'PHYS 111/L or PHYS 121/L',
+        'PHYS 112/L or PHYS 122/L',
         // 1 - 2 semesters of mathematics
         'MATH 121',
         'MATH 148 or MATH 157',
@@ -122,16 +123,15 @@ const recommended = {
         // 2 semesters of general biology and 1 semester of microbiology
         'BIOL 105 & 105L',
         'BIOL 106',
-        'BIOL 170 or 370',
-        'BIOL 170L or 370L',
+        'BIOL 170/L or 370/L',
         // 4 semesters of chemistry
         'CHEM 101 & 101L',
         'CHEM 102 & 102L',
         'CHEM 230 & 230L',
         'CHEM 307 & 307L',
         // 2 semesters general physics
-        'PHYS 111 & 111L',
-        'PHYS 112 & 112L',
+        'PHYS 111/L or PHYS 121/L',
+        'PHYS 112/L or PHYS 122/L',
         // 2 semesters anatomy & physiology
         'HPHY 241 & 241L',
         'HPHY 242 & 242L',
