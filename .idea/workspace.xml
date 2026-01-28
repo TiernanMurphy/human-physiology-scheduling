@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="toggle reference courses visibility">
+    <list default="true" id="ad271295-c344-4ee5-b68d-26245019cafd" name="Changes" comment="dashboard link and accuracy work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,14 +126,10 @@
       <workItem from="1769224332802" duration="8355000" />
       <workItem from="1769537353388" duration="10744000" />
       <workItem from="1769550399257" duration="3285000" />
-    </task>
-    <task id="LOCAL-00033" summary="fix: create new plan path">
-      <option name="closed" value="true" />
-      <created>1767227305181</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1767227305181</updated>
+      <workItem from="1769577259983" duration="8658000" />
+      <workItem from="1769590941727" duration="632000" />
+      <workItem from="1769623225790" duration="629000" />
+      <workItem from="1769627545102" duration="14000" />
     </task>
     <task id="LOCAL-00034" summary="feat: download all sheets button functionality">
       <option name="closed" value="true" />
@@ -519,7 +515,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769554527209</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="dashboard link and accuracy work">
+      <option name="closed" value="true" />
+      <created>1769590923419</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1769590923419</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,8 +541,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="CSS to Gonzaga colors" />
-    <MESSAGE value="reorganized styles.css" />
     <MESSAGE value="fix: CSS in html files --&gt; styles.css" />
     <MESSAGE value="fixed subsections not displaying courses" />
     <MESSAGE value="fix: add missing authentication to plans API calls" />
@@ -562,6 +564,8 @@
     <MESSAGE value="DEPT custom course info pages" />
     <MESSAGE value="fix: course codes and links" />
     <MESSAGE value="toggle reference courses visibility" />
-    <option name="LAST_COMMIT_MESSAGE" value="toggle reference courses visibility" />
+    <MESSAGE value="dashboard link and accuracy improvements" />
+    <MESSAGE value="dashboard link and accuracy work" />
+    <option name="LAST_COMMIT_MESSAGE" value="dashboard link and accuracy work" />
   </component>
 </project>
