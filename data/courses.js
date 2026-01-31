@@ -69,8 +69,17 @@ const courses = {
     'MATH': { name: 'MATH 148 (Survey of Calculus) or Higher', credits: 3 },
     'MATH 121': { name: 'Statistics', credits: 3 },
     'MATH 148': { name: 'Survey of Calculus', credits: 3 },
-    'MATH 157': { name: 'Calculus-Analytic Geometry', credits: 4 },
+    'MATH 157': { name: 'Calculus and Analytic Geometry', credits: 4 },
     'MATH 148 or MATH 157': { name: 'Survey of Calculus or Calculus-Analytic Geometry', credits: 3 },
+    'MATH 221': { name: 'Applied Statistics', credits: 3 },
+    'MATH 231': { name: 'Discrete Structures', credits: 3 },
+    'MATH 258': { name: 'Calculus and Analytic Geometry 2', credits: 3 },
+
+    // scientific inquiry
+    'BIOL 104 & 104L': { name: 'Biology Scientific Inquiry and Lab', credits: 3 },
+    'CHEM 104 & 104L': { name : 'Chemistry Scientific Inquiry and Lab', credits: 3 },
+    'PHYS 104': { name: 'Physics Scientific Inquiry', credits: 3 },
+
     // philosophy
     'PHIL 101': { name: 'Reasoning', credits: 3 },
     'PHIL 201': { name: 'Philosophy of Human Nature', credits: 3 },
@@ -96,8 +105,54 @@ const courses = {
     'PSYC': { name: '364 Abnormal Psych OR 390 Psychopathology OR 357 Lifestyle Development (varies by PT school)', credits: 3 },
 
     // religion
-    'RELI': { name: 'Christianity & Catholic Traditions', credits: 3 },
-    'RELI World/Comp': { name: 'World and Comparative Religions', credits: 3 },
+    'FYS 193a': { name: 'Christianity & Catholic Traditions', credits: 3 },
+    'FYS 193b': { name: 'World and Comparative Religions', credits: 3 },
+
+
+    // first year seminar 193
+    'FYSa 193': { name: 'Satire, Race, & Social Critique', credits: 3 },
+    'FYSb 193': { name: 'Forged by Failure (engineering)', credits: 3 },
+    'FYSc 193': { name: 'Conformity & Deviance (english dept)', credits: 3 },
+    'FYSd 193': { name: 'Spokane as Text (english dept)', credits: 3 },
+    'FYSe 193': { name: '1960s in 21 Songs (english dept)', credits: 3 },
+    'FYSf 193': { name: 'The Chernobyl Accident (history dept)', credits: 3 },
+    'FYSg 193': { name: 'Resonate Fearlessly (integrated media dept)', credits: 3 },
+    'FYSh 193': { name: 'Knitting (math dept)', credits: 3 },
+    'FYSi 193': { name: 'Exploring Austria (modern language dept)', credits: 3 },
+    'FYSj 193': { name: 'Latin Noir (modern language dept)', credits: 3 },
+    'FYSk 193': { name: 'Social Justice and Music (music dept)', credits: 3 },
+    'FYSl 193': { name: 'Caring Matters (nursing dept)', credits: 3 },
+    'FYSm 193': { name: 'Care, Listening, & Health (philosophy dept)', credits: 3 },
+    'FYSn 193': { name: 'Spirituality and Sport (religion dept)', credits: 3 },
+    'FYSo 193': { name: 'Problem of God (religion dept)', credits: 3 },
+    'FYSp 193': { name: 'Difference and Dialogue (religion dept)', credits: 3 },
+    'FYSq 193': { name: 'Violence & the Humanities (religion dept)', credits: 3 },
+    'FYSs 193': { name: 'Why do I do What I do? (special ed dept)', credits: 3 },
+    'FYSt 193': { name: 'Learning Theory & Epistemology (teacher education dept)', credits: 3 },
+    'FYSu 193': { name: 'Gender, Sexuality, & Games (gender studies dept)', credits: 3 },
+    'MATH 193': { name: 'Math First Year Seminar', credits: 3 },
+
+    // core integration seminar 432
+    'CIS 432a': { name: 'Catholic Social Teaching & Public Health', credits: 3 },
+    'CIS 432b': { name: 'Dorothy Day & Catholic Workers Movement', credits: 3 },
+    'CIS 432c': { name: 'Kids, Media, and Consumer Culture (communication dept)', credits: 3 },
+    'CIS 432d': { name: 'The American Dream (english dept)', credits: 3 },
+    'CIS 432e': { name: 'Philosophy in Film (film studies dept)', credits: 3 },
+    'CIS 432f': { name: 'All Art is Propaganda', credits: 3 },
+    'CIS 432g': { name: 'Catholic Social Teaching & Public Health', credits: 3 },
+    'CIS 432h': { name: 'The Examined Life (honors dept)', credits: 3 },
+    'CIS 432i': { name: 'Global Conflict & Humanitarian Action (international studies)', credits: 3 },
+    'CIS 432j': { name: 'Classic Criticisms of Democracy (philosophy dept)', credits: 3 },
+    'CIS 432k': { name: 'Health Care Ethics (philosophy dept)', credits: 3 },
+    'CIS 432l': { name: 'Solidarity & Social Justice (philosophy dept)', credits: 3 },
+    'CIS 432m': { name: 'Theories of Social Justice (philosophy dept)', credits: 3 },
+    'CIS 432n': { name: 'Science & Society (philosophy dept)', credits: 3 },
+    'CIS 432o': { name: 'Modeling Social Believers', credits: 3 },
+    'CIS 432p': { name: 'Care for the Person & Planet (religion dept)', credits: 3 },
+    'CIS 432q': { name: 'Advocacy & Policy', credits: 3 },
+    'CIS 432r': { name: 'Advocacy & Policy (teacher education dept)', credits: 3 },
+    'CIS 432s': { name: 'Arts & Community (theatre arts dept)', credits: 3 },
+    'CIS 432t': { name: 'Gender & Media Activism (gender studies dept)', credits: 3 },
 
     // other
     'SOCI 101': { name: 'Introduction to Sociology', credits: 3 },

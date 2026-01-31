@@ -111,8 +111,11 @@ const courseLinks = {
     // sociology
     'SOCI 101': 'https://catalog.gonzaga.edu/search/?search=SOCI+101',
 
+    // first year seminar
+
     // other
     'CLAS 199': 'https://catalog.gonzaga.edu/search/?search=CLAS+199',
+    'OTHER': 'https://catalog.gonzaga.edu/search/?search=',
 };
 
 export default courseLinks;

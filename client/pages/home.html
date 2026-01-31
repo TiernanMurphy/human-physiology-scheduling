@@ -32,10 +32,10 @@
         <p></p>
     </header>
 
-    <!-- Required HP Courses Section -->
+    <!-- HPHY Requirements -->
     <section class="course-section">
         <div class="section-header" data-section="required-courses">
-            <h3>Required Human Physiology Courses</h3>
+            <h3>Human Physiology Requirements</h3>
             <div class="header-actions">
                 <button class="btn-download" data-section="required-courses">
                     Download as PDF
@@ -46,26 +46,26 @@
         <div id="required-courses" class="course-content hidden">
             <div class="subsection">
                 <h4 class="collapsed">Core STEM</h4>
-                <div class="subsection-content collapsed">
-                    <div id="core-stem-courses" class="course-list"></div>
+                <div class="subsection-content">
+                    <div id="core-stem" class="course-list"></div>
                 </div>
             </div>
             <div class="subsection">
                 <h4 class="collapsed">Lower Division</h4>
-                <div class="subsection-content collapsed">
-                    <div id="lower-division-courses" class="course-list"></div>
+                <div class="subsection-content">
+                    <div id="lower-division" class="course-list"></div>
                 </div>
             </div>
             <div class="subsection">
                 <h4 class="collapsed">Upper Division</h4>
-                <div class="subsection-content collapsed">
-                    <div id="upper-division-courses" class="course-list"></div>
+                <div class="subsection-content">
+                    <div id="upper-division" class="course-list"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- GU Core Courses Section -->
+    <!-- Leftover GU Core Requirements -->
     <section class="course-section">
         <div class="section-header" data-section="gu-core-courses">
             <h3>GU Core Requirements</h3>
@@ -77,108 +77,65 @@
             <span class="dropdown-arrow">▼</span>
         </div>
         <div id="gu-core-courses" class="course-content hidden">
+            <p>This doesn't include every GU core requirement, just those which aren't met by Human Physiology required courses</p>
             <div class="subsection">
                 <h4 class="collapsed">Year 1</h4>
-                <div class="subsection-content collapsed">
+                <div class="subsection-content">
                     <div id="core-year1" class="course-list"></div>
                 </div>
             </div>
             <div class="subsection">
                 <h4 class="collapsed">Year 2</h4>
-                <div class="subsection-content collapsed">
+                <div class="subsection-content">
                     <div id="core-year2" class="course-list"></div>
                 </div>
             </div>
             <div class="subsection">
                 <h4 class="collapsed">Year 3</h4>
-                <div class="subsection-content collapsed">
+                <div class="subsection-content">
                     <div id="core-year3" class="course-list"></div>
                 </div>
             </div>
             <div class="subsection">
                 <h4 class="collapsed">Year 4</h4>
-                <div class="subsection-content collapsed">
+                <div class="subsection-content">
                     <div id="core-year4" class="course-list"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sample 4-Year Plan Section -->
+    <!-- Recommended Schedules -->
     <section class="course-section">
-        <div class="section-header" data-section="sample-plan">
-            <h3>Sample 4-Year Progression</h3>
+        <div class="section-header" data-section="recommended-schedules-draft">
+            <h3>Recommended Schedules (based on career path)</h3>
             <div class="header-actions">
-                <button class="btn-download" data-section="sample-plan">
+                <button class="btn-download" data-section="recommended-schedules-draft">
                     Download as PDF
                 </button>
             </div>
             <span class="dropdown-arrow">▼</span>
         </div>
-        <div id="sample-plan" class="course-content hidden">
-            <div class="subsection">
-                <h4 class="collapsed">Freshman Year</h4>
-                <div class="subsection-content collapsed">
-                    <div class="semester-container">
-                        <div class="semester">
-                            <h5>Fall</h5>
-                            <div id="freshman-fall" class="course-list"></div>
-                        </div>
-                        <div class="semester">
-                            <h5>Spring</h5>
-                            <div id="freshman-spring" class="course-list"></div>
-                        </div>
-                    </div>
-                </div>
+        <div id="recommended-schedules-draft" class="course-content hidden">
+            <p>
+                These schedules are a good starting point, but talk to your advisor and ensure you create a plan that
+                works for you.
+            </p><br>
+            <div class="career-path-selector">
+                <label for="career-path">Select a career path:</label>
+                <select id="recommended-schedules-career-path">
+                    <option value="clear">Select a path...</option>
+                    <option value="Medicine">Medicine or Osteopathy</option>
+                    <option value="Physician Assistant">Physician Assistant</option>
+                    <option value="Dental">Dental</option>
+                    <option value="Physical Therapy">Physical Therapy</option>
+                    <option value="Occupational Therapy">Occupational Therapy</option>
+                    <option value="Pharmacy">Pharmacy</option>
+                    <option value="Optometry">Optometry</option>
+                </select>
             </div>
 
-            <div class="subsection">
-                <h4 class="collapsed">Sophomore Year</h4>
-                <div class="subsection-content collapsed">
-                    <div class="semester-container">
-                        <div class="semester">
-                            <h5>Fall</h5>
-                            <div id="sophomore-fall" class="course-list"></div>
-                        </div>
-                        <div class="semester">
-                            <h5>Spring</h5>
-                            <div id="sophomore-spring" class="course-list"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="subsection">
-                <h4 class="collapsed">Junior Year</h4>
-                <div class="subsection-content collapsed">
-                    <div class="semester-container">
-                        <div class="semester">
-                            <h5>Fall</h5>
-                            <div id="junior-fall" class="course-list"></div>
-                        </div>
-                        <div class="semester">
-                            <h5>Spring</h5>
-                            <div id="junior-spring" class="course-list"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="subsection">
-                <h4 class="collapsed">Senior Year</h4>
-                <div class="subsection-content collapsed">
-                    <div class="semester-container">
-                        <div class="semester">
-                            <h5>Fall</h5>
-                            <div id="senior-fall" class="course-list"></div>
-                        </div>
-                        <div class="semester">
-                            <h5>Spring</h5>
-                            <div id="senior-spring" class="course-list"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="recommended-schedules-display"></div>
         </div>
     </section>
 
@@ -194,10 +151,15 @@
             <span class="dropdown-arrow">▼</span>
         </div>
         <div id="recommended" class="course-content hidden">
+            <p>
+                This coursework isn't explicitly required for your degree, but taking the recommended courses for your career path
+                is important for graduate program admission. This only includes coursework that doesn't overlap with Human Physiology's
+                required courses (which you'll take anyway).
+            </p><br>
             <div class="career-path-selector">
                 <label for="career-path">Select a career path:</label>
                 <select id="career-path">
-                    <option value="">Select a path...</option>
+                    <option value="clear">Select a path...</option>
                     <option value="medicine">Medicine or Osteopathy</option>
                     <option value="physician_assistant">Physician Assistant</option>
                     <option value="dental">Dental</option>
@@ -211,6 +173,84 @@
             <div id="recommended-courses-display"></div>
         </div>
     </section>
+
+    <!--    Sample 4-Year Plan Section &ndash;&gt;-->
+    <!--    <section class="course-section">-->
+    <!--        <div class="section-header" data-section="sample-plan">-->
+    <!--            <h3>Sample 4-Year Progression</h3>-->
+    <!--            <div class="header-actions">-->
+    <!--                <button class="btn-download" data-section="sample-plan">-->
+    <!--                    Download as PDF-->
+    <!--                </button>-->
+    <!--            </div>-->
+    <!--            <span class="dropdown-arrow">▼</span>-->
+    <!--        </div>-->
+    <!--        <div id="sample-plan" class="course-content hidden">-->
+    <!--            <div class="subsection">-->
+    <!--                <h4 class="collapsed">Freshman Year</h4>-->
+    <!--                <div class="subsection-content collapsed">-->
+    <!--                    <div class="semester-container">-->
+    <!--                        <div class="semester">-->
+    <!--                            <h5>Fall</h5>-->
+    <!--                            <div id="freshman-fall" class="course-list"></div>-->
+    <!--                        </div>-->
+    <!--                        <div class="semester">-->
+    <!--                            <h5>Spring</h5>-->
+    <!--                            <div id="freshman-spring" class="course-list"></div>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            <div class="subsection">-->
+    <!--                <h4 class="collapsed">Sophomore Year</h4>-->
+    <!--                <div class="subsection-content collapsed">-->
+    <!--                    <div class="semester-container">-->
+    <!--                        <div class="semester">-->
+    <!--                            <h5>Fall</h5>-->
+    <!--                            <div id="sophomore-fall" class="course-list"></div>-->
+    <!--                        </div>-->
+    <!--                        <div class="semester">-->
+    <!--                            <h5>Spring</h5>-->
+    <!--                            <div id="sophomore-spring" class="course-list"></div>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            <div class="subsection">-->
+    <!--                <h4 class="collapsed">Junior Year</h4>-->
+    <!--                <div class="subsection-content collapsed">-->
+    <!--                    <div class="semester-container">-->
+    <!--                        <div class="semester">-->
+    <!--                            <h5>Fall</h5>-->
+    <!--                            <div id="junior-fall" class="course-list"></div>-->
+    <!--                        </div>-->
+    <!--                        <div class="semester">-->
+    <!--                            <h5>Spring</h5>-->
+    <!--                            <div id="junior-spring" class="course-list"></div>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            <div class="subsection">-->
+    <!--                <h4 class="collapsed">Senior Year</h4>-->
+    <!--                <div class="subsection-content collapsed">-->
+    <!--                    <div class="semester-container">-->
+    <!--                        <div class="semester">-->
+    <!--                            <h5>Fall</h5>-->
+    <!--                            <div id="senior-fall" class="course-list"></div>-->
+    <!--                        </div>-->
+    <!--                        <div class="semester">-->
+    <!--                            <h5>Spring</h5>-->
+    <!--                            <div id="senior-spring" class="course-list"></div>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </section>-->
 
     <!-- Quick Actions -->
     <section class="quick-actions">

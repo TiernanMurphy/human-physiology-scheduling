@@ -39,9 +39,7 @@
             </div>
         </div>
 
-        <div class="semesters-grid" id="semesters-grid">
-            <!-- semesters put here by js -->
-        </div>
+        <div class="semesters-grid" id="semesters-grid"></div>
 
         <button class="add-semester-btn" id="add-semester-btn">
             + Add Semester
@@ -55,46 +53,16 @@
         </button>
         <div class="reference-card" id="reference-card">
             <div class="tabs">
-                <button class="tab active" data-tab="required">Required</button>
-                <button class="tab" data-tab="recommended">Sample Plan</button>
+                <button class="tab active" data-tab="required">Requirements</button>
+                <button class="tab" data-tab="recommended">Example Plans</button>
+                <button class="tab" data-tab="recommended2">Recommended Coursework</button>
                 <button class="tab" data-tab="electives">Electives</button>
             </div>
 
-            <div class="course-list active" id="required-courses">
-                <div class="course-item">
-                    <div class="course-code">BIOL 201</div>
-                    <div class="course-name">Human Anatomy</div>
-                </div>
-                <div class="course-item">
-                    <div class="course-code">CHEM 101</div>
-                    <div class="course-name">General Chemistry I</div>
-                </div>
-                <div class="course-item">
-                    <div class="course-code">MATH 147</div>
-                    <div class="course-name">Calculus I</div>
-                </div>
-            </div>
-
-            <div class="course-list" id="recommended-courses">
-                <div class="course-item">
-                    <div class="course-code">PSYC 101</div>
-                    <div class="course-name">Intro to Psychology</div>
-                </div>
-                <div class="course-item">
-                    <div class="course-code">BIOL 300</div>
-                    <div class="course-name">Genetics</div>
-                </div>
-            </div>
-
-            <div class="course-list" id="electives-courses">
-                <div class="course-item">
-                    <div class="course-code">PHIL 201</div>
-                    <div class="course-name">Ethics</div>
-                </div>
-                <div class="course-item">
-                    <div class="course-code">ENGL 205</div>
-                    <div class="course-name">Creative Writing</div>
-                </div>
+            <div class="course-list active" id="required-courses"></div>
+            <div class="course-list" id="recommended-courses"></div>
+            <div class="course-list" id="recommended2-courses"></div>
+            <div class="course-list" id="electives-courses"></div>
             </div>
         </div>
     </div>

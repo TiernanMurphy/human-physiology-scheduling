@@ -202,6 +202,8 @@ h4, h5, h6 {
 
 .course-content {
     padding: 20px;
+    overflow-y: auto;
+    max-height: 500px;
 }
 
 .course-content.hidden {
@@ -227,7 +229,7 @@ h4, h5, h6 {
     grid-template-columns: 100px minmax(75px, 1fr) 2fr 120px;
     gap: 20px;
     align-items: center;
-    padding: 12px 15px;
+    padding: 6px 7px;
     background-color: #fafafa;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -314,7 +316,7 @@ h4, h5, h6 {
 
 .subsection h4 {
     margin-bottom: 0;
-    padding: 30px 30px 10px 30px;
+    padding: 13px 13px 10px 10px;
     border-bottom: 2px solid #3498db;
     color: #2c3e50;
     cursor: pointer;
@@ -322,7 +324,7 @@ h4, h5, h6 {
     position: relative;
     transition: background-color 0.2s ease;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 600;
 }
 
@@ -346,13 +348,30 @@ h4, h5, h6 {
 
 .subsection-content {
     display: block;
-    max-height: 1000px;
     overflow: hidden;
     transition: max-height 0.3s ease;
 }
 
 .subsection-content.collapsed {
     max-height: 0;
+}
+
+.plan-subsection {
+    margin-bottom: 25px;
+}
+
+.plan-subsection h4 {
+    margin-bottom: 0;
+    padding: 13px 13px 10px 10px;
+    border-bottom: 2px solid #3498db;
+    color: #2c3e50;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    transition: background-color 0.2s ease;
+    border-radius: 4px;
+    font-size: 17px;
+    font-weight: 600;
 }
 
 /* ========================================
@@ -1028,14 +1047,19 @@ h4, h5, h6 {
 }
 
 .toggle-reference-section {
+    position: absolute;
     background: none;
     border: none;
-    color: #002f87;
-    font-weight: 600;
-    font-size: 0.95em;
+    color: #1e3a8a;
+    font-weight: 400;
     cursor: pointer;
-    padding: 5px 8px;
-    transition: color 0.2s ease;
+    padding: 8px 16px;
+    font-size: 16px;
+    z-index: 10;
+}
+
+.toggle-reference-section:hover {
+    color: #0047b3;
 }
 
 /* Radio Buttons */
@@ -1500,17 +1524,43 @@ h4, h5, h6 {
     plan.html
     ======================================== */
 .plan-container {
+    position: relative;
     display: flex;
     gap: 20px;
+    width: 100%;
     padding: 20px;
-    max-width: 1400px;
-    margin: 0 auto;
+}
+
+/* Hide the reference section */
+.reference-section.hidden .reference-card{
+    display: none;
+}
+
+.reference-section.hidden {
+    flex: 0 0 auto;
+    min-width: auto;
+    width: auto;
+    overflow: visible;
+}
+
+/* Default: single column */
+.semesters-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Two columns when reference is hidden */
+.semesters-grid.full-width {
+    grid-template-columns: 1fr 1fr;
 }
 
 /* left side - schedule grid */
 .schedule-section {
-    flex: 2;
+    flex: 3;
     min-width: 0;
+    overflow-y: auto;
+    max-height: calc(100vh - 150px);
 }
 
 .plan-header {
@@ -1540,7 +1590,6 @@ h4, h5, h6 {
 
 .semesters-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
 
@@ -1611,14 +1660,15 @@ h4, h5, h6 {
 
 /* right side - course reference */
 .reference-section {
-    flex: 1;
+    flex: 2;
     min-width: 0;
-    position: sticky;
-    top: 20px;
-    height: fit-content;
+    position: relative;
+    margin-top: 40px;
 }
 
 .reference-card {
+    overflow-y: auto;
+    max-height: 800px;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
@@ -1659,6 +1709,43 @@ h4, h5, h6 {
 
 .reference-card .course-list.active {
     display: block;
+}
+
+.reference-checkbox-label {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* pushes it to the right if the row is a flexbox */
+}
+
+/* Base state */
+.subsection .subsection h6 {
+    font-size: 1.1rem;
+    color: black;
+    cursor: pointer;
+    user-select: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Hover */
+.subsection .subsection h6:hover {
+    background-color: #eef2ff; /* light blue tint to match your theme */
+}
+
+/* Arrow indicator — rotates when expanded */
+.subsection .subsection h6::before {
+    content: '▸';
+    font-size: 0.75rem;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.subsection .subsection h6:not(.collapsed)::before {
+    transform: rotate(90deg); /* points down when open */
 }
 
 .course-item {
@@ -1801,7 +1888,7 @@ h4, h5, h6 {
     }
 
     .reference-section {
-        position: static; /* Remove sticky on smaller screens */
+        position: relative; /* Remove sticky on smaller screens */
     }
 
     .semesters-grid {

@@ -6,7 +6,7 @@ import courseLinks from '/data/course-links.js';
 import { generateSectionPDF } from "./pdf-generator.js";
 
 // show/hide sections
-function toggleSection(sectionId) {
+export function toggleSection(sectionId) {
     const content = document.getElementById(sectionId);
     const arrow = content.previousElementSibling.querySelector('.dropdown-arrow');
 
@@ -99,8 +99,6 @@ export function createReferenceRow(courseCode) {
     if (!courseData) return null;
 
     const row = document.createElement('div');
-    // row.className = 'course-row';
-
     row.className = 'reference-course-row';
 
     let referenceCodeHTML;
@@ -134,11 +132,19 @@ export function createReferenceRow(courseCode) {
         ${referenceCodeHTML}
         <div class="reference-course-name">${courseData.name}</div>
         <div class="reference-course-credits">${courseData.credits} ${courseData.credits === 1 ? 'credit' : 'credits'}</div>    
+        <label class="reference-checkbox-label">
+            <input type="checkbox" class="reference-row-checkbox">
+        </label>
     `;
+
+    // grab the checkbox after innerHTML is set
+    const checkbox = row.querySelector('.reference-row-checkbox');
+    checkbox.addEventListener('change', () => {
+        row.style.backgroundColor = checkbox.checked ? '#d4edda' : '';
+    });
 
     return row;
 }
-
 
 // add courses to a section
 function populateCourseSection(elementId, courseCodes) {
@@ -234,12 +240,12 @@ function displayRecommendedCourses(courseCodes, pathKey) {
 
             const heading = document.createElement('h4');
             heading.textContent = subjectLabels[subject];
-            heading.className = 'collapsed';
+            heading.className = '';
 
             subsection.appendChild(heading);
 
             const content = document.createElement('div');
-            content.className = 'subsection-content collapsed';
+            content.className = 'subsection-content';
 
             codes.forEach(code => {
                 const row = createCourseRow(code);
@@ -254,15 +260,62 @@ function displayRecommendedCourses(courseCodes, pathKey) {
     });
 }
 
+function displayRecommendedSchedule(careerPath) {
+    const displayContainer = document.getElementById('recommended-schedules-display');
+    if (!displayContainer) return;
+
+    // let user clear schedule
+    const scheduleSelect = document.getElementById('recommended-schedules-career-path');
+    if (!scheduleSelect) {
+        displayContainer.innerHTML = '';
+    }
+
+    const semesters = [
+        { title: 'Freshman Fall', courses: progression.freshman.fall },
+        { title: 'Freshman Spring', courses: progression.freshman.spring },
+        { title: 'Sophomore Fall', courses: progression.sophomore.fall },
+        { title: 'Sophomore Spring', courses: progression.sophomore.spring },
+        { title: 'Junior Fall', courses: progression.junior.fall },
+        { title: 'Junior Spring', courses: progression.junior.spring },
+        { title: 'Senior Fall', courses: progression.senior.fall },
+        { title: 'Senior Spring', courses: progression.senior.spring },
+    ];
+
+    // container for content shown after selection
+    const courseworkContainer = document.createElement('div');
+    courseworkContainer.id = 'coursework-container';
+    displayContainer.appendChild(courseworkContainer);
+
+    displayContainer.innerHTML = `<h4 class="recommended-header">Pre-${careerPath} Sample Plan</h4>`;
+
+    // add each semester and its courses
+    semesters.forEach(({ title, courses }) => {
+        // semester heading
+        const semesterHeader = document.createElement('h4');
+        semesterHeader.textContent = title;
+        semesterHeader.className = 'subsection';
+        displayContainer.appendChild(semesterHeader);
+
+        // add courses
+        const content = document.createElement('div');
+        courses.forEach(course => {
+            const row = createCourseRow(course);
+            if (row) content.appendChild(row);
+        });
+
+        displayContainer.appendChild(content);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    // render Human Phys required courses
+    // HPHY requirements
     populateMultipleSections({
-        'core-stem-courses': humanPhys.coreSTEM,
-        'lower-division-courses': humanPhys.lowerDivision,
-        'upper-division-courses': humanPhys.upperDivision
+        'core-stem': humanPhys.coreSTEM,
+        'lower-division': humanPhys.lowerDivision,
+        'upper-division': humanPhys.upperDivision,
     });
 
-    // render GU Core required courses
+    // GU core classes
     populateMultipleSections({
         'core-year1': core.year1,
         'core-year2': core.year2,
@@ -270,17 +323,40 @@ document.addEventListener('DOMContentLoaded', function() {
         'core-year4': core.year4
     });
 
-    // render sample progression courses
+    // recommended schedules
     populateMultipleSections({
-        'freshman-fall': progression.freshman.fall,
-        'freshman-spring': progression.freshman.spring,
-        'sophomore-fall': progression.sophomore.fall,
-        'sophomore-spring': progression.sophomore.spring,
-        'junior-fall': progression.junior.fall,
-        'junior-spring': progression.junior.spring,
-        'senior-fall': progression.senior.fall,
-        'senior-spring': progression.senior.spring
+        // undecided 4 year plan
+        'undecided-freshman-fall-schedule': progression.freshman.fall,
+        'undecided-freshman-spring-schedule': progression.freshman.spring,
+        'undecided-sophomore-fall-schedule': progression.sophomore.fall,
+        'undecided-sophomore-spring-schedule': progression.sophomore.spring,
+        'undecided-junior-fall-schedule': progression.junior.fall,
+        'undecided-junior-spring-schedule': progression.junior.spring,
+        'undecided-senior-fall-schedule': progression.senior.fall,
+        'undecided-senior-spring-schedule': progression.senior.spring,
     });
+    populateMultipleSections({
+        // recommended coursework for now (redundancies removed)
+        'pre-med-schedule': recommended.medicine,
+        'pre-physician-schedule': recommended.physician_assistant,
+        'pre-dental-schedule': recommended.dental,
+        'pre-physical-therapy-schedule': recommended.physical_therapy,
+        'pre-occupational-therapy-schedule': recommended.occupational_therapy,
+        'pre-pharmacy-schedule': recommended.pharmacy,
+        'pre-optometry-schedule': recommended.optometry,
+    });
+
+    // sample progression classes
+    // populateMultipleSections({
+    //     'freshman-fall': progression.freshman.fall,
+    //     'freshman-spring': progression.freshman.spring,
+    //     'sophomore-fall': progression.sophomore.fall,
+    //     'sophomore-spring': progression.sophomore.spring,
+    //     'junior-fall': progression.junior.fall,
+    //     'junior-spring': progression.junior.spring,
+    //     'senior-fall': progression.senior.fall,
+    //     'senior-spring': progression.senior.spring
+    // });
 
     // listener for download as pdf buttons
     document.querySelectorAll('.btn-download').forEach(button => {
@@ -291,14 +367,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // recommended schedule selector
+    const scheduleSelect = document.getElementById('recommended-schedules-career-path');
+    if (scheduleSelect) {
+        scheduleSelect.addEventListener('change', function(e) {
+            const scheduleChoice = e.target.value;
+            if (scheduleChoice === 'clear') {
+                const scheduleContainer = document.getElementById('recommended-schedules-display');
+                scheduleContainer.innerHTML = '';
+                return;
+            }
+            displayRecommendedSchedule(scheduleChoice);
+        });
+    }
+
     // career path selector
     const careerPathSelect = document.getElementById('career-path');
     if (careerPathSelect) {
         careerPathSelect.addEventListener('change', function(e) {
             const selectedPath = e.target.value;
-            if (selectedPath && recommended[selectedPath]) {
-                displayRecommendedCourses(recommended[selectedPath], selectedPath);
+            if (selectedPath === 'clear') {
+                const coursesContainer = document.getElementById('recommended-courses-display');
+                coursesContainer.innerHTML = '';
+                return;
             }
+            displayRecommendedCourses(recommended[selectedPath], selectedPath);
         });
     }
 

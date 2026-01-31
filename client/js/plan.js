@@ -1,8 +1,9 @@
 import courses from '/data/courses.js';
-import { humanPhys } from '/data/required.js';
+import { humanPhys, core } from '/data/required.js';
 import electives from '/data/electives.js';
 import progression from '/data/progression.js';
 import { createReferenceRow } from "./main.js";
+import recommended from "../../data/recommended.js";
 
 const semestersGrid = document.getElementById('semesters-grid');
 if (!semestersGrid) {
@@ -14,15 +15,13 @@ let selectedSlot = null;
 
 // shared function for adding course to selected slot
 function addCourseToSelectedSlot(courseCode) {
-    if (selectedSlot) {
-        const courseData = courses[courseCode];
-        if (courseData) {
-            selectedSlot.value = `${courseCode} - ${courseData.name}`;
-            selectedSlot.classList.remove('selected');
-            selectedSlot = null;
-        }
-    } else {
-        alert('Please select a course slot first');
+    if (!selectedSlot) return
+    const courseData = courses[courseCode];
+    if (courseData) {
+        const creditText = courseData.credits === 1 ? 'credit' : 'credits';
+        selectedSlot.value = `${courseCode}  -  ${courseData.name}  (${courseData.credits} ${creditText})`;
+        selectedSlot.classList.remove('selected');
+        selectedSlot = null;
     }
 }
 
@@ -58,7 +57,7 @@ function createCourseSlots(count) {
     for (let i = 0; i < count; i++) {
         slots += `
             <div class="course-slot-container" data-slot="${i}">
-                <input type="text" class="course-slot" placeholder="Type to search">
+                <input type="text" class="course-slot" placeholder="Type or search">
                 <button class="delete-course" title="Remove slot">×</button>
             </div>
         `;
@@ -155,18 +154,31 @@ document.getElementById('add-semester-btn')?.addEventListener('click', () => {
 
 function populateRequiredCourses() {
     const requiredContainer = document.getElementById('required-courses');
-    console.log('Required container:', requiredContainer);
     if (!requiredContainer) return;
 
     requiredContainer.innerHTML = '';
 
     const sections = [
-        { title: 'Core STEM', courses: humanPhys.coreSTEM },
-        { title: 'Lower Division', courses: humanPhys.lowerDivision },
-        { title: 'Upper Division', courses: humanPhys.upperDivision }
+        {
+            title: 'Human Physiology Required Courses',
+            subsections: [
+                { title: 'Core STEM', courses: humanPhys.coreSTEM },
+                { title: 'Lower Division', courses: humanPhys.lowerDivision },
+                { title: 'Upper Division', courses: humanPhys.upperDivision }
+            ]
+        },
+        {
+            title: "GU Core Requirements (doesn't include those met by HPHY requirements)",
+            subsections: [
+                { title: 'Year 1', courses: core.year1 },
+                { title: 'Year 2', courses: core.year2 },
+                { title: 'Year 3', courses: core.year3 },
+                { title: 'Year 4', courses: core.year4 }
+            ]
+        }
     ];
 
-    sections.forEach(({ title, courses: courseCodes }) => {
+    sections.forEach(({ title, subsections }) => {
         const section = document.createElement('div');
         section.className = 'subsection';
 
@@ -174,33 +186,164 @@ function populateRequiredCourses() {
         header.textContent = title;
         header.classList.add('collapsed');
 
-        const content = document.createElement('div');
-        content.className = 'subsection-content collapsed';
+        const sectionContent = document.createElement('div');
+        sectionContent.className = 'subsection-content collapsed';
 
-        courseCodes.forEach(code => {
-            const row = createReferenceRow(code);
-            if (row) {
-                row.style.cursor = 'pointer';
-                row.addEventListener('click', () => addCourseToSelectedSlot(code));
-                content.appendChild(row);
-            }
+        // Loop over each subsection within this section
+        subsections.forEach(({ title: subTitle, courses }) => {
+            const subsection = document.createElement('div');
+            subsection.className = 'subsection';
+
+            const subHeader = document.createElement('h6');
+            subHeader.textContent = subTitle;
+
+            const subContent = document.createElement('div');
+            subContent.className = 'subsection-content';
+
+            // Loop over each course code in this subsection
+            courses.forEach(code => {
+                const row = createReferenceRow(code);
+                if (row) {
+                    row.style.cursor = 'pointer';
+                    row.addEventListener('click', () => addCourseToSelectedSlot(code));
+                    subContent.appendChild(row);
+                }
+            });
+
+            // Toggle collapse for subsection
+            subHeader.addEventListener('click', (e) => {
+                e.stopPropagation();
+                subHeader.classList.toggle('collapsed');
+                subContent.classList.toggle('collapsed');
+            });
+
+            subsection.appendChild(subHeader);
+            subsection.appendChild(subContent);
+            sectionContent.appendChild(subsection);
         });
 
-        // toggle collapse on click
-        header.addEventListener('click', () => {
-            console.log('Header clicked!', title);
+        // Toggle collapse for section
+        header.addEventListener('click', (e) => {
             e.stopPropagation();
-            header.classList.toggle('collapsed');
-            content.classList.toggle('collapsed');
+            header.toggle('collapsed');
+            sectionContent.classList.toggle('collapsed');
         });
 
         section.appendChild(header);
-        section.appendChild(content);
-
+        section.appendChild(sectionContent);
         requiredContainer.appendChild(section);
     });
 
     console.log("required courses populated");
+}
+
+function populateSampleProgression() {
+    const progressionContainer = document.getElementById('recommended-courses');
+    if (!progressionContainer) return;
+
+    const semesters = [
+        { title: 'Freshman Fall', courses: progression.freshman.fall },
+        { title: 'Freshman Spring', courses: progression.freshman.spring },
+        { title: 'Sophomore Fall', courses: progression.sophomore.fall },
+        { title: 'Sophomore Spring', courses: progression.sophomore.spring },
+        { title: 'Junior Fall', courses: progression.junior.fall },
+        { title: 'Junior Spring', courses: progression.junior.spring },
+        { title: 'Senior Fall', courses: progression.senior.fall },
+        { title: 'Senior Spring', courses: progression.senior.spring },
+    ];
+
+    progressionContainer.innerHTML = '<div id="recommended" class="course-content">\n' +
+        '                <div class="career-path-selector">\n' +
+        '                    <label for="career-path">Select a career path:</label>\n' +
+        '                    <select id="career-path">\n' +
+        '                        <option value="">-- Select a path --</option>\n' +
+        '                        <option value="undecided">Undecided</option>\n' +
+        '                        <option value="medicine">Medicine or Osteopathy</option>\n' +
+        '                        <option value="physicianAssistant">Physician Assistant</option>\n' +
+        '                        <option value="dental">Dental</option>\n' +
+        '                        <option value="physicalTherapy">Physical Therapy</option>\n' +
+        '                        <option value="occupationalTherapy">Occupational Therapy</option>\n' +
+        '                        <option value="pharmacy">Pharmacy</option>\n' +
+        '                        <option value="optometry">Optometry</option>\n' +
+        '                    </select>\n' +
+        '                </div>\n' +
+        '            </div>';
+
+    const careerPath = document.getElementById('career-path');
+
+    // container for content shown after selection
+    const courseworkContainer = document.createElement('div');
+    courseworkContainer.id = 'coursework-container';
+    progressionContainer.appendChild(courseworkContainer);
+
+    // listen for career path selections
+    careerPath.addEventListener('change', (e) => {
+        const selectedPath = e.target.value;
+
+        if (!selectedPath) {
+            courseworkContainer.innerHTML = '';
+            return;
+        }
+
+        // add all semesters
+        semesters.forEach(( { title, courses }) => {
+           const semesterHeader = document.createElement('div');
+           semesterHeader.textContent = title;
+           semesterHeader.className = 'subsection';
+           courseworkContainer.appendChild(semesterHeader);
+
+           const content = document.createElement('div');
+           courses.forEach((course) => {
+              const row = createReferenceRow(course);
+              if (row) {
+                  content.appendChild(row);
+              }
+           });
+
+           courseworkContainer.appendChild(content);
+        });
+    });
+}
+
+function populateRecommendedCourses() {
+    // pre-selection container
+    const container = document.getElementById('recommended2-courses');
+    if (!container) return;
+
+    container.innerHTML = '<div id="recommended" class="course-content">\n' +
+        '                <div class="career-path-selector">\n' +
+        '                    <label for="career-path">Select a career path:</label>\n' +
+        '                    <select id="career-path2">\n' +
+        '                        <option value="">-- Select a path --</option>\n' +
+        '                        <option value="medicine">Medicine or Osteopathy</option>\n' +
+        '                        <option value="physician_assistant">Physician Assistant</option>\n' +
+        '                        <option value="dental">Dental</option>\n' +
+        '                        <option value="physical_therapy">Physical Therapy</option>\n' +
+        '                        <option value="occupational_therapy">Occupational Therapy</option>\n' +
+        '                        <option value="pharmacy">Pharmacy</option>\n' +
+        '                        <option value="optometry">Optometry</option>\n' +
+        '                    </select>\n' +
+        '                </div>\n' +
+        '            </div>';
+
+    const careerPath = document.getElementById('career-path2');
+
+    // container for content shown after selection
+    const courseworkContainer = document.createElement('div');
+    courseworkContainer.id = 'coursework-container2';
+    container.appendChild(courseworkContainer);
+
+    careerPath.addEventListener('change', function(e) {
+       const chosenPath = e.target.value;
+       courseworkContainer.innerHTML = '';
+
+       const coursework = recommended[chosenPath];
+
+       coursework.forEach(course => {
+           const row = createReferenceRow(course);
+           courseworkContainer.appendChild(row);
+       });
+    });
 }
 
 function populateElectives() {
@@ -217,87 +360,6 @@ function populateElectives() {
             electivesContainer.appendChild(row);
         }
     });
-}
-
-function populateSampleProgression() {
-    const progressionContainer = document.getElementById('recommended-courses');
-    console.log('Sample container:', progressionContainer);
-    if (!progressionContainer) return;
-
-    progressionContainer.innerHTML = '';
-
-    const years = [
-        { title: 'Freshman Year', data: progression.freshman },
-        { title: 'Sophomore Year', data: progression.sophomore },
-        { title: 'Junior Year', data: progression.junior },
-        { title: 'Senior Year', data: progression.senior }
-    ];
-
-    years.forEach(({ title, data }) => {
-        const section = document.createElement('div');
-        section.className = 'subsection';
-
-        const header = document.createElement('h4');
-        header.textContent = title;
-        header.classList.add('collapsed');
-
-        const content = document.createElement('div');
-        content.className = 'subsection-content collapsed';
-
-        // add fall semester
-        if (data.fall) {
-            const fallLabel = document.createElement('div');
-            fallLabel.style.fontWeight = 'bold';
-            fallLabel.style.fontSize = '13px';
-            fallLabel.style.marginTop = '8px';
-            fallLabel.style.marginBottom = '4px';
-            fallLabel.textContent = 'Fall';
-            content.appendChild(fallLabel);
-
-            data.fall.forEach(courseCode => {
-                const row = createReferenceRow(courseCode);
-                if (row) {
-                    row.style.cursor = 'pointer';
-                    row.addEventListener('click', () => addCourseToSelectedSlot(courseCode));
-                    content.appendChild(row);
-                }
-            });
-        }
-
-        // add spring semester
-        if (data.spring) {
-            const springLabel = document.createElement('div');
-            springLabel.style.fontWeight = 'bold';
-            springLabel.style.fontSize = '13px';
-            springLabel.style.marginTop = '12px';
-            springLabel.style.marginBottom = '4px';
-            springLabel.textContent = 'Spring';
-            content.appendChild(springLabel);
-
-            data.spring.forEach(courseCode => {
-                const row = createReferenceRow(courseCode);
-                if (row) {
-                    row.style.cursor = 'pointer';
-                    row.addEventListener('click', () => addCourseToSelectedSlot(courseCode));
-                    content.appendChild(row);
-                }
-            });
-        }
-
-        // toggle collapse on click
-        header.addEventListener('click', () => {
-            console.log('Header clicked!', title);
-            e.stopPropagation();
-            header.classList.toggle('collapsed');
-            content.classList.toggle('collapsed');
-        });
-
-        section.appendChild(header);
-        section.appendChild(content);
-        progressionContainer.appendChild(section);
-    });
-
-    console.log('Required courses populated');
 }
 
 // autocomplete functionality for course slots
@@ -525,14 +587,20 @@ document.getElementById('save-plan-btn')?.addEventListener('click', savePlan);
 
 document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.getElementById('toggle-sidebar-btn');
-    const referenceCard = document.getElementById('reference-card');
+    const referenceSection = document.querySelector('.reference-section');
+    const semestersGrid = document.getElementById('semesters-grid');
 
-    if (toggleBtn && referenceCard) {
-        toggleBtn.addEventListener('click', () => {
-            const isHidden = referenceCard.classList.toggle('hidden');
-            toggleBtn.textContent = isHidden ? 'Show' : 'Hide';
-        });
-    }
+    toggleBtn.addEventListener('click', () => {
+        // Toggle hidden class on reference section
+        referenceSection.classList.toggle('hidden');
+
+        // Toggle full-width class on semesters grid
+        semestersGrid.classList.toggle('full-width');
+
+        // Update button text
+        const isHidden = referenceSection.classList.contains('hidden');
+        toggleBtn.textContent = isHidden ? 'Show Guide' : 'Hide';
+    });
 });
 
 // initialize
@@ -548,7 +616,8 @@ if (semestersGrid) {
 
     // always populate the reference sections
     populateRequiredCourses();
-    populateElectives();
     populateSampleProgression();
+    populateRecommendedCourses();
+    populateElectives();
     setupCourseAutocomplete();
 }
