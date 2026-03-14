@@ -87,7 +87,7 @@ function createPlanCard(plan) {
         </div>
         <div class="plan-card-actions">
             <button class="btn btn-primary view-plan-btn">View</button>
-            <button class="btn btn-tertiary download-plan-btn">Download PDF</button>
+            <button class="btn-download download-plan-btn">↓ PDF</button>
             <button class="btn btn-secondary delete-plan-btn">Delete</button>
         </div>
     `;

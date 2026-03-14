@@ -149,17 +149,16 @@ h4, h5, h6 {
 
 .btn-download {
     padding: 6px 12px;
-    margin-right: 25px;
-    background-color: #002f87;
-    color: white;
+    filter:brightness(0.96);
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    margin-right: 12px;
 }
 
 .btn-download:hover {
-    background-color: #001f5c;
+    filter: brightness(0.96);
 }
 
 /* ========================================
