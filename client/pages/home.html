@@ -14,15 +14,15 @@
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
-            <img src="/assets/logo.jpg" alt="Gonzaga Logo" class="logo-img">
-            <h1>Gonzaga's Advising Software Planning Network</h1>
+            <img src="/assets/removedBackground.png" alt="Gonzaga Logo" class="logo-img">
         </div>
         <div class="nav-links">
             <a href="/pages/home.html" class="active">Dashboard</a>
             <a href="/pages/plan.html">Create Plan</a>
             <a href="/pages/my-plans.html">My Plans</a>
             <a href="/pages/faq.html">FAQ</a>
-            <a href="/index.html">Logout</a>
+            <a href="/pages/visual.html">Prereq Visual</a>
+            <a href="/index.html" id="logout-link">Logout</a>
         </div>
     </div>
 </nav>
@@ -117,10 +117,6 @@
             <span class="dropdown-arrow">▼</span>
         </div>
         <div id="recommended-schedules-draft" class="course-content hidden">
-            <p>
-                These schedules are a good starting point, but talk to your advisor and ensure you create a plan that
-                works for you.
-            </p><br>
             <div class="career-path-selector">
                 <label for="career-path">Select a career path:</label>
                 <select id="recommended-schedules-career-path">
@@ -134,6 +130,11 @@
                     <option value="Optometry">Optometry</option>
                 </select>
             </div>
+
+            <p>
+                These schedules are a good starting point, but talk to your advisor and ensure you create a plan that
+                works for you.
+            </p>
 
             <div id="recommended-schedules-display"></div>
         </div>
@@ -151,11 +152,6 @@
             <span class="dropdown-arrow">▼</span>
         </div>
         <div id="recommended" class="course-content hidden">
-            <p>
-                This coursework isn't explicitly required for your degree, but taking the recommended courses for your career path
-                is important for graduate program admission. This only includes coursework that doesn't overlap with Human Physiology's
-                required courses (which you'll take anyway).
-            </p><br>
             <div class="career-path-selector">
                 <label for="career-path">Select a career path:</label>
                 <select id="career-path">
@@ -169,6 +165,12 @@
                     <option value="optometry">Optometry</option>
                 </select>
             </div>
+
+            <p>
+                This coursework isn't explicitly required for your degree, but taking the recommended courses for your career path
+                is important for graduate program admission. This only includes coursework that doesn't overlap with Human Physiology's
+                required courses (which you'll take anyway).
+            </p>
 
             <div id="recommended-courses-display"></div>
         </div>

@@ -5,7 +5,6 @@ import recommended from '/data/recommended.js';
 import courseLinks from '/data/course-links.js';
 import { generateSectionPDF } from "./pdf-generator.js";
 
-// show/hide sections
 export function toggleSection(sectionId) {
     const content = document.getElementById(sectionId);
     const arrow = content.previousElementSibling.querySelector('.dropdown-arrow');
@@ -14,7 +13,7 @@ export function toggleSection(sectionId) {
     arrow.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
 }
 
-// applies toggleSection(sectionId) to home.html sections
+// applies toggle to dashboard sections
 document.querySelectorAll('.section-header').forEach(header => {
    header.addEventListener('click', () => {
        const sectionId = header.dataset.section;
@@ -22,7 +21,6 @@ document.querySelectorAll('.section-header').forEach(header => {
    });
 });
 
-// toggle subsections (nested dropdowns)
 function initializeSubsectionToggles() {
     document.querySelectorAll('.subsection h4').forEach(header => {
         const content = header.nextElementSibling;
@@ -32,6 +30,7 @@ function initializeSubsectionToggles() {
     });
 }
 
+// toggle section listener
 function attachSubsectionToggle(heading, content) {
     heading.addEventListener('click', function(e) {
         e.stopPropagation();
@@ -40,30 +39,28 @@ function attachSubsectionToggle(heading, content) {
     });
 }
 
-// create a course record
+// used for dashboard
 export function createCourseRow(courseCode) {
     const courseData = courses[courseCode];
 
-    // return if invalid course code
     if (!courseData) {
-        console.warn(`Course data not found for: ${courseCode}`);
+        console.log(`Course data not found for: ${courseCode}`);
         return null;
     }
 
-    // creates course row div
     const row = document.createElement('div');
     row.className = 'course-row';
-
     let courseCodeHTML;
     let separator = null;
 
-    // split courseCode links if needed
+    // split course code link if needed
     if (courseCode.includes(' or ')) {
         separator = ' or ';
     } else if (courseCode.includes(' & ')) {
         separator = ' & ';
     }
 
+    // split link
     if (separator) {
         const codes = courseCode.split(separator).map(c => c.trim());
 
@@ -76,6 +73,7 @@ export function createCourseRow(courseCode) {
 
         courseCodeHTML = `<div class="course-code-container">${linkedCodes}</div>`;
 
+    // split unnecessary
     } else {
         const link = courseLinks[courseCode] || '#';
         courseCodeHTML = link !== '#'
@@ -83,7 +81,6 @@ export function createCourseRow(courseCode) {
             : `<div class="course-code">${courseCode}</div>`;
     }
 
-    // add html to course row
     row.innerHTML = `
         ${courseCodeHTML}
         <div class="course-name">${courseData.name}</div>
@@ -93,10 +90,14 @@ export function createCourseRow(courseCode) {
     return row;
 }
 
+// used for plan.html
 export function createReferenceRow(courseCode) {
     const courseData = courses[courseCode];
 
-    if (!courseData) return null;
+    if (!courseData) {
+        console.log(`Couldn't create row for ${courseCode}`);
+        return null;
+    }
 
     const row = document.createElement('div');
     row.className = 'reference-course-row';
@@ -137,7 +138,7 @@ export function createReferenceRow(courseCode) {
         </label>
     `;
 
-    // grab the checkbox after innerHTML is set
+    // checkbox listener
     const checkbox = row.querySelector('.reference-row-checkbox');
     checkbox.addEventListener('change', () => {
         row.style.backgroundColor = checkbox.checked ? '#d4edda' : '';
@@ -146,7 +147,7 @@ export function createReferenceRow(courseCode) {
     return row;
 }
 
-// add courses to a section
+// adds courses to section one by one
 function populateCourseSection(elementId, courseCodes) {
     const container = document.getElementById(elementId);
 
@@ -221,7 +222,6 @@ function displayRecommendedCourses(courseCodes, pathKey) {
         other: 'Other'
     };
 
-    // clear previous content
     displayContainer.innerHTML = '';
 
     // add main header
@@ -345,18 +345,6 @@ document.addEventListener('DOMContentLoaded', function() {
         'pre-pharmacy-schedule': recommended.pharmacy,
         'pre-optometry-schedule': recommended.optometry,
     });
-
-    // sample progression classes
-    // populateMultipleSections({
-    //     'freshman-fall': progression.freshman.fall,
-    //     'freshman-spring': progression.freshman.spring,
-    //     'sophomore-fall': progression.sophomore.fall,
-    //     'sophomore-spring': progression.sophomore.spring,
-    //     'junior-fall': progression.junior.fall,
-    //     'junior-spring': progression.junior.spring,
-    //     'senior-fall': progression.senior.fall,
-    //     'senior-spring': progression.senior.spring
-    // });
 
     // listener for download as pdf buttons
     document.querySelectorAll('.btn-download').forEach(button => {

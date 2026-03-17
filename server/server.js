@@ -51,14 +51,19 @@ app.use('/data', express.static(path.join(__dirname, '../data'), {
     }
 }));
 
-// home page route
+// home page 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/pages/index.html'));
 });
 
-// login / register page route
+// login / register page 
 app.get('/index', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/pages/index.html'));
+});
+
+// prereq visual
+app.get('/visual', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/pages/visual.html'));
 });
 
 app.listen(PORT, () => {

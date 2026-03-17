@@ -5,21 +5,21 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
-// REGISTER route
+// registration
 router.post('/register', async (req, res) => {
     try {
         const { name, email, password, major, minor, abroad, career, clubs, additional } = req.body;
 
-        // return if email already in database
+        // prevent duplicate emails
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: 'Email already registered' });
         }
 
-        // hash the password
+        // hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // create new user object
+        // print user input
         console.log("REGISTER BODY:", req.body);
 
         const newUser = new User({
@@ -34,10 +34,10 @@ router.post('/register', async (req, res) => {
             additional
         });
 
-        // save new user to MongoDB using built-in function
+        // save new user to MongoDB
         await newUser.save();
 
-        // generate unique JWT token for user
+        // unique JWT for each user
         const token = jwt.sign(
             { userId: newUser._id, email: newUser.email },
             process.env.JWT_SECRET,
@@ -53,19 +53,18 @@ router.post('/register', async (req, res) => {
                 email: newUser.email
             }
         });
-
-    } catch (error) {
+    } catch (error) {  // if registration fails
         console.error('Registration error:', error);
         res.status(500).json({ message: 'Server error during registration' });
     }
 });
 
-// LOGIN route
+// login
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // find user by email
+        // search for email
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(401).json({ message: 'Invalid email or password' });
@@ -95,7 +94,7 @@ router.post('/login', async (req, res) => {
             }
         });
 
-    } catch (error) {
+    } catch (error) {  // if login fails
         console.error('Login error:', error);
         res.status(500).json({ message: 'Server error during login' });
     }

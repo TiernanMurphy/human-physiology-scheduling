@@ -3,18 +3,18 @@ import Plan from '../models/Plan.js';
 
 const router = express.Router();
 
-// GET all plans for a user
+// all user's plans
 router.get('/user/:userId', async (req, res) => {
     try {
         const plans = await Plan.find({ userId: req.params.userId })
-            .sort({ updatedAt: -1 }); // Most recently updated first
+            .sort({ updatedAt: -1 }); // sort by recently edited
         res.json(plans);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching plans', error: error.message });
     }
 });
 
-// GET a specific plan by ID
+// specific plan
 router.get('/:planId', async (req, res) => {
     try {
         const plan = await Plan.findById(req.params.planId);
@@ -27,7 +27,7 @@ router.get('/:planId', async (req, res) => {
     }
 });
 
-// POST - Create a new plan
+// create new plan
 router.post('/', async (req, res) => {
     try {
         const { userId, planName, semesters } = req.body;
@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// PUT - Update an existing plan
+// edit saved plan
 router.put('/:planId', async (req, res) => {
     try {
         const { planName, semesters } = req.body;
@@ -53,7 +53,7 @@ router.put('/:planId', async (req, res) => {
         const updatedPlan = await Plan.findByIdAndUpdate(
             req.params.planId,
             { planName, semesters, updatedAt: Date.now() },
-            { new: true } // Return the updated document
+            { new: true } // return updated plan
         );
 
         if (!updatedPlan) {
@@ -66,7 +66,7 @@ router.put('/:planId', async (req, res) => {
     }
 });
 
-// DELETE a plan
+// delete plan
 router.delete('/:planId', async (req, res) => {
     try {
         const deletedPlan = await Plan.findByIdAndDelete(req.params.planId);

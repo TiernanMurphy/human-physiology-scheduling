@@ -5,7 +5,7 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
-// admin dashboard route - protected by both auth and isAdmin middleware
+// admin dashboard route
 router.get('/dashboard', auth, isAdmin, (req, res) => {
     res.status(200).json({
         message: 'Welcome to admin dashboard',
@@ -18,12 +18,12 @@ router.get('/dashboard', auth, isAdmin, (req, res) => {
     });
 });
 
-// get all registered user data (except passwords)
+// get user data to show admin
 router.get('/users', auth, isAdmin, async (req, res) => {
     try {
         const users = await User.find()
-            .select('-password')  // Exclude password field
-            .sort({ createdAt: -1 });  // Most recent first
+            .select('-password')  // don't get passwords
+            .sort({ createdAt: -1 });  // sort by account creation time 
 
         res.status(200).json({ users });
     } catch (error) {
@@ -32,7 +32,7 @@ router.get('/users', auth, isAdmin, async (req, res) => {
     }
 });
 
-// get all plans for a specific user (admin only)
+// get user's saved plans
 router.get('/users/:userId/plans', auth, isAdmin, async (req, res) => {
     try {
         const Plan = (await import('../models/Plan.js')).default;

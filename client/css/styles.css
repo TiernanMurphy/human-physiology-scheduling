@@ -32,11 +32,11 @@ h4, h5, h6 {
 .navbar {
     background: linear-gradient(135deg, #002f87 0%, #8B0000 100%);
     color: white;
-    padding: 1rem 0;
+    padding: 0.33rem 0;
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
@@ -45,7 +45,6 @@ h4, h5, h6 {
 }
 
 .logo {
-    font-size: 1.5rem;
     display: flex;
     align-items: center;
     gap: 25px;
@@ -65,19 +64,26 @@ h4, h5, h6 {
 
 .nav-links {
     display: flex;
-    gap: 20px;
+    flex: 1;
+    justify-content: center;
+    padding-left: 100px;
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
-    padding: 8px 12px;
+    padding: 12px 28px;
+}
+
+#logout-link {
+    margin-left: auto;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    color: #f5e6c8;
 }
 
 /* ========================================
@@ -179,16 +185,30 @@ h4, h5, h6 {
 }
 
 .section-header {
-    background-color: #ecf0f1;
     padding: 15px 20px;
     cursor: pointer;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
+.section-header[data-section="required-courses"] {
+    background-color: #fde8e8;
+}
+
+.section-header[data-section="gu-core-courses"] {
+    background-color: #f5e8f0;
+}
+
+.section-header[data-section="recommended-schedules-draft"] {
+    background-color: #ebe9f5;
+}
+
+.section-header[data-section="recommended"] {
+    background-color: #e3f2fd;
+}
+
 .section-header:hover {
-    background-color: #dfe6e9;
+    filter: brightness(0.96);
 }
 
 .section-header h3 {

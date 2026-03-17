@@ -13,7 +13,6 @@ if (!semestersGrid) {
 let semesterCount = 0;
 let selectedSlot = null;
 
-// shared function for adding course to selected slot
 function addCourseToSelectedSlot(courseCode) {
     if (!selectedSlot) return
     const courseData = courses[courseCode];
@@ -133,6 +132,7 @@ semestersGrid?.addEventListener('click', (e) => {
 const tabs = document.querySelectorAll('.tab');
 const courseLists = document.querySelectorAll('.course-list');
 
+// tab listeners
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
@@ -146,7 +146,7 @@ tabs.forEach(tab => {
     });
 });
 
-// add semester button
+// add semester listener
 document.getElementById('add-semester-btn')?.addEventListener('click', () => {
     const semester = createSemester();
     semestersGrid.appendChild(semester);
