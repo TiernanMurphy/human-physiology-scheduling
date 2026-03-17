@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Human Physiology Required Courses Prerequisite Chart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: #0f1117;
+            color: #e2e4e9;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            padding: 18px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(15, 17, 23, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        #header h1 {
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #7a8a9e;
+        }
+
+        #header span {
+            font-size: 13px;
+            color: #4a5568;
+            font-weight: 300;
+        }
+
+        #notes {
+            position: fixed;
+            bottom: 24px;
+            left: 28px;
+            z-index: 10;
+            display: flex;
+            gap: 16px;
+        }
+
+        .note-tag {
+            font-size: 11.5px;
+            font-weight: 400;
+            color: #5a6a7e;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            padding: 6px 11px;
+            border-radius: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        .note-tag strong {
+            color: #8a9bb0;
+            font-weight: 500;
+        }
+
+        svg {
+            display: block;
+            margin-top: 52px;
+        }
+
+        /* Edges */
+        .edge {
+            fill: none;
+            stroke: rgba(100, 140, 180, 0.25);
+            stroke-width: 1.8;
+            marker-end: url(#arrowhead);
+        }
+
+        .edge:hover {
+            stroke: rgba(100, 180, 255, 0.5);
+            stroke-width: 2.2;
+        }
+
+        /* Nodes */
+        .node-group {
+            cursor: pointer;
+        }
+
+        .node-bg {
+            fill: rgba(28, 32, 42, 0.9);
+            stroke: rgba(100, 140, 180, 0.3);
+            stroke-width: 1.2;
+            rx: 6;
+            ry: 6;
+            transition: fill 0.2s, stroke 0.2s;
+        }
+
+        .node-group:hover .node-bg {
+            fill: rgba(38, 44, 60, 1);
+            stroke: rgba(100, 180, 255, 0.6);
+        }
+
+        .node-label {
+            fill: #c8d4e0;
+            font-size: 14px;
+            font-weight: 500;
+            text-anchor: middle;
+            dominant-baseline: central;
+            pointer-events: none;
+            letter-spacing: 0.02em;
+        }
+
+        .node-group:hover .node-label {
+            fill: #eef2f6;
+        }
+
+        /* Dept color accents */
+        .dept-hphy .node-bg { stroke-color: rgba(80, 160, 220, 0.4); }
+        .dept-biol .node-bg { stroke-color: rgba(80, 200, 140, 0.4); }
+        .dept-chem .node-bg { stroke-color: rgba(220, 160, 80, 0.4); }
+        .dept-phys .node-bg { stroke-color: rgba(180, 100, 220, 0.4); }
+        .dept-psyc .node-bg { stroke-color: rgba(220, 100, 100, 0.4); }
+        .dept-math .node-bg { stroke-color: rgba(100, 180, 220, 0.4); }
+
+        /* Tooltip */
+        #tooltip {
+            position: fixed;
+            background: rgba(20, 24, 34, 0.95);
+            border: 1px solid rgba(100, 140, 180, 0.25);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 20px;
+            color: #8a9bb0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s;
+            z-index: 100;
+            max-width: 250px;
+            height: auto;
+        }
+
+        #tooltip .tt-title {
+            color: #d4dfe8;
+            font-weight: 500;
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <h1>HPHY &nbsp; Prerequisite Chart</h1>
+    <span>Drag to pan &nbsp;·&nbsp; Scroll to zoom</span>
+</div>
+
+<div id="notes">
+    <div class="note-tag"><strong>PSYC 101</strong> required</div>
+    <div class="note-tag"><strong>MATH 148+</strong> required</div>
+</div>
+
+<div id="tooltip"></div>
+
+<svg id="chart"></svg>
+
+<script>
+    // ─── DATA ────────────────────────────────────────────────────────────────────
+    // Nodes: each course. "dept" is used for color coding.
+    const courses = [
+        { id: "PSYC 101",   dept: "psyc", label: "PSYC 101" },
+        { id: "MATH 148+",  dept: "math", label: "MATH 148+" },
+        { id: "BIOL 105/L", dept: "biol", label: "BIOL 105/L" },
+        { id: "BIOL 106",   dept: "biol", label: "BIOL 106" },
+        { id: "BIOL 170/L", dept: "biol", label: "BIOL 170/L" },
+        { id: "BIOL 207/L", dept: "biol", label: "BIOL 207/L" },
+        { id: "CHEM 101/L", dept: "chem", label: "CHEM 101/L" },
+        { id: "CHEM 230/L", dept: "chem", label: "CHEM 230/L" },
+        { id: "PHYS 111/L", dept: "phys", label: "PHYS 111/L" },
+        { id: "PHYS 112/L", dept: "phys", label: "PHYS 112/L" },
+        { id: "HPHY 241/L", dept: "hphy", label: "HPHY 241/L" },
+        { id: "HPHY 242/L", dept: "hphy", label: "HPHY 242/L" },
+        { id: "HPHY 205",   dept: "hphy", label: "HPHY 205" },
+        { id: "HPHY 210",   dept: "hphy", label: "HPHY 210" },
+        { id: "HPHY 274",   dept: "hphy", label: "HPHY 274" },
+        { id: "HPHY 375/L", dept: "hphy", label: "HPHY 375/L" },
+        { id: "HPHY 376/L", dept: "hphy", label: "HPHY 376/L" },
+        { id: "HPHY 441L",  dept: "hphy", label: "HPHY 441L" },
+        { id: "HPHY 442L",  dept: "hphy", label: "HPHY 442L" },
+        { id: "HPHY 499",   dept: "hphy", label: "HPHY 499" },
+    ];
+
+    // Edges: source → target means source is a prereq for target.
+    // Read directly from your sketch.
+    const prereqs = [
+        // BIOL 105/L chain
+        { source: "BIOL 105/L", target: "BIOL 106" },
+        { source: "BIOL 105/L", target: "BIOL 170/L" },
+        { source: "BIOL 106",   target: "BIOL 207/L" },
+        { source: "BIOL 105/L", target: "HPHY 241/L" },
+
+        // CHEM 101/L chain
+        { source: "CHEM 101/L", target: "HPHY 241/L" },
+        { source: "CHEM 101/L", target: "CHEM 230/L" },
+
+        // PHYS 111/L -> PHYS 112/L
+        { source: "PHYS 111/L", target: "PHYS 112/L" },
+
+        // HPHY 241 → 242
+        { source: "HPHY 241/L", target: "HPHY 242/L" },
+
+        // HPHY 242 chain
+        { source: "HPHY 242/L", target: "HPHY 205" },
+        { source: "HPHY 242/L", target: "HPHY 210" },
+        { source: "HPHY 242/L", target: "HPHY 274" },
+        { source: "HPHY 242/L", target: "HPHY 375/L" },
+        { source: "HPHY 242/L", target: "HPHY 376/L" },
+
+        // HPHY 274 feeds into 375 and 376
+        { source: "HPHY 274",   target: "HPHY 375/L" },
+        { source: "HPHY 274",   target: "HPHY 376/L" },
+
+        // PHYS 112 → HPHY 274
+        { source: "PHYS 112/L", target: "HPHY 274" },
+
+        // HPHY 205 → HPHY 375/L, HPHY 376/L
+        { source: "HPHY 205",   target: "HPHY 375/L" },
+        { source: "HPHY 205",   target: "HPHY 376/L" },
+
+        // HPHY 210 → 375, 376
+        { source: "HPHY 210",   target: "HPHY 375/L" },
+        { source: "HPHY 210",   target: "HPHY 376/L" },
+
+        // Final HPHY courses
+        { source: "HPHY 375/L", target: "HPHY 441L" },
+        { source: "HPHY 376/L", target: "HPHY 441L" },
+        { source: "HPHY 441L",  target: "HPHY 442L" },
+        { source: "HPHY 442L",  target: "HPHY 499" },
+    ];
+
+    // node layout, scaled to viewport later
+    const positions = {
+        "PSYC 101":   { x: 0.05,  y: 0.08 },
+        "MATH 148+":  { x: 0.18,  y: 0.08 },
+        "BIOL 105/L": { x: 0.38,  y: 0.06 },
+        "BIOL 106":   { x: 0.26,  y: 0.14 },
+        "BIOL 170/L": { x: 0.42,  y: 0.14 },
+        "BIOL 207/L": { x: 0.15,  y: 0.22 },
+        "CHEM 101/L": { x: 0.65,  y: 0.06 },
+        "CHEM 230/L": { x: 0.75,  y: 0.14 },
+        "PHYS 111/L": { x: 0.78,  y: 0.30 },
+        "PHYS 112/L": { x: 0.78,  y: 0.40 },
+        "HPHY 241/L": { x: 0.50,  y: 0.10 },
+        "HPHY 242/L": { x: 0.50,  y: 0.22 },
+        "HPHY 205":   { x: 0.42,  y: 0.38 },
+        "HPHY 210":   { x: 0.24,  y: 0.42 },
+        "HPHY 274":   { x: 0.62,  y: 0.38 },
+        "HPHY 375/L": { x: 0.48,  y: 0.56 },
+        "HPHY 376/L": { x: 0.22,  y: 0.54 },
+        "HPHY 441L":  { x: 0.36,  y: 0.70 },
+        "HPHY 442L":  { x: 0.36,  y: 0.80 },
+        "HPHY 499":   { x: 0.36,  y: 0.90 },
+    };
+
+    // render
+    const svg = d3.select("#chart");
+    const tooltip = d3.select("#tooltip");
+
+    function render() {
+        const W = window.innerWidth;
+        const H = window.innerHeight - 52; // subtract header
+
+        svg.attr("width", W).attr("height", H);
+        svg.selectAll("*").remove();
+
+        // Zoom & pan
+        const g = svg.append("g");
+        const zoom = d3.zoom()
+            .scaleExtent([0.4, 3])
+            .on("zoom", (event) => g.attr("transform", event.transform));
+        svg.call(zoom);
+        // Start slightly zoomed in and centered
+        svg.call(zoom.transform, d3.zoomIdentity.translate(W * 0.05, 0).scale(1.05));
+
+        // Arrowhead marker
+        svg.append("defs").append("marker")
+            .attr("id", "arrowhead")
+            .attr("viewBox", "0 0 10 10")
+            .attr("refX", 9)
+            .attr("refY", 5)
+            .attr("markerWidth", 6)
+            .attr("markerHeight", 6)
+            .attr("orient", "auto-start-reverse")
+            .append("path")
+            .attr("d", "M 0 0 L 10 5 L 0 10 z")
+            .attr("fill", "rgba(100,140,180,0.4)");
+
+        // Position helper
+        function pos(id) {
+            const p = positions[id];
+            return { x: p.x * W, y: p.y * H };
+        }
+
+        // Node size
+        const nodeW = 88;
+        const nodeH = 30;
+
+        // ── Draw edges ──
+        g.selectAll(".edge")
+            .data(prereqs)
+            .enter()
+            .append("line")
+            .attr("class", "edge")
+            .attr("x1", d => pos(d.source).x)
+            .attr("y1", d => pos(d.source).y + nodeH / 2)
+            .attr("x2", d => pos(d.target).x)
+            .attr("y2", d => pos(d.target).y - nodeH / 2 + 2);
+
+        // ── Draw nodes ──
+        const nodes = g.selectAll(".node-group")
+            .data(courses)
+            .enter()
+            .append("g")
+            .attr("class", d => `node-group dept-${d.dept}`)
+            .attr("transform", d => {
+                const p = pos(d.id);
+                return `translate(${p.x - nodeW / 2}, ${p.y - nodeH / 2})`;
+            });
+
+        nodes.append("rect")
+            .attr("class", "node-bg")
+            .attr("width", nodeW)
+            .attr("height", nodeH);
+
+        nodes.append("text")
+            .attr("class", "node-label")
+            .attr("x", nodeW / 2)
+            .attr("y", nodeH / 2)
+            .text(d => d.label);
+
+        // ── Tooltip on hover ──
+        nodes.on("mousemove", function(event, d) {
+            // Find prereqs (what this course requires)
+            const incoming = prereqs
+                .filter(e => e.target === d.id)
+                .map(e => e.source);
+            // Find what this course unlocks
+            const outgoing = prereqs
+                .filter(e => e.source === d.id)
+                .map(e => e.target);
+
+            let html = `<div class="tt-title">${d.label}</div>`;
+            if (incoming.length) html += `<div style="margin-top:4px;"><span style="color:#5a6a7e;">Prereqs:</span> ${incoming.join(", ")}</div>`;
+            if (outgoing.length) html += `<div style="margin-top:2px;"><span style="color:#5a6a7e;">Unlocks:</span> ${outgoing.join(", ")}</div>`;
+            if (!incoming.length && !outgoing.length) html += `<div style="margin-top:4px;color:#4a5568;">No prerequisites, doesn't unlock any courses</div>`;
+
+            tooltip
+                .html(html)
+                .style("left", (event.clientX + 14) + "px")
+                .style("top",  (event.clientY - 10) + "px")
+                .style("opacity", 1);
+        }).on("mouseleave", function() {
+            tooltip.style("opacity", 0);
+        });
+    }
+
+    render();
+    window.addEventListener("resize", render);
+</script>
+</body>
+</html>
