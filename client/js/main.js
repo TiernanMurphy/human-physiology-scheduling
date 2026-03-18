@@ -152,7 +152,6 @@ function populateCourseSection(elementId, courseCodes) {
     const container = document.getElementById(elementId);
 
     if (!container) {
-        console.error(`Container not found: ${elementId}`);
         return;
     }
 
@@ -351,6 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', (e) => {
             e.stopPropagation();
             const sectionId = button.dataset.section;
+            console.log(`called generateSectionPDF for ${sectionId}`);
             generateSectionPDF(sectionId);
         });
     });

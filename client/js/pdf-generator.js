@@ -43,6 +43,8 @@ function addTitle(doc, text, yPosition = 20) {
 }
 
 function addSubsectionHeader(doc, text, yPosition) {
+    console.log(`addSubsectionHeader called for ${text}`);
+
     doc.setFontSize(FONTS.SUBSECTION.size);
     doc.setFont(undefined, FONTS.SUBSECTION.style);
     doc.text(text, 20, yPosition);
@@ -55,8 +57,9 @@ function addSubsectionHeader(doc, text, yPosition) {
     return yPosition + 5;
 }
 
-// helper: add column headers
 function addColumnHeaders(doc, headers, yPosition) {
+    console.log(`addColumnHeaders called for ${yPosition}`);
+
     doc.setFontSize(headers.fontSize || FONTS.COLUMN_HEADER.size);
     doc.setFont(undefined, FONTS.COLUMN_HEADER.style);
 
@@ -67,7 +70,7 @@ function addColumnHeaders(doc, headers, yPosition) {
     return yPosition + 5;
 }
 
-// helper: extract course data from a row element
+// extract course data from a row element
 function getCourseData(row) {
     const code = row.querySelector('.course-code, .course-code-link')?.textContent.trim() || '';
     const name = row.querySelector('.course-name')?.textContent.trim() || '';
@@ -77,7 +80,7 @@ function getCourseData(row) {
     return { code, name, credits };
 }
 
-// helper: render a single course row with alternating background
+// render course rows with alternating backgrounds
 function renderCourseRow(doc, courseData, config, yPosition, rowIndex) {
     const { code, name, credits } = courseData;
     const { xOffset = 20, codeX = 25, nameX = 90, creditsX = 170,
@@ -103,10 +106,12 @@ function renderCourseRow(doc, courseData, config, yPosition, rowIndex) {
     return yPosition + rowHeight + 2;
 }
 
-// helper: render all courses in a container
+// render courses in a container
 function renderCourseList(doc, container, config, yPosition) {
-    if (!container) return yPosition;
-
+    if (!container) {
+        console.log(`container ${container} not found`);
+        return yPosition;
+    }
     const courseRows = container.querySelectorAll('.course-row');
     let rowIndex = 0;
 
@@ -116,13 +121,20 @@ function renderCourseList(doc, container, config, yPosition) {
         rowIndex++;
     });
 
+    console.log("renderCourseList didn't return early");
+
     return yPosition + 8; // space after section
 }
 
-// helper: render subsection with courses
+// render subsection with courses
 function renderSubsection(doc, subsectionId, title, config, yPosition) {
     const container = document.getElementById(subsectionId);
-    if (!container) return yPosition;
+    if (!container) {
+        console.log("RENDERSUBSECTION RETURNED EARLY");
+        return yPosition;
+    }
+
+    console.log(`CONTAINER FOUND: ${container}`);
 
     // subsection header
     yPosition = addSubsectionHeader(doc, title, yPosition);
@@ -143,13 +155,14 @@ function renderSubsection(doc, subsectionId, title, config, yPosition) {
 
 // required courses PDF
 function generateRequiredCoursesPDF() {
+    console.log("generateRequiredCoursesPDF beginning to execute...");
     const doc = new jsPDF();
     let yPosition = addTitle(doc, 'Human Physiology Required Courses');
 
     const subsections = [
-        { id: 'core-stem-courses', title: 'Core STEM' },
-        { id: 'lower-division-courses', title: 'Lower Division' },
-        { id: 'upper-division-courses', title: 'Upper Division' }
+        { id: 'core-stem', title: 'Core STEM' },
+        { id: 'lower-division', title: 'Lower Division' },
+        { id: 'upper-division', title: 'Upper Division' }
     ];
 
     const config = {
@@ -164,6 +177,7 @@ function generateRequiredCoursesPDF() {
 
     subsections.forEach(section => {
         yPosition = renderSubsection(doc, section.id, section.title, config, yPosition);
+        console.log(`renderSubsection called for ${section.id} | ${section.title}`);
     });
 
     doc.save('required-human-physiology-courses.pdf');

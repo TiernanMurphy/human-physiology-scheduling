@@ -67,8 +67,7 @@ async function submitAuthForm(endpoint, data, successCallback) {
         const result = await response.json();
 
         if (response.ok) {
-            console.log('User:', result.user);
-            console.log('Token:', result.token);
+            console.log("success!");
 
             if (successCallback) successCallback(result);
         } else {
