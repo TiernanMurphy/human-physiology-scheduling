@@ -27,10 +27,15 @@ export function generateSectionPDF(sectionId) {
         case 'sample-plan':
             generateSamplePlanPDF();
             break;
+        case 'recommended-schedules-draft':
+            console.log("CALLED GENERATESAMPLEPLANPDF");
+            generateSamplePlanPDF();
+            break;
         case 'recommended':
             generateRecommendedPDF();
             break;
         default:
+            console.log("CALLED GENERATEGENERICPDF");
             generateGenericPDF(sectionId);
     }
 }
@@ -109,7 +114,6 @@ function renderCourseRow(doc, courseData, config, yPosition, rowIndex) {
 // render courses in a container
 function renderCourseList(doc, container, config, yPosition) {
     if (!container) {
-        console.log(`container ${container} not found`);
         return yPosition;
     }
     const courseRows = container.querySelectorAll('.course-row');
@@ -121,8 +125,6 @@ function renderCourseList(doc, container, config, yPosition) {
         rowIndex++;
     });
 
-    console.log("renderCourseList didn't return early");
-
     return yPosition + 8; // space after section
 }
 
@@ -130,7 +132,6 @@ function renderCourseList(doc, container, config, yPosition) {
 function renderSubsection(doc, subsectionId, title, config, yPosition) {
     const container = document.getElementById(subsectionId);
     if (!container) {
-        console.log("RENDERSUBSECTION RETURNED EARLY");
         return yPosition;
     }
 
@@ -228,7 +229,7 @@ function generateSamplePlanPDF() {
         yPosition = addSubsectionHeader(doc, year.name, yPosition);
 
         // semester titles
-        doc.setFontSize(FONTS.SUBSECTION.size - 2);
+        doc.setFontSize(FONTS.SUBSECTION.size - 4);
         doc.setFont(undefined, FONTS.SUBSECTION.style);
         doc.text('Fall', 25, yPosition);
         doc.text('Spring', 110, yPosition);
@@ -260,6 +261,9 @@ function generateSamplePlanPDF() {
 
         // render Fall semester
         const fallContainer = document.getElementById(year.fall);
+
+        console.log(`${fallContainer} successfully retreived`);
+
         const fallHeaders = {
             fontSize: FONTS.SMALL.size,
             columns: [
@@ -272,7 +276,10 @@ function generateSamplePlanPDF() {
         fallY = renderCourseListCompact(doc, fallContainer, fallConfig, fallY);
 
         // render Spring semester
-        const springContainer = document.getElementById(year.spring);
+        const springContainer = document.getElementById(year.spring);  // freshman-spring
+
+        console.log(`${springContainer} successfully retreived`);
+
         const springHeaders = {
             fontSize: FONTS.SMALL.size,
             columns: [
@@ -292,7 +299,12 @@ function generateSamplePlanPDF() {
 
 // helper for compact course rendering (used in sample plan)
 function renderCourseListCompact(doc, container, config, yPosition) {
-    if (!container) return yPosition;
+    if (!container) {
+        console.log(`renderCourseListCompact RETURNED EARLY because ${container} wasn't found`);
+        return yPosition;
+    } 
+
+    console.log("RENDERCOURSELISTCOMPACT DIDN'T RETURN EARLY");
 
     const courseRows = container.querySelectorAll('.course-row');
     let rowIndex = 0;

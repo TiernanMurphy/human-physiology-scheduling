@@ -270,14 +270,14 @@ function displayRecommendedSchedule(careerPath) {
     }
 
     const semesters = [
-        { title: 'Freshman Fall', courses: progression.freshman.fall },
-        { title: 'Freshman Spring', courses: progression.freshman.spring },
-        { title: 'Sophomore Fall', courses: progression.sophomore.fall },
-        { title: 'Sophomore Spring', courses: progression.sophomore.spring },
-        { title: 'Junior Fall', courses: progression.junior.fall },
-        { title: 'Junior Spring', courses: progression.junior.spring },
-        { title: 'Senior Fall', courses: progression.senior.fall },
-        { title: 'Senior Spring', courses: progression.senior.spring },
+        { title: 'Freshman Fall', courses: progression.freshman.fall, id: 'freshman-fall' },
+        { title: 'Freshman Spring', courses: progression.freshman.spring, id: 'freshman-spring' },
+        { title: 'Sophomore Fall', courses: progression.sophomore.fall, id: 'sophomore-fall' },
+        { title: 'Sophomore Spring', courses: progression.sophomore.spring, id: 'sophomore-spring' },
+        { title: 'Junior Fall', courses: progression.junior.fall, id: 'junior-fall' },
+        { title: 'Junior Spring', courses: progression.junior.spring, id: 'junior-spring' },
+        { title: 'Senior Fall', courses: progression.senior.fall, id: 'senior-fall' },
+        { title: 'Senior Spring', courses: progression.senior.spring, id: 'senior-spring' },
     ];
 
     // container for content shown after selection
@@ -288,7 +288,7 @@ function displayRecommendedSchedule(careerPath) {
     displayContainer.innerHTML = `<h4 class="recommended-header">Pre-${careerPath} Sample Plan</h4>`;
 
     // add each semester and its courses
-    semesters.forEach(({ title, courses }) => {
+    semesters.forEach(({ title, courses, id }) => {
         // semester heading
         const semesterHeader = document.createElement('h4');
         semesterHeader.textContent = title;
@@ -297,6 +297,7 @@ function displayRecommendedSchedule(careerPath) {
 
         // add courses
         const content = document.createElement('div');
+        content.id = id;
         courses.forEach(course => {
             const row = createCourseRow(course);
             if (row) content.appendChild(row);
