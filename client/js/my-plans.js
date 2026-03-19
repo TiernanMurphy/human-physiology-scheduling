@@ -47,8 +47,7 @@ async function loadUserPlans() {
 
         if (plans.length === 0) {
             plansContainer.innerHTML = `
-                <p>You haven't saved any plans yet.</p>
-                <a href="/pages/plan.html" class="btn btn-primary">Create Your First Plan</a>
+                <h3>You haven't saved a plan yet, try creating one below!</h3>
             `;
             return;
         }
