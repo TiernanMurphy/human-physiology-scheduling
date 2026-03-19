@@ -78,6 +78,7 @@ function initializeSemesters() {
 }
 
 semestersGrid?.addEventListener('click', (e) => {
+    // select course slot
     if (e.target.classList.contains('course-slot')) {
         if (selectedSlot) {
             selectedSlot.classList.remove('selected');
@@ -87,6 +88,7 @@ semestersGrid?.addEventListener('click', (e) => {
         return;
     }
 
+    // delete semester
     if (e.target.classList.contains('delete-semester')) {
         const semesterCard = e.target.closest('.semester-card');
         if (confirm('Delete this semester?')) {
@@ -94,6 +96,7 @@ semestersGrid?.addEventListener('click', (e) => {
         }
     }
 
+    // delete course
     if (e.target.classList.contains('delete-course')) {
         const semesterCard = e.target.closest('.semester-card');
         const courseSlotsContainer = semesterCard.querySelector('.course-slots');
@@ -113,6 +116,7 @@ semestersGrid?.addEventListener('click', (e) => {
         }
     }
 
+    // add course
     if (e.target.classList.contains('add-course-btn')) {
         const semesterCard = e.target.closest('.semester-card');
         const courseSlotsContainer = semesterCard.querySelector('.course-slots');
@@ -238,7 +242,7 @@ function populateRequiredCourses() {
 }
 
 function populateSampleProgression() {
-    const progressionContainer = document.getElementById('recommended-courses');
+    const progressionContainer = document.getElementById('example-courses');
     if (!progressionContainer) return;
 
     const semesters = [
@@ -307,7 +311,7 @@ function populateSampleProgression() {
 
 function populateRecommendedCourses() {
     // pre-selection container
-    const container = document.getElementById('recommended2-courses');
+    const container = document.getElementById('recommended-courses');
     if (!container) return;
 
     container.innerHTML = '<div id="recommended" class="course-content">\n' +
@@ -362,7 +366,6 @@ function populateElectives() {
     });
 }
 
-// autocomplete functionality for course slots
 function setupCourseAutocomplete() {
     let currentDropdown = null;
 
