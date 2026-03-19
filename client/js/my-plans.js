@@ -98,6 +98,7 @@ function createPlanCard(plan) {
         window.location.href = `/pages/plan.html?planId=${plan._id}`;
     });
 
+    // where download saved plan begins
     card.querySelector('.download-plan-btn').addEventListener('click', () => {
         generatePlanPDF(plan);
     });

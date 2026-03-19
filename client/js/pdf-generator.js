@@ -399,6 +399,8 @@ function generateRecommendedPDF() {
 
 // generate PDF for a saved plan
 export function generatePlanPDF(plan) {
+    console.log(plan);
+
     const doc = new jsPDF();
 
     // title
@@ -410,7 +412,7 @@ export function generatePlanPDF(plan) {
 
     const totalCourses = plan.semesters.reduce((sum, sem) => sum + sem.courses.length, 0);
     const updatedDate = new Date(plan.updatedAt).toLocaleDateString();
-    doc.text(`Total Semesters: ${plan.semesters.length}  |  Total Courses: ${totalCourses}  |  Updated: ${updatedDate}`, 105, yPosition, { align: 'center' });
+    doc.text(`${plan.semesters.length} Semesters | ${totalCourses} Courses | Last Edited ${updatedDate}`, 105, yPosition, { align: 'center' });
     yPosition += 15;
 
     const config = {
@@ -425,7 +427,6 @@ export function generatePlanPDF(plan) {
 
     // iterate through semesters
     plan.semesters.forEach(semester => {
-        // check if we need a new page
         if (yPosition > 250) {
             doc.addPage();
             yPosition = 20;
@@ -451,10 +452,16 @@ export function generatePlanPDF(plan) {
             yPosition += 8;
         } else {
             semester.courses.forEach((course, index) => {
+                if (course.courseCredits) {
+                    console.log("COURSE CREDITS FOUND");
+                } else {
+                    console.log("COURSE CREDITS NULL");
+                }
+
                 const courseData = {
                   code: course.courseCode || '',
                   name: course.courseName || '',
-                  credits: ''  // configure later
+                  credits: course.courseCredits || '',
                 };
                 yPosition = renderCourseRow(doc, courseData, config, yPosition, index);
 

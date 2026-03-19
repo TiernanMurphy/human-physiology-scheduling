@@ -260,14 +260,13 @@ function displayRecommendedCourses(courseCodes, pathKey) {
 }
 
 function displayRecommendedSchedule(careerPath) {
+    if (careerPath == 'clear') return;
+
     const displayContainer = document.getElementById('recommended-schedules-display');
     if (!displayContainer) return;
 
     // let user clear schedule
-    const scheduleSelect = document.getElementById('recommended-schedules-career-path');
-    if (!scheduleSelect) {
-        displayContainer.innerHTML = '';
-    }
+    displayContainer.innerHTML = '';
 
     const semesters = [
         { title: 'Freshman Fall', courses: progression.freshman.fall, id: 'freshman-fall' },
@@ -279,6 +278,25 @@ function displayRecommendedSchedule(careerPath) {
         { title: 'Senior Fall', courses: progression.senior.fall, id: 'senior-fall' },
         { title: 'Senior Spring', courses: progression.senior.spring, id: 'senior-spring' },
     ];
+
+    // holds header and PDF download button
+    const headerWrapper = document.createElement('div');
+    headerWrapper.className = 'header-with-pdf-btn';
+    headerWrapper.innerHTML = '';
+
+    let button = null;
+    if (careerPath == 'clear') {
+        headerWrapper.innerHTML = `<h4 class="recommended-header">Pre-${careerPath} Sample Plan`;
+
+        // add download PDF button
+        button = document.createElement('button');
+        button.textContent = 'PDF';
+        button.className = 'btn-download';
+        button.dataset.section = 'recommended-schedules-draft';
+        headerWrapper.appendChild(button);
+    }
+
+    displayContainer.appendChild(headerWrapper);
 
     // container for content shown after selection
     const courseworkContainer = document.createElement('div');
