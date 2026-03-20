@@ -28,6 +28,8 @@ function createSemester(semesterName = '') {
     semesterCount++;
     const defaultName = semesterName || `Semester ${semesterCount}`;
 
+    const summerName = "Optional Summer Session";
+
     const semesterCard = document.createElement('div');
     semesterCard.className = 'semester-card';
     semesterCard.dataset.semesterId = semesterCount;
@@ -43,7 +45,7 @@ function createSemester(semesterName = '') {
             </div>
         </div>
         <div class="course-slots">
-            ${createCourseSlots(5)}
+            ${createCourseSlots(semesterName === summerName ? 2 : 5)}
         </div>
         <button class="add-course-btn">+ Add Course</button>
     `;
@@ -73,6 +75,12 @@ function initializeSemesters() {
             const semesterName = `${years[year]} ${terms[term]}`;
             const semester = createSemester(semesterName);
             semestersGrid.appendChild(semester);
+        }
+        const summerLabel = "Optional Summer Session";
+        if (year == 0 || year == 2) {
+            // create with only two course slots
+            const summerSemester = createSemester(summerLabel);
+            semestersGrid.appendChild(summerSemester);
         }
     }
 }
