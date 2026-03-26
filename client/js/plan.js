@@ -12,14 +12,21 @@ if (!semestersGrid) {
 
 let semesterCount = 0;
 let selectedSlot = null;
+let currentSemester;
 
-function addCourseToSelectedSlot(courseCode) {
+// might need parameter to indicate what semester you're in
+function addCourseToSelectedSlot(courseCode, semesterName) {
     if (!selectedSlot) return
     const courseData = courses[courseCode];
+
     if (courseData) {
         const creditText = courseData.credits === 1 ? 'credit' : 'credits';
         selectedSlot.value = `${courseCode}  -  ${courseData.name}  (${courseData.credits} ${creditText})`;
         selectedSlot.classList.remove('selected');
+
+        // manually fire input event to trigger save listener
+        selectedSlot.dispatchEvent(new Event('input', {bubbles: true }));
+
         selectedSlot = null;
     }
 }
@@ -27,6 +34,8 @@ function addCourseToSelectedSlot(courseCode) {
 function createSemester(semesterName = '') {
     semesterCount++;
     const defaultName = semesterName || `Semester ${semesterCount}`;
+
+    const totalCredits = 0;
 
     const summerName = "Optional Summer Session";
 
@@ -85,6 +94,46 @@ function initializeSemesters() {
     }
 }
 
+function savePlanToLocalStorage() {
+    const planData = collectPlanData();
+    localStorage.setItem('draftPlan', JSON.stringify(planData));
+}
+
+function restorePlanFromLocalStorage() {
+    const saved = localStorage.getItem('draftPlan');
+    if (!saved) return false;
+
+    const planData = JSON.parse(saved);
+    document.getElementById('plan-name').value = planData.planName;
+
+    semestersGrid.innerHTML = '';
+    semesterCount = 0;
+
+    planData.semesters.forEach(semester => {
+        const semesterCard = createSemester(semester.name);
+        semestersGrid.appendChild(semesterCard);
+
+        const courseSlots = semesterCard.querySelectorAll('.course-slot');
+        semester.courses.forEach((course, index) => {
+            const value = `${course.courseCode} - ${course.courseName}`;
+            if (courseSlots[index]) {
+                courseSlots[index].value = value;
+            } else {
+                const container = semesterCard.querySelector('.course-slots');
+                const newSlot = document.createElement('div');
+                newSlot.className = 'course-slot-container';
+                newSlot.innerHTML = `
+                    <input type="text" class="course-slot" placeholder="Type to search" value="${value}">
+                    <button class="delete-course" title="Remove course">×</button>
+                `;
+                container.appendChild(newSlot);
+            }
+        });
+    });
+
+    return true;
+}
+
 semestersGrid?.addEventListener('click', (e) => {
     // select course slot
     if (e.target.classList.contains('course-slot')) {
@@ -93,6 +142,14 @@ semestersGrid?.addEventListener('click', (e) => {
         }
         selectedSlot = e.target;
         selectedSlot.classList.add('selected');
+
+        const semesterHeader = e.target.closest('.semester-header'); 
+        const semesterName = semesterHeader.querySelector('.semester-title');
+
+        currentSemester = semesterName.value;
+
+        console.log("SEMESTER: ",  currentSemester);
+
         return;
     }
 
@@ -138,6 +195,14 @@ semestersGrid?.addEventListener('click', (e) => {
 
         courseSlotsContainer.appendChild(newSlot);
     }
+});
+
+semestersGrid.addEventListener('input', () => {
+    savePlanToLocalStorage();
+});
+
+semestersGrid.addEventListener('change', () => {
+    savePlanToLocalStorage();
 });
 
 // tab switching
@@ -201,7 +266,7 @@ function populateRequiredCourses() {
         const sectionContent = document.createElement('div');
         sectionContent.className = 'subsection-content collapsed';
 
-        // Loop over each subsection within this section
+        // loop over each subsection within this section
         subsections.forEach(({ title: subTitle, courses }) => {
             const subsection = document.createElement('div');
             subsection.className = 'subsection';
@@ -212,12 +277,16 @@ function populateRequiredCourses() {
             const subContent = document.createElement('div');
             subContent.className = 'subsection-content';
 
-            // Loop over each course code in this subsection
+            // loop over each course code in this subsection
             courses.forEach(code => {
                 const row = createReferenceRow(code);
                 if (row) {
                     row.style.cursor = 'pointer';
-                    row.addEventListener('click', () => addCourseToSelectedSlot(code));
+                    // row.addEventListener('click', () => addCourseToSelectedSlot(code));
+                    row.addEventListener('click', (e) => {
+                        // new fetch attempt
+                        addCourseToSelectedSlot(code, currentSemester);
+                    });
                     subContent.appendChild(row);
                 }
             });
@@ -431,6 +500,7 @@ function createDropdown(matches, inputElement) {
 
         item.addEventListener('click', () => {
             inputElement.value = `${code} - ${data.name}`;
+            inputElement.dispatchEvent(new Event('input', { bubbles: true })); // add this
             dropdown.remove();
             inputElement.classList.remove('selected');
             selectedSlot = null;
@@ -582,8 +652,8 @@ async function savePlan() {
         const result = await response.json();
 
         if (response.ok) {
+            localStorage.removeItem('draftPlan'); // new
             alert('Plan saved successfully!');
-            console.log('Saved plan:', result);
         } else {
             alert('Error saving plan: ' + result.message);
         }
@@ -602,13 +672,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const semestersGrid = document.getElementById('semesters-grid');
 
     toggleBtn.addEventListener('click', () => {
-        // Toggle hidden class on reference section
+        // collapsible sections
         referenceSection.classList.toggle('hidden');
 
-        // Toggle full-width class on semesters grid
+        // show/hide reference section
         semestersGrid.classList.toggle('full-width');
 
-        // Update button text
+        // show/hide text change
         const isHidden = referenceSection.classList.contains('hidden');
         toggleBtn.textContent = isHidden ? 'Show Guide' : 'Hide';
     });
@@ -622,7 +692,10 @@ if (semestersGrid) {
         loadExistingPlan(planId);
     } else {
         // start with empty semesters
-        initializeSemesters();
+        const restored = restorePlanFromLocalStorage();
+        if(!restored) {
+            initializeSemesters();
+        }
     }
 
     // always populate the reference sections
