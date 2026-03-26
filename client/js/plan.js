@@ -348,6 +348,7 @@ function populateSampleProgression() {
         '                        <option value="optometry">Optometry</option>\n' +
         '                    </select>\n' +
         '                </div>\n' +
+        '               <div><p>** These haven\'t been implemented yet for each career path. What\'s displayed for each is a generic 4 year plan for the Human Phys major.</p></div>\n' +
         '            </div>';
 
     const careerPath = document.getElementById('career-path');

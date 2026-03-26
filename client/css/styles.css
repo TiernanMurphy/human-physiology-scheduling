@@ -20,6 +20,10 @@ body {
     overflow-y: scroll;
 }
 
+@view-transition {
+    navigation: auto;
+}
+
 h1, h2, h3 {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -180,6 +184,13 @@ footer {
 
 .btn-download:hover {
     filter: brightness(0.96);
+}
+
+.delete-semester:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+    filter: grayscale(0%) brightness(0.8);
+    transition: transform 0.15s ease, filter 0.15s ease;
 }
 
 /* ========================================
@@ -1647,6 +1658,10 @@ footer {
 .semester-title {
     font-weight: bold;
     font-size: 16px;
+}
+
+.semester-title:hover {
+    border: 2 px solid #002f87;
 }
 
 .semester-actions {
